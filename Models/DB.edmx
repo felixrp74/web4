@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Prueba4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bien">
+          <Key>
+            <PropertyRef Name="Clave_B" />
+          </Key>
+          <Property Name="Clave_B" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="45" />
+          <Property Name="Marca" Type="varchar" MaxLength="45" />
+          <Property Name="Modelo" Type="varchar" MaxLength="45" />
+          <Property Name="Serie" Type="varchar" MaxLength="45" />
+          <Property Name="Estado" Type="varchar" MaxLength="45" />
+          <Property Name="UsuarioPC" Type="varchar" MaxLength="45" />
+          <Property Name="NombrePC" Type="varchar" MaxLength="45" />
+          <Property Name="Devuelto" Type="bit" />
+        </EntityType>
+        <EntityType Name="Detalle">
+          <Key>
+            <PropertyRef Name="Clave_D" />
+          </Key>
+          <Property Name="Clave_D" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ficha_Clave_F" Type="int" Nullable="false" />
+          <Property Name="Bien_Clave_B" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ficha">
+          <Key>
+            <PropertyRef Name="Clave_F" />
+          </Key>
+          <Property Name="Clave_F" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Origen" Type="varchar" MaxLength="45" />
+          <Property Name="Destino" Type="varchar" MaxLength="45" />
+          <Property Name="TipoMovimiento" Type="varchar" MaxLength="45" />
+          <Property Name="ResponsableDelMovimiento" Type="varchar" MaxLength="45" />
+          <Property Name="Responsable_Clave_R" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Responsable">
+          <Key>
+            <PropertyRef Name="Clave_R" />
+          </Key>
+          <Property Name="Clave_R" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+          <Property Name="Cargo" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk_Detalle_Bien1">
+          <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bien">
+              <PropertyRef Name="Clave_B" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="Bien_Clave_B" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Detalle_Ficha1">
+          <End Role="Ficha" Type="Self.Ficha" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ficha">
+              <PropertyRef Name="Clave_F" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="Ficha_Clave_F" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Ficha_Responsable1">
+          <End Role="Responsable" Type="Self.Responsable" Multiplicity="1" />
+          <End Role="Ficha" Type="Self.Ficha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsable">
+              <PropertyRef Name="Clave_R" />
+            </Principal>
+            <Dependent Role="Ficha">
+              <PropertyRef Name="Responsable_Clave_R" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Prueba4ModelStoreContainer">
+          <EntitySet Name="Bien" EntityType="Self.Bien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
+            <End Role="Bien" EntitySet="Bien" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Detalle_Ficha1" Association="Self.fk_Detalle_Ficha1">
+            <End Role="Ficha" EntitySet="Ficha" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Ficha_Responsable1" Association="Self.fk_Ficha_Responsable1">
+            <End Role="Responsable" EntitySet="Responsable" />
+            <End Role="Ficha" EntitySet="Ficha" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Prueba4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bien">
+          <Key>
+            <PropertyRef Name="Clave_B" />
+          </Key>
+          <Property Name="Clave_B" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Marca" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Modelo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Serie" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioPC" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="NombrePC" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Devuelto" Type="Boolean" />
+          <NavigationProperty Name="Detalle" Relationship="Self.fk_Detalle_Bien1" FromRole="Bien" ToRole="Detalle" />
+        </EntityType>
+        <EntityType Name="Detalle">
+          <Key>
+            <PropertyRef Name="Clave_D" />
+          </Key>
+          <Property Name="Clave_D" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ficha_Clave_F" Type="Int32" Nullable="false" />
+          <Property Name="Bien_Clave_B" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bien" Relationship="Self.fk_Detalle_Bien1" FromRole="Detalle" ToRole="Bien" />
+          <NavigationProperty Name="Ficha" Relationship="Self.fk_Detalle_Ficha1" FromRole="Detalle" ToRole="Ficha" />
+        </EntityType>
+        <EntityType Name="Ficha">
+          <Key>
+            <PropertyRef Name="Clave_F" />
+          </Key>
+          <Property Name="Clave_F" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Origen" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Destino" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="TipoMovimiento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ResponsableDelMovimiento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Responsable_Clave_R" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detalle" Relationship="Self.fk_Detalle_Ficha1" FromRole="Ficha" ToRole="Detalle" />
+          <NavigationProperty Name="Responsable" Relationship="Self.fk_Ficha_Responsable1" FromRole="Ficha" ToRole="Responsable" />
+        </EntityType>
+        <EntityType Name="Responsable">
+          <Key>
+            <PropertyRef Name="Clave_R" />
+          </Key>
+          <Property Name="Clave_R" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ficha" Relationship="Self.fk_Ficha_Responsable1" FromRole="Responsable" ToRole="Ficha" />
+        </EntityType>
+        <Association Name="fk_Detalle_Bien1">
+          <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bien">
+              <PropertyRef Name="Clave_B" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="Bien_Clave_B" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Detalle_Ficha1">
+          <End Role="Ficha" Type="Self.Ficha" Multiplicity="1" />
+          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ficha">
+              <PropertyRef Name="Clave_F" />
+            </Principal>
+            <Dependent Role="Detalle">
+              <PropertyRef Name="Ficha_Clave_F" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Ficha_Responsable1">
+          <End Role="Responsable" Type="Self.Responsable" Multiplicity="1" />
+          <End Role="Ficha" Type="Self.Ficha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsable">
+              <PropertyRef Name="Clave_R" />
+            </Principal>
+            <Dependent Role="Ficha">
+              <PropertyRef Name="Responsable_Clave_R" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Prueba4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bien" EntityType="Self.Bien" />
+          <EntitySet Name="Detalle" EntityType="Self.Detalle" />
+          <EntitySet Name="Ficha" EntityType="Self.Ficha" />
+          <EntitySet Name="Responsable" EntityType="Self.Responsable" />
+          <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
+            <End Role="Bien" EntitySet="Bien" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Detalle_Ficha1" Association="Self.fk_Detalle_Ficha1">
+            <End Role="Ficha" EntitySet="Ficha" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Ficha_Responsable1" Association="Self.fk_Ficha_Responsable1">
+            <End Role="Responsable" EntitySet="Responsable" />
+            <End Role="Ficha" EntitySet="Ficha" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Prueba4ModelStoreContainer" CdmEntityContainer="Prueba4Entities">
+          <EntitySetMapping Name="Bien">
+            <EntityTypeMapping TypeName="Prueba4Model.Bien">
+              <MappingFragment StoreEntitySet="Bien">
+                <ScalarProperty Name="Clave_B" ColumnName="Clave_B" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioPC" ColumnName="UsuarioPC" />
+                <ScalarProperty Name="NombrePC" ColumnName="NombrePC" />
+                <ScalarProperty Name="Devuelto" ColumnName="Devuelto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle">
+            <EntityTypeMapping TypeName="Prueba4Model.Detalle">
+              <MappingFragment StoreEntitySet="Detalle">
+                <ScalarProperty Name="Clave_D" ColumnName="Clave_D" />
+                <ScalarProperty Name="Ficha_Clave_F" ColumnName="Ficha_Clave_F" />
+                <ScalarProperty Name="Bien_Clave_B" ColumnName="Bien_Clave_B" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ficha">
+            <EntityTypeMapping TypeName="Prueba4Model.Ficha">
+              <MappingFragment StoreEntitySet="Ficha">
+                <ScalarProperty Name="Clave_F" ColumnName="Clave_F" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+                <ScalarProperty Name="ResponsableDelMovimiento" ColumnName="ResponsableDelMovimiento" />
+                <ScalarProperty Name="Responsable_Clave_R" ColumnName="Responsable_Clave_R" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Responsable">
+            <EntityTypeMapping TypeName="Prueba4Model.Responsable">
+              <MappingFragment StoreEntitySet="Responsable">
+                <ScalarProperty Name="Clave_R" ColumnName="Clave_R" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

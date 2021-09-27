@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Prueba4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bien">
+    <Key>
+      <PropertyRef Name="Clave_B" />
+    </Key>
+    <Property Name="Clave_B" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="45" />
+    <Property Name="Marca" Type="varchar" MaxLength="45" />
+    <Property Name="Modelo" Type="varchar" MaxLength="45" />
+    <Property Name="Serie" Type="varchar" MaxLength="45" />
+    <Property Name="Estado" Type="varchar" MaxLength="45" />
+    <Property Name="UsuarioPC" Type="varchar" MaxLength="45" />
+    <Property Name="NombrePC" Type="varchar" MaxLength="45" />
+    <Property Name="Devuelto" Type="bit" />
+  </EntityType>
+  <EntityType Name="Detalle">
+    <Key>
+      <PropertyRef Name="Clave_D" />
+    </Key>
+    <Property Name="Clave_D" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ficha_Clave_F" Type="int" Nullable="false" />
+    <Property Name="Bien_Clave_B" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ficha">
+    <Key>
+      <PropertyRef Name="Clave_F" />
+    </Key>
+    <Property Name="Clave_F" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Origen" Type="varchar" MaxLength="45" />
+    <Property Name="Destino" Type="varchar" MaxLength="45" />
+    <Property Name="TipoMovimiento" Type="varchar" MaxLength="45" />
+    <Property Name="ResponsableDelMovimiento" Type="varchar" MaxLength="45" />
+    <Property Name="Responsable_Clave_R" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Responsable">
+    <Key>
+      <PropertyRef Name="Clave_R" />
+    </Key>
+    <Property Name="Clave_R" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="45" />
+    <Property Name="Cargo" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <Association Name="fk_Detalle_Bien1">
+    <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bien">
+        <PropertyRef Name="Clave_B" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="Bien_Clave_B" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Detalle_Ficha1">
+    <End Role="Ficha" Type="Self.Ficha" Multiplicity="1" />
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ficha">
+        <PropertyRef Name="Clave_F" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="Ficha_Clave_F" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Ficha_Responsable1">
+    <End Role="Responsable" Type="Self.Responsable" Multiplicity="1" />
+    <End Role="Ficha" Type="Self.Ficha" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Responsable">
+        <PropertyRef Name="Clave_R" />
+      </Principal>
+      <Dependent Role="Ficha">
+        <PropertyRef Name="Responsable_Clave_R" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Prueba4ModelStoreContainer">
+    <EntitySet Name="Bien" EntityType="Self.Bien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
+      <End Role="Bien" EntitySet="Bien" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Detalle_Ficha1" Association="Self.fk_Detalle_Ficha1">
+      <End Role="Ficha" EntitySet="Ficha" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Ficha_Responsable1" Association="Self.fk_Ficha_Responsable1">
+      <End Role="Responsable" EntitySet="Responsable" />
+      <End Role="Ficha" EntitySet="Ficha" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
