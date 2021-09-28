@@ -10,9 +10,12 @@
 <h2>@ViewBag.Title</h2>
 
 <div>
-    <p class="text-success">
-        <h3>@ViewBag.Message</h3>
-    </p>
+    <h3>
+        <p class="text-success">
+            @ViewBag.Message
+        
+        </p>
+    </h3>
 </div>
 
 @using (Html.BeginForm("Anadir", "Movimiento", FormMethod.Post))
@@ -137,6 +140,12 @@
 
         let Descripcion = document.getElementById("Descripcion").value;
         let Marca = document.getElementById("Marca").value;
+        let Modelo = document.getElementById("Modelo").value;
+        let Serie = document.getElementById("Serie").value;
+        let Estado = document.getElementById("Estado").value;
+        let UsuarioPC = document.getElementById("UsuarioPC").value;
+        let NombrePC = document.getElementById("NombrePC").value;
+        let Devuelto = document.getElementById("Devuelto").value;
 
         if (Descripcion.length > 0 && Marca.length > 0) {
 
@@ -149,12 +158,34 @@
 
             let TablaMovimientos = document.getElementById("tablaMovimiento");
             let TR = document.createElement("tr");
+
             let TDDescripcion = document.createElement("td");
             let TDMarca = document.createElement("td");
+            let TDModelo = document.createElement("td");
+            let TDSerie = document.createElement("td");
+            let TDEstado = document.createElement("td");
+            let TDUsuarioPC = document.createElement("td");
+            let TDNombrePC = document.createElement("td");
+            let TDDevuelto = document.createElement("td");
+
             TDDescripcion.innerHTML = Descripcion;
             TDMarca.innerHTML = Marca;
+            TDModelo.innerHTML = Modelo;
+            TDSerie.innerHTML = Serie;
+            TDEstado.innerHTML = Estado;
+            TDUsuarioPC.innerHTML = UsuarioPC;
+            TDNombrePC.innerHTML = NombrePC;
+            TDDevuelto.innerHTML = Devuelto;
+
             TR.appendChild(TDDescripcion);
             TR.appendChild(TDMarca);
+            TR.appendChild(TDModelo);
+            TR.appendChild(TDSerie);
+            TR.appendChild(TDEstado);
+            TR.appendChild(TDUsuarioPC);
+            TR.appendChild(TDNombrePC);
+            TR.appendChild(TDDevuelto);
+
             TablaMovimientos.appendChild(TR);
 
 
@@ -163,6 +194,12 @@
             let HiddenIndex = document.createElement("input");
             let HiddenDescripcion = document.createElement("input");
             let HiddenMarca = document.createElement("input");
+            let HiddenModelo = document.createElement("input");
+            let HiddenSerie = document.createElement("input");
+            let HiddenEstado = document.createElement("input");
+            let HiddenUsuarioPC = document.createElement("input");
+            let HiddenNombrePC = document.createElement("input");
+            let HiddenDevuelto = document.createElement("input");
 
             HiddenIndex.type = "hidden";
             HiddenIndex.name = "Equipos.Index";
@@ -176,12 +213,48 @@
             HiddenMarca.name = "Equipos[" + num + "].Marca";
             HiddenMarca.value = Marca;
 
+            HiddenModelo.type = "hidden";
+            HiddenModelo.name = "Equipos[" + num + "].Modelo";
+            HiddenModelo.value = Modelo;
+
+            HiddenSerie.type = "hidden";
+            HiddenSerie.name = "Equipos[" + num + "].Serie";
+            HiddenSerie.value = Serie;
+
+            HiddenEstado.type = "hidden";
+            HiddenEstado.name = "Equipos[" + num + "].Estado";
+            HiddenEstado.value = Estado;
+
+            HiddenUsuarioPC.type = "hidden";
+            HiddenUsuarioPC.name = "Equipos[" + num + "].UsuarioPC";
+            HiddenUsuarioPC.value = UsuarioPC;
+
+            HiddenNombrePC.type = "hidden";
+            HiddenNombrePC.name = "Equipos[" + num + "].NombrePc";
+            HiddenNombrePC.value = NombrePC;
+
+            HiddenDevuelto.type = "hidden";
+            HiddenDevuelto.name = "Equipos[" + num + "].Devuelto";
+            HiddenDevuelto.value = Devuelto;
+
             DivMovimientos.appendChild(HiddenIndex);
             DivMovimientos.appendChild(HiddenDescripcion);
             DivMovimientos.appendChild(HiddenMarca);
+            DivMovimientos.appendChild(HiddenModelo);
+            DivMovimientos.appendChild(HiddenSerie);
+            DivMovimientos.appendChild(HiddenEstado);
+            DivMovimientos.appendChild(HiddenUsuarioPC);
+            DivMovimientos.appendChild(HiddenNombrePC);
+            DivMovimientos.appendChild(HiddenDevuelto);
 
             document.getElementById("Descripcion").value = "";
             document.getElementById("Marca").value = "";
+            //document.getElementById("Modelo").value = "";
+            //document.getElementById("Serie").value = "";
+            //document.getElementById("Estado").value = "";
+            //document.getElementById("UsuarioPC").value = "";
+            //document.getElementById("NombrePC").value = "";
+            document.getElementById("Devuelto").value = "";
 
             num++;
         }
