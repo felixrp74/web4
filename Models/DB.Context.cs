@@ -13,10 +13,10 @@ namespace Web4.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Prueba4Entities : DbContext
+    public partial class Prueba4Entities1 : DbContext
     {
-        public Prueba4Entities()
-            : base("name=Prueba4Entities")
+        public Prueba4Entities1()
+            : base("name=Prueba4Entities1")
         {
         }
     

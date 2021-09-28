@@ -84,7 +84,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Prueba4Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Prueba4Entities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Bien" EntityType="Self.Bien" />
     <EntitySet Name="Detalle" EntityType="Self.Detalle" />
     <EntitySet Name="Ficha" EntityType="Self.Ficha" />

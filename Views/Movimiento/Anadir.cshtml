@@ -10,12 +10,12 @@
 <h2>@ViewBag.Title</h2>
 
 <div>
-    <h3>
-        <p class="text-success">
-            @ViewBag.Message
-        
-        </p>
-    </h3>
+     
+    <p class="text-success">
+        @ViewBag.Message
+
+    </p>
+     
 </div>
 
 @using (Html.BeginForm("Anadir", "Movimiento", FormMethod.Post))
@@ -25,106 +25,144 @@
             <div class="col-md-6">
 
                 <fieldset>
-                    <legend>Identificacion</legend>
-                    @Html.EditorForModel()
+                    <legend>Identificación</legend>
+                    <div class="editor-label"><label for="Nombre">Nombre</label></div>
+                    <div class="editor-field"><input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="Nombre" name="Nombre" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="Nombre" data-valmsg-replace="true"></span></div>
+                    <div class="editor-label"><label for="Cargo">Cargo</label></div>
+                    <div class="editor-field"><input onkeyup="this.value = this.value.toUpperCase();" class="datetime" id="Cargo" name="Cargo" type="text" value="" /> <span class="field-validation-valid" data-valmsg-for="Cargo" data-valmsg-replace="true"></span></div>
+                    <div class="editor-label"><label for="Fecha">Fecha</label></div>
+                    <div class="editor-field"><input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" data-val="true" data-val-date="El campo Fecha debe ser una fecha." data-val-required="El campo Fecha es obligatorio." id="Fecha" name="Fecha" type="datetime" value="@DateTime.Now" /> <span class="field-validation-valid" data-valmsg-for="Fecha" data-valmsg-replace="true"></span></div>
+                    <div class="editor-label"><label for="Origen">Origen</label></div>
+                    <div class="editor-field"><input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="Origen" name="Origen" type="text" value="" /> <span class="field-validation-valid" data-valmsg-for="Origen" data-valmsg-replace="true"></span></div>
+                    <div class="editor-label"><label for="Destino">Destino</label></div>
+                    <div class="editor-field"><input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="Destino" name="Destino" type="text" value="" /> <span class="field-validation-valid" data-valmsg-for="Destino" data-valmsg-replace="true"></span></div>
+                    <div class="editor-label"><label for="TipoMovimiento">TipoMovimiento</label></div>
+                    <div class="editor-field">
+                        <select id="TipoMovimiento" name="TipoMovimiento">
+                            <option value="ASIGNACION">ASIGNACIÓN</option>
+                            <option value="DEVOLUCION">DEVOLUCIÓN</option>
+                        </select>
+                    </div>
+
+                    <div class="editor-label"><label for="ResponsableDelMovimiento">ResponsableDelMovimiento</label></div>
+                    <div class="editor-field"><input class="text-box single-line" id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text" value="" /> <span class="field-validation-valid" data-valmsg-for="ResponsableDelMovimiento" data-valmsg-replace="true"></span></div>
+
                 </fieldset>
 
             </div>
             <div class="col-md-6">
 
                 <fieldset>
-                    <legend>Detalle</legend>
+                    <legend>Detalle</legend> 
+
                     <div class="form-group">
                         <div class="editor-label">
                             <label for="Descripcion">Descripcion</label>
                         </div>
                         <div class="editor-field">
-                            <input class="text-box single-line" id="Descripcion" name="Descripcion" type="text" value="">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="Descripcion" name="Descripcion" type="text" value="">
                             <span class="field-validation-valid" data-valmsg-for="Descripcion" data-valmsg-replace="true"></span>
                         </div>
                         <div class="editor-label">
                             <label for="Marca">Marca</label>
                         </div>
                         <div class="editor-field">
-                            <input class="text-box single-line" id="Marca" name="Marca" type="text" value="">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="Marca" name="Marca" type="text" value="">
                             <span class="field-validation-valid" data-valmsg-for="Marca" data-valmsg-replace="true"></span>
                         </div>
                         <div class="editor-label">
                             <label for="Modelo">Modelo</label>
                         </div>
                         <div class="editor-field">
-                            <input class="text-box single-line" id="Modelo" name="Modelo" type="text" value="">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="Modelo" name="Modelo" type="text" value="">
                             <span class="field-validation-valid" data-valmsg-for="Modelo" data-valmsg-replace="true"></span>
                         </div>
                         <div class="editor-label">
                             <label for="Serie">Serie</label>
                         </div>
                         <div class="editor-field">
-                            <input class="text-box single-line" id="Serie" name="Serie" type="text" value="">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="Serie" name="Serie" type="text" value="">
                             <span class="field-validation-valid" data-valmsg-for="Serie" data-valmsg-replace="true"></span>
                         </div>
                         <div class="editor-label">
                             <label for="Estado">Estado</label>
                         </div>
                         <div class="editor-field">
-                            <input class="text-box single-line" id="Estado" name="Estado" type="text" value="">
-                            <span class="field-validation-valid" data-valmsg-for="Estado" data-valmsg-replace="true"></span>
+                            <select id="Estado">
+                                <option value="OPERATIVO">OPERATIVO</option>
+                                <option value="INOPERATIVO">INOPERATIVO</option>
+                            </select>
                         </div>
                         <div class="editor-label">
                             <label for="UsuarioPC">UsuarioPC</label>
                         </div>
                         <div class="editor-field">
-                            <input class="text-box single-line" id="UsuarioPC" name="UsuarioPC" type="text" value="">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="UsuarioPC" name="UsuarioPC" type="text" value="">
                             <span class="field-validation-valid" data-valmsg-for="UsuarioPC" data-valmsg-replace="true"></span>
                         </div><div class="editor-label">
                             <label for="NombrePC">NombrePC</label>
                         </div>
                         <div class="editor-field">
-                            <input class="text-box single-line" id="NombrePC" name="NombrePC" type="text" value="">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="text-box single-line" id="NombrePC" name="NombrePC" type="text" value="">
                             <span class="field-validation-valid" data-valmsg-for="NombrePC" data-valmsg-replace="true"></span>
                         </div>
                         <div class="editor-label">
                             <label for="Devuelto">Devuelto</label>
                         </div>
                         <div class="editor-field">
-                            <input class="text-box single-line" id="Devuelto" name="Devuelto" type="text" value="">
+                             
                             <span class="field-validation-valid" data-valmsg-for="Devuelto" data-valmsg-replace="true"></span>
+                            <select id="Devuelto" name="Devuelto">
+                                <option value="true">SI</option>
+                                <option value="false">NO</option>
+                            </select>
                         </div>
                     </div>
 
                 </fieldset>
 
+                <input type="button" value="Anadir"
+                       onclick="AnadirMovimiento(); return false;" class="btn btn-info" />
+
             </div>
+
+
         </div>
 
     </div>
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
 
-    <input type="button" value="Anadir"
-           onclick="AnadirMovimiento(); return false;" />
+            <fieldset>
+                <legend>Detalle de bienes</legend>
+            </fieldset>
+            <div id="divMovimientos">
+                <table class="table">
+                    <tbody id="tablaMovimiento">
 
+                        <tr>
+                            <th>Descripcion</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Serie</th>
+                            <th>Estado</th>
+                            <th>UsuarioPC</th>
+                            <th>NombrePC</th>
+                            <th>Devuelto</th>
+                        </tr>
 
-    <div id="divMovimientos">
-        <table class="table">
-            <tbody id="tablaMovimiento">
+                    </tbody>
+                </table>
 
-                <tr>
-                    <th>Descripcion</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Serie</th>
-                    <th>Estado</th>
-                    <th>UsuarioPC</th>
-                    <th>NombrePC</th>
-                    <th>Devuelto</th>
-                </tr>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="name" value="Registrar" class="btn btn-primary" />
+            </div>
 
-            </tbody>
-        </table>
-
-    </div>
-
-    <div class="form-group">
-        <input type="submit" name="name" value="Registrar" />
+        </div>
     </div>
 
 }
@@ -134,6 +172,18 @@
 <script>
 
     var num = 0;
+
+    function keyEvent(event) {
+
+        var key = event.keyCode || even.which;
+
+        console.log(key)
+        if (key == 43) {
+            console.log("key dentro funcion " + key);
+            AnadirMovimiento();
+        }
+
+    }
 
     function AnadirMovimiento() {
         console.log("hola");
@@ -145,6 +195,7 @@
         let Estado = document.getElementById("Estado").value;
         let UsuarioPC = document.getElementById("UsuarioPC").value;
         let NombrePC = document.getElementById("NombrePC").value;
+        //let Devuelto = parseInt(document.getElementById("Devuelto").value);
         let Devuelto = document.getElementById("Devuelto").value;
 
         if (Descripcion.length > 0 && Marca.length > 0) {
@@ -254,7 +305,7 @@
             //document.getElementById("Estado").value = "";
             //document.getElementById("UsuarioPC").value = "";
             //document.getElementById("NombrePC").value = "";
-            document.getElementById("Devuelto").value = "";
+            //document.getElementById("Devuelto").value = "";
 
             num++;
         }

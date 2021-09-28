@@ -22,7 +22,7 @@ namespace Web4.Controllers
         {
             try
             {
-                using (Prueba4Entities db = new Prueba4Entities())
+                using (Prueba4Entities1 db = new Prueba4Entities1())
                 {
                     Responsable oResponsable = new Responsable();
                     oResponsable.Nombre = model.Nombre;
@@ -49,6 +49,13 @@ namespace Web4.Controllers
                         Bien oBien = new Bien();
                         oBien.Descripcion = mE.Descripcion;
                         oBien.Marca = mE.Marca;
+                        oBien.Modelo = mE.Modelo;
+                        oBien.Serie = mE.Serie;
+                        oBien.Estado = mE.Estado;
+                        oBien.UsuarioPC = mE.UsuarioPC;
+                        oBien.NombrePC = mE.NombrePC;
+                        oBien.Devuelto = mE.Devuelto;
+
                         db.Bien.Add(oBien);
 
                         db.SaveChanges();

@@ -190,7 +190,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Prueba4Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Prueba4Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bien" EntityType="Self.Bien" />
           <EntitySet Name="Detalle" EntityType="Self.Detalle" />
           <EntitySet Name="Ficha" EntityType="Self.Ficha" />
@@ -213,7 +213,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Prueba4ModelStoreContainer" CdmEntityContainer="Prueba4Entities">
+        <EntityContainerMapping StorageEntityContainer="Prueba4ModelStoreContainer" CdmEntityContainer="Prueba4Entities1">
           <EntitySetMapping Name="Bien">
             <EntityTypeMapping TypeName="Prueba4Model.Bien">
               <MappingFragment StoreEntitySet="Bien">
