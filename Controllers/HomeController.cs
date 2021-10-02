@@ -4,13 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Web4.Models;
+using Web4.Models.ViewModels;
+
 namespace Web4.Controllers
 {
     public class HomeController : Controller
-    {
+    { 
         public ActionResult Index()
         {
-            return View();
+            return View(); 
         }
 
         public ActionResult About()

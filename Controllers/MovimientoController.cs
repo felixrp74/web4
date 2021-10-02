@@ -30,7 +30,7 @@ namespace Web4.Controllers
         {
             try
             {
-                using (Prueba4Entities1 db = new Prueba4Entities1())
+                using ( Prueba1Entities db = new Prueba1Entities())
                 {
                     Responsable oResponsable = new Responsable();
                     oResponsable.Nombre = model.Nombre;
@@ -80,7 +80,13 @@ namespace Web4.Controllers
                     
                     ViewBag.Message = "Registro insertado";
 
-                    return View();
+                    TempData["MovimientoViewModel"] = model;
+                    return Redirect("~/Movimiento/Ficha");
+                    //return RedirectToAction("Imprimir", "Home2", data);
+                    //return RedirectToAction("Ficha", "Home", model);
+                    //return RedirectToAction("~/Controllers/Home/Ficha", model);
+                    //return View();
+
 
                 }
             }
@@ -91,6 +97,15 @@ namespace Web4.Controllers
             }
              
              
+        }
+        
+        public ActionResult Ficha()
+        {
+            var model = TempData["MovimientoViewModel"] as MovimientoViewModel;
+            if (model != null)
+                return View(model);
+            else
+                return View();
         }
     
         public ActionResult Vista()
@@ -116,7 +131,7 @@ namespace Web4.Controllers
             recordsTotal = 0;
 
             //conexion base datos
-            using (Prueba4Entities1 db = new Prueba4Entities1())
+            using (Prueba1Entities db = new Prueba1Entities())
             {
                 lst = (from d in db.Responsable
                        where d.Nombre.Contains(searchValue)

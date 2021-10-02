@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Prueba4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Prueba1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bien">
           <Key>
             <PropertyRef Name="Clave_B" />
@@ -83,7 +83,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Prueba4ModelStoreContainer">
+        <EntityContainer Name="Prueba1ModelStoreContainer">
           <EntitySet Name="Bien" EntityType="Self.Bien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
@@ -105,7 +105,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Prueba4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Prueba1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Bien">
           <Key>
             <PropertyRef Name="Clave_B" />
@@ -190,7 +190,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Prueba4Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Prueba1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bien" EntityType="Self.Bien" />
           <EntitySet Name="Detalle" EntityType="Self.Detalle" />
           <EntitySet Name="Ficha" EntityType="Self.Ficha" />
@@ -213,9 +213,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Prueba4ModelStoreContainer" CdmEntityContainer="Prueba4Entities1">
+        <EntityContainerMapping StorageEntityContainer="Prueba1ModelStoreContainer" CdmEntityContainer="Prueba1Entities">
           <EntitySetMapping Name="Bien">
-            <EntityTypeMapping TypeName="Prueba4Model.Bien">
+            <EntityTypeMapping TypeName="Prueba1Model.Bien">
               <MappingFragment StoreEntitySet="Bien">
                 <ScalarProperty Name="Clave_B" ColumnName="Clave_B" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -230,7 +230,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Detalle">
-            <EntityTypeMapping TypeName="Prueba4Model.Detalle">
+            <EntityTypeMapping TypeName="Prueba1Model.Detalle">
               <MappingFragment StoreEntitySet="Detalle">
                 <ScalarProperty Name="Clave_D" ColumnName="Clave_D" />
                 <ScalarProperty Name="Ficha_Clave_F" ColumnName="Ficha_Clave_F" />
@@ -239,7 +239,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ficha">
-            <EntityTypeMapping TypeName="Prueba4Model.Ficha">
+            <EntityTypeMapping TypeName="Prueba1Model.Ficha">
               <MappingFragment StoreEntitySet="Ficha">
                 <ScalarProperty Name="Clave_F" ColumnName="Clave_F" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
@@ -252,7 +252,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Responsable">
-            <EntityTypeMapping TypeName="Prueba4Model.Responsable">
+            <EntityTypeMapping TypeName="Prueba1Model.Responsable">
               <MappingFragment StoreEntitySet="Responsable">
                 <ScalarProperty Name="Clave_R" ColumnName="Clave_R" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
