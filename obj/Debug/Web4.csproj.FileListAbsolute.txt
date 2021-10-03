@@ -178,3 +178,4 @@ C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.csproj.CoreCompileInputs.cac
 C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.csproj.CopyComplete
 C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.dll
 C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.pdb
+C:\Users\felix\source\repos\web4\bin\Rotativa.dll

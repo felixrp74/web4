@@ -1,44 +1,187 @@
 ﻿@model Web4.Models.ViewModels.MovimientoViewModel
 @{
     ViewBag.Title = "Imprimir";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-<br />
-<br />
-<div class="container-fluid">
-    <div class="row">
-        <h3>Nombre</h3>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <!--
+        
+    <link href="~/Content/FichaEstilo.css" rel="stylesheet" />
+    -->
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+
+
+    <div class="col-lg-6">
+        <table class="table table-bordered">
+            <caption>ELETRO PUNO S.A.A. - FICHA DE ASIGNACION</caption>
+            <tr>
+                <th colspan="5">Identificacion del responsable de bienes operativos</th>
+                <td colspan="3"><b>Fecha: </b>02/10/2021 14:45</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>ENTREGA</b> </td>
+                <td colspan="5">FRANZ LOAYZA JOHAN SALAS</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>CARGO</b> </td>
+                <td colspan="5">JEFE DE DIVISION DE TECNOLOGIAS DE INFORMACION</td>
+            </tr>
+
+            <tr>
+                <td colspan="3"><b>RECIBE</b> </td>
+                <td colspan="5">FERNANDO CHOQUE PALACIOS</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>CARGO</b> </td>
+                <td colspan="5">TENCION AL CLIENTE AYAVIRI</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>DESTINO</b> </td>
+                <td colspan="5">SERVIOC ELECTRICO SAN GANI</td>
+            </tr>
+            <tr>
+                <td colspan="8"><b>Detalle de los bienes</b></td>
+            </tr>
+
+            <tr>
+                <th>#</th>
+                <th>Descripcion</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+                <th>Nombre PC</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>CPU</td>
+                <td>LENOVO</td>
+                <td>87645HJJHF</td>
+                <td>KSDJFKSDJF8</td>
+                <td>OPERATIVO</td>
+                <td>fchoque</td>
+                <td>PC202846</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>CPU</td>
+                <td>LENOVO</td>
+                <td>87645HJJHF</td>
+                <td>KSDJFKSDJF8</td>
+                <td>OPERATIVO</td>
+                <td>fchoque</td>
+                <td>PC202846</td>
+            </tr>
+
+            <tr>
+                <td colspan="8"><b>OBSERVACIONES: </b> Se ha bvisot quejfdf mndfmdmnfb ehryua papbgda oauie.</td>
+            </tr>
+        </table>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="col-md-6">
+
+            <table class="table">
+                <tr>
+                    <td>huwaeiw</td>
+                </tr>
+            </table>
+
+            </divcol>
+        </div>
+
+
+        <!--
+
+    <div class="col-lg-6">
+        <table>
+            <caption>ELETRO PUNO S.A.A. - FICHA DE ASIGNACION</caption>
+            <tr>
+                <th colspan="5">IDENTIFICACION DEL RESPONSABLE DE BIENES OPERATIVOS</th>
+                <th colspan="3"><b>fecha: </b>02/10/2021 14:45</th>
+            </tr>
+            <tr>
+                <td colspan="3"><b>ENTREGA</b> </td>
+                <td colspan="5">FRANZ LOAYZA JOHAN SALAS</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>CARGO</b> </td>
+                <td colspan="5">JEFE DE DIVISION DE TECNOLOGIAS DE INFORMACION</td>
+            </tr>
+
+            <tr>
+                <td colspan="3"><b>RECIBE</b> </td>
+                <td colspan="5">FERNANDO CHOQUE PALACIOS</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>CARGO</b> </td>
+                <td colspan="5">TENCION AL CLIENTE AYAVIRI</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>DESTINO</b> </td>
+                <td colspan="5">SERVIOC ELECTRICO SAN GANI</td>
+            </tr>
+            <tr>
+                <td colspan="8"><b>DETALLE DE LOS BIENES</b></td>
+            </tr>
+
+            <tr>
+                <th>#</th>
+                <th>DESCRIPCION</th>
+                <th>MARCA</th>
+                <th>MODELO</th>
+                <th>SERIE</th>
+                <th>ESTADO</th>
+                <th>USUARIO</th>
+                <th>NOMBRE PC</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>CPU</td>
+                <td>LENOVO</td>
+                <td>87645HJJHF</td>
+                <td>KSDJFKSDJF8</td>
+                <td>OPERATIVO</td>
+                <td>fchoque</td>
+                <td>PC202846</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>CPU</td>
+                <td>LENOVO</td>
+                <td>87645HJJHF</td>
+                <td>KSDJFKSDJF8</td>
+                <td>OPERATIVO</td>
+                <td>fchoque</td>
+                <td>PC202846</td>
+            </tr>
+
+            <tr>
+                <td colspan="8"><b>OBSERVACIONES: </b> Se ha bvisot quejfdf mndfmdmnfb ehryua papbgda oauie.</td>
+            </tr>
+        </table>
     </div>
 
-    <table class="table table-sm">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>twitter</td>
-            </tr>
-        </tbody>
-    </table>
+    -->
 
 
-</div>
+
+
+
+
+</body>
+</html>

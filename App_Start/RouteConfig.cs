@@ -16,7 +16,7 @@ namespace Web4
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Movimiento", action = "Ficha", id = UrlParameter.Optional }
+                defaults: new { controller = "Movimiento", action = "Imprimir", id = UrlParameter.Optional }
             );
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rotativa;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,7 +31,7 @@ namespace Web4.Controllers
         {
             try
             {
-                using ( Prueba1Entities db = new Prueba1Entities())
+                using (Prueba1Entities db = new Prueba1Entities())
                 {
                     Responsable oResponsable = new Responsable();
                     oResponsable.Nombre = model.Nombre;
@@ -39,7 +40,7 @@ namespace Web4.Controllers
                     db.Responsable.Add(oResponsable);
                     db.SaveChanges();
 
-                    
+
                     Ficha oFicha = new Ficha();
                     oFicha.Fecha = DateTime.Now;
                     oFicha.Origen = model.Origen;
@@ -74,10 +75,10 @@ namespace Web4.Controllers
 
                         db.Detalle.Add(oDetalle);
 
-                    } 
+                    }
 
                     db.SaveChanges();
-                    
+
                     ViewBag.Message = "Registro insertado";
 
                     TempData["MovimientoViewModel"] = model;
@@ -90,23 +91,36 @@ namespace Web4.Controllers
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Message = "No insertado Error";
                 return View(ex);
             }
-             
-             
+
+
         }
-        
+
         public ActionResult Ficha()
         {
+
             var model = TempData["MovimientoViewModel"] as MovimientoViewModel;
             if (model != null)
                 return View(model);
             else
                 return View();
+
         }
+
+        public ActionResult Imprimir()
+        {
+            return new ActionAsPdf("Ficha")
+            {
+                //FileName = Server.MapPath("~/Content/Relato.pdf"),
+                PageOrientation = Rotativa.Options.Orientation.Landscape,
+                PageSize = Rotativa.Options.Size.A4
+            } ;
+        }
+
     
         public ActionResult Vista()
         {
