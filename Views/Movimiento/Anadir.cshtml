@@ -1,4 +1,4 @@
-﻿@model Web4.Models.ViewModels.MovimientoViewModel
+﻿@model List<Web4.Models.ViewModels.ViewModelResponsable>
 
 @{
     ViewBag.Title = "Movimiento Bienes";
@@ -10,158 +10,170 @@
 <h2>@ViewBag.Title</h2>
 
 <div>
-     
+
     <p class="text-success">
         @ViewBag.Message
 
     </p>
-     
+
 </div>
 
 @using (Html.BeginForm("Anadir", "Movimiento", FormMethod.Post))
 {
 
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-6"> 
-                <fieldset>
-                    <legend>Identificacion</legend>
-                    <div class="mb-3 row">
-                        <label for="Nombre" class="col-sm-2 col-form-label">Responsable</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="Nombre" id="Nombre" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
+        <div class="col-md-6">
+            <fieldset>
+                <legend>Identificacion</legend>
+                <div class="mb-3 row">
+                    <label for="Nombre" class="col-sm-2 col-form-label">Recibe</label>
+                    <!--
 
-                        <label for="Cargo" class="col-sm-2 col-form-label">Cargo</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Cargo" name="Cargo" type="text" value="" />
-                        </div>
+                    <div class="col-sm-10">
+                        <input type="text" name="Nombre" id="Nombre" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
                     </div>
-
-                    <div class="mb-3 row">
-                        <label for="Fecha" class="col-sm-2 col-form-label">Fecha</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" data-val="true" data-val-date="El campo Fecha debe ser una fecha."
-                                   data-val-required="El campo Fecha es obligatorio." id="Fecha" name="Fecha" type="datetime" value="@DateTime.Now" />
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="Origen" class="col-sm-2 col-form-label">Origen</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Origen" name="Origen" type="text" value="" />
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="Destino" class="col-sm-2 col-form-label">Destino</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Destino" name="Destino" type="text" value="" />
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="TipoMovimiento" class="col-sm-2 col-form-label">Movimiento</label>
-                        <div class="col-sm-10">
-                            <select id="TipoMovimiento" name="TipoMovimiento" class="form-control">
-                                <option value="ASIGNACION">ASIGNACIÓN</option>
-                                <option value="DEVOLUCION">DEVOLUCIÓN</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="ResponsableDelMovimiento" class="col-sm-5 col-form-label">ResponsableDelMovimiento</label>
-                        <div class="col-sm-7">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text" value="" />
-                        </div>
-                    </div>                     
-                </fieldset>
-            </div>
-
-            <div class="col-md-6">
-
-                <fieldset>
-                    <legend>Bien</legend>
-
-
-                    <div class="mb-3 row">
-                        <label for="Descripcion" class="col-sm-2 col-form-label">Descripcion</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Descripcion" name="Descripcion" type="text" value="">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="Marca" class="col-sm-2 col-form-label">Marca</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Marca" name="Marca" type="text" value="">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="Modelo" class="col-sm-2 col-form-label">Modelo</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Modelo" name="Modelo" type="text" value="">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="Serie" class="col-sm-2 col-form-label">Serie</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Serie" name="Serie" type="text" value="">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
-                        <div class="col-sm-10">
-                            <select id="Estado" class="form-control">
-                                <option value="OPERATIVO">OPERATIVO</option>
-                                <option value="INOPERATIVO">INOPERATIVO</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="UsuarioPC" class="col-sm-2 col-form-label">UsuarioPC</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="UsuarioPC" name="UsuarioPC" type="text" value="">
-                        </div>
+                    -->
+                    <div class="col-sm-10">
+                        <select class="form-control name="Nombre" id="Nombre">
+                            @foreach (var r in Model)
+                            {
+                                <option value="@r.Clave_R">@r.Nombre</option>
+                            }
+                        </select>
                     </div>
 
-                    <div class="mb-3 row">
-                        <label for="NombrePC" class="col-sm-2 col-form-label">NombrePC</label>
-                        <div class="col-sm-10">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="NombrePC" name="NombrePC" type="text" value="">
-                        </div>
+                </div>
+                <div class="mb-3 row">
+
+                    <label for="Cargo" class="col-sm-2 col-form-label">Cargo</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Cargo" name="Cargo" type="text" value="" />
                     </div>
+                </div>
 
-                    <div class="mb-3 row">
-                        <label for="Devuelto" class="col-sm-2 col-form-label">Devuelto</label>
-                        <div class="col-sm-10">
-                            <select id="Devuelto" name="Devuelto" class="form-control">
-                                <option value="false">NO</option>
-                                <option value="true">SI</option>
-                            </select>
-                        </div>
-                    </div> 
-
-                    <div>
-                        <input type="button" value="Anadir" onclick="AnadirMovimiento(); return false;" class="btn btn-info btn-block" />
+                <div class="mb-3 row">
+                    <label for="Fecha" class="col-sm-2 col-form-label">Fecha</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" data-val="true" data-val-date="El campo Fecha debe ser una fecha."
+                               data-val-required="El campo Fecha es obligatorio." id="Fecha" name="Fecha" type="datetime" value="@DateTime.Now" />
                     </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Origen" class="col-sm-2 col-form-label">Origen</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Origen" name="Origen" type="text" value="" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Destino" class="col-sm-2 col-form-label">Destino</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Destino" name="Destino" type="text" value="" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="TipoMovimiento" class="col-sm-2 col-form-label">Movimiento</label>
+                    <div class="col-sm-10">
+                        <select id="TipoMovimiento" name="TipoMovimiento" class="form-control">
+                            <option value="ASIGNACION">ASIGNACIÓN</option>
+                            <option value="DEVOLUCION">DEVOLUCIÓN</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ResponsableDelMovimiento" class="col-sm-5 col-form-label">ResponsableDelMovimiento</label>
+                    <div class="col-sm-7">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text" value="" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
 
-                </fieldset>
+        <div class="col-md-6">
+
+            <fieldset>
+                <legend>Bien</legend>
 
 
-            </div>
+                <div class="mb-3 row">
+                    <label for="Descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Descripcion" name="Descripcion" type="text" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Marca" class="col-sm-2 col-form-label">Marca</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Marca" name="Marca" type="text" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Modelo" class="col-sm-2 col-form-label">Modelo</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Modelo" name="Modelo" type="text" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Serie" class="col-sm-2 col-form-label">Serie</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Serie" name="Serie" type="text" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
+                    <div class="col-sm-10">
+                        <select id="Estado" class="form-control">
+                            <option value="OPERATIVO">OPERATIVO</option>
+                            <option value="INOPERATIVO">INOPERATIVO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="UsuarioPC" class="col-sm-2 col-form-label">UsuarioPC</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="UsuarioPC" name="UsuarioPC" type="text" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="NombrePC" class="col-sm-2 col-form-label">NombrePC</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="NombrePC" name="NombrePC" type="text" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="Devuelto" class="col-sm-2 col-form-label">Devuelto</label>
+                    <div class="col-sm-10">
+                        <select id="Devuelto" name="Devuelto" class="form-control">
+                            <option value="false">NO</option>
+                            <option value="true">SI</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="button" value="Anadir" onclick="AnadirMovimiento(); return false;" class="btn btn-info btn-block" />
+                </div>
+
+            </fieldset>
 
 
         </div>
 
-    
+
+    </div>
+
+
     <br />
     <div class="container">
         <div class="row">
 
-            
+
             <h4>
                 Detalle
-            </h4> 
-            
+            </h4>
+
             <div id="divMovimientos">
                 <table class="table">
                     <tbody id="tablaMovimiento">
@@ -190,9 +202,20 @@
 
 }
 
+@section scripts{
+    <script>
 
+        $(function () {
+            $("#Nombre").chosen();
+        });
+    </script>
+
+
+}
 
 <script>
+
+
 
     var num = 0;
 

@@ -1,0 +1,35 @@
+﻿@model List<Web4.Models.ViewModels.TableResponsableViewModel>
+
+
+@{
+    ViewBag.Title = "Responsables";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Movimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var oItem in Model)
+        {
+        <tr>
+            <td>@oItem.Clave_R</td>
+            <td>@oItem.Nombre</td>
+            <td>@oItem.Cargo</td>
+            <td>
+                <a class="btn btn-info" href="~/Responsable/Movimientos/@oItem.Clave_R">Movimientos</a>
+            </td>
+        </tr>
+
+        }
+    </tbody>
+
+</table>

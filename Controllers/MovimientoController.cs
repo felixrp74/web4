@@ -19,11 +19,50 @@ namespace Web4.Controllers
         public string searchValue = "";
         public int pageSize, skip, recordsTotal;
 
+        //obtener datos
+            /*
+        public ActionResult Index()
+        {
+            MovimientoViewModel lista = new MovimientoViewModel;
+
+            using (Prueba1Entities db = new Prueba1Entities())
+            {
+                lista = (from d in db.Persona
+                         select new ListTablaViewModel
+                         {
+                             Id = d.Id,
+                             Nombre = d.Nombre,
+                             Apellido = d.Apellido,
+                             FechaNacimiento = (DateTime)d.FechaNacimiento
+                         }).ToList();
+            }
+
+            return View(lista);
+        }
+            */
+
         // GET: Movimiento
         public ActionResult Anadir()
         {
-            return View();
+            List<ViewModelResponsable> lista = new List<ViewModelResponsable>();
+
+            using ( Prueba1Entities db = new Prueba1Entities())
+            {
+                lista = (from d in db.Responsable
+                                     select new ViewModelResponsable
+                                     {
+                                         Clave_R = d.Clave_R,
+                                         Nombre = d.Nombre,
+                                         Cargo = d.Cargo,
+                                     }).ToList();
+                 
+            }
+
+
+            return View(lista);
         }
+
+        
         //POST: Movimiento
 
         [HttpPost]
@@ -100,28 +139,33 @@ namespace Web4.Controllers
 
         }
 
+            
         public ActionResult Ficha()
         {
-
-            var model = TempData["MovimientoViewModel"] as MovimientoViewModel;
+            MovimientoViewModel model = TempData["MovimientoViewModel"] as MovimientoViewModel;
             if (model != null)
                 return View(model);
             else
                 return View();
+        }
 
+        public ActionResult Ficha(int Clave_R)
+        {
+
+
+            return View();
         }
 
         public ActionResult Imprimir()
         {
             return new ActionAsPdf("Ficha")
             {
-                //FileName = Server.MapPath("~/Content/Relato.pdf"),
+                FileName = Server.MapPath("~/Content/Relato.pdf"),
                 PageOrientation = Rotativa.Options.Orientation.Landscape,
                 PageSize = Rotativa.Options.Size.A4
-            } ;
+            };
         }
 
-    
         public ActionResult Vista()
         {
             return View();
@@ -149,6 +193,7 @@ namespace Web4.Controllers
             {
                 lst = (from d in db.Responsable
                        where d.Nombre.Contains(searchValue)
+                       || d.Cargo.Contains(searchValue)
                        select new TableResponsableViewModel
                        {
                            Clave_R = d.Clave_R,

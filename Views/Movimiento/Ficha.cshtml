@@ -1,27 +1,38 @@
 ﻿@model Web4.Models.ViewModels.MovimientoViewModel
+
 @{
-    ViewBag.Title = "Imprimir";
+    ViewBag.Title = "Ficha";
     Layout = null;
 }
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <!--
-        
     <link href="~/Content/FichaEstilo.css" rel="stylesheet" />
-    -->
     @Styles.Render("~/Content/css")
+    <!--
+
+    -->
 </head>
 <body>
 
+    <div class="">
 
-    <div class="col-lg-6">
-        <table class="table table-bordered">
-            <caption>ELETRO PUNO S.A.A. - FICHA DE ASIGNACION</caption>
+        <table class="table">
+
+            <tr>
+                <td colspan="5" style="text-align: center;">
+                    <img class="" src="https://www.electropuno.com.pe/web3/images/template/logo-electropuno.png"
+                         width="224"
+                         height="40" />
+                </td>
+                <td colspan="3" style="text-align: center;">
+                    FICHA DE @Model.TipoMovimiento
+                </td>
+            </tr>
             <tr>
                 <th colspan="5">Identificacion del responsable de bienes operativos</th>
-                <td colspan="3"><b>Fecha: </b>02/10/2021 14:45</td>
+                <td colspan="3"><b>Fecha: </b>@Model.Fecha</td>
             </tr>
             <tr>
                 <td colspan="3"><b>ENTREGA</b> </td>
@@ -34,15 +45,15 @@
 
             <tr>
                 <td colspan="3"><b>RECIBE</b> </td>
-                <td colspan="5">FERNANDO CHOQUE PALACIOS</td>
+                <td colspan="5">@Model.Nombre</td>
             </tr>
             <tr>
                 <td colspan="3"><b>CARGO</b> </td>
-                <td colspan="5">TENCION AL CLIENTE AYAVIRI</td>
+                <td colspan="5">@Model.Cargo</td>
             </tr>
             <tr>
                 <td colspan="3"><b>DESTINO</b> </td>
-                <td colspan="5">SERVIOC ELECTRICO SAN GANI</td>
+                <td colspan="5">@Model.Destino</td>
             </tr>
             <tr>
                 <td colspan="8"><b>Detalle de los bienes</b></td>
@@ -58,26 +69,25 @@
                 <th>Usuario</th>
                 <th>Nombre PC</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>CPU</td>
-                <td>LENOVO</td>
-                <td>87645HJJHF</td>
-                <td>KSDJFKSDJF8</td>
-                <td>OPERATIVO</td>
-                <td>fchoque</td>
-                <td>PC202846</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>CPU</td>
-                <td>LENOVO</td>
-                <td>87645HJJHF</td>
-                <td>KSDJFKSDJF8</td>
-                <td>OPERATIVO</td>
-                <td>fchoque</td>
-                <td>PC202846</td>
-            </tr>
+
+            @{
+                var i = 1;
+
+                foreach (var oElemento in Model.Equipos)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@oElemento.Descripcion</td>
+                        <td>@oElemento.Marca</td>
+                        <td>@oElemento.Modelo</td>
+                        <td>@oElemento.Serie</td>
+                        <td>@oElemento.Estado</td>
+                        <td>@oElemento.UsuarioPC</td>
+                        <td>@oElemento.NombrePC</td>
+                    </tr>
+                    i += 1;
+                }
+            }
 
             <tr>
                 <td colspan="8"><b>OBSERVACIONES: </b> Se ha bvisot quejfdf mndfmdmnfb ehryua papbgda oauie.</td>
@@ -93,93 +103,25 @@
         <br />
         <br />
         <br />
-        <div class="col-md-6">
-
-            <table class="table">
-                <tr>
-                    <td>huwaeiw</td>
-                </tr>
-            </table>
-
-            </divcol>
-        </div>
 
 
-        <!--
+    </div>
 
-    <div class="col-lg-6">
-        <table>
-            <caption>ELETRO PUNO S.A.A. - FICHA DE ASIGNACION</caption>
-            <tr>
-                <th colspan="5">IDENTIFICACION DEL RESPONSABLE DE BIENES OPERATIVOS</th>
-                <th colspan="3"><b>fecha: </b>02/10/2021 14:45</th>
-            </tr>
-            <tr>
-                <td colspan="3"><b>ENTREGA</b> </td>
-                <td colspan="5">FRANZ LOAYZA JOHAN SALAS</td>
-            </tr>
-            <tr>
-                <td colspan="3"><b>CARGO</b> </td>
-                <td colspan="5">JEFE DE DIVISION DE TECNOLOGIAS DE INFORMACION</td>
-            </tr>
+    <div class="row">
+        <table class="table">
 
-            <tr>
-                <td colspan="3"><b>RECIBE</b> </td>
-                <td colspan="5">FERNANDO CHOQUE PALACIOS</td>
-            </tr>
-            <tr>
-                <td colspan="3"><b>CARGO</b> </td>
-                <td colspan="5">TENCION AL CLIENTE AYAVIRI</td>
-            </tr>
-            <tr>
-                <td colspan="3"><b>DESTINO</b> </td>
-                <td colspan="5">SERVIOC ELECTRICO SAN GANI</td>
-            </tr>
-            <tr>
-                <td colspan="8"><b>DETALLE DE LOS BIENES</b></td>
-            </tr>
-
-            <tr>
-                <th>#</th>
-                <th>DESCRIPCION</th>
-                <th>MARCA</th>
-                <th>MODELO</th>
-                <th>SERIE</th>
-                <th>ESTADO</th>
-                <th>USUARIO</th>
-                <th>NOMBRE PC</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>CPU</td>
-                <td>LENOVO</td>
-                <td>87645HJJHF</td>
-                <td>KSDJFKSDJF8</td>
-                <td>OPERATIVO</td>
-                <td>fchoque</td>
-                <td>PC202846</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>CPU</td>
-                <td>LENOVO</td>
-                <td>87645HJJHF</td>
-                <td>KSDJFKSDJF8</td>
-                <td>OPERATIVO</td>
-                <td>fchoque</td>
-                <td>PC202846</td>
-            </tr>
-
-            <tr>
-                <td colspan="8"><b>OBSERVACIONES: </b> Se ha bvisot quejfdf mndfmdmnfb ehryua papbgda oauie.</td>
+            <tr style="">
+                <td colspan="4" style="border-top: 1px solid #000;">
+                    <p class="text-center"><b>FRANZ JOHAN LOAYZA SALAS</b></p>
+                    <p class="text-center"><b>JEFE DE DIVISION DE TECNOLOGIAS DE INFORMACION</b></p>
+                </td>
+                <td colspan="4" style="border-top: 1px solid #000;">
+                    <p class="text-center"><b>@Model.Nombre</b></p>
+                    <p class="text-center"><b>@Model.Cargo</b></p>
+                </td>
             </tr>
         </table>
     </div>
-
-    -->
-
-
-
 
 
 

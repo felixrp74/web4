@@ -21,7 +21,7 @@ namespace Web4.Models.ViewModels
     }
 
     public class Bienes
-    {
+    { 
         public string Descripcion { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }

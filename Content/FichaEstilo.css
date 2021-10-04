@@ -10,7 +10,9 @@ body {
 table {
     border: 1px solid black
 }
+ 
 
 td, th {
     border: thin solid black
 }
+
