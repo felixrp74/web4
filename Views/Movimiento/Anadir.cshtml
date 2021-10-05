@@ -1,13 +1,14 @@
 ﻿@model List<Web4.Models.ViewModels.ViewModelResponsable>
 
 @{
-    ViewBag.Title = "Movimiento Bienes";
+    ViewBag.Title = "Movimiento de Bienes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 
 }
-
-<h2>@ViewBag.Title</h2>
+<br />
+<br />
+<h2 style="text-align: center;">@ViewBag.Title</h2>
 
 <div>
 
@@ -20,6 +21,29 @@
 
 @using (Html.BeginForm("Anadir", "Movimiento", FormMethod.Post))
 {
+    <!--
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div>
+        <table class="table">
+
+            <tr>
+                <td style="width:50%; border-top: 1px solid #000;">
+                    <p class="text-center"><b>FRANZ JOHAN LOAYZA SALAS</b></p>
+                    <p class="text-center"><b>JEFE DE DIVISION DE TECNOLOGIAS DE INFORMACION</b></p>
+                </td>
+                <td style="width:50%; border-top: 1px solid #000;">
+                    <p class="text-center"><b>FRANZ LOAYSA SALAS HOAHAN</b></p>
+                    <p class="text-center"><b>SERVICIO ELECTRICO AYAVIRI</b></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    -->
 
     <div class="row">
 
@@ -29,7 +53,7 @@
                 <div class="mb-3 row">
                     <label for="Nombre" class="col-sm-2 col-form-label">Recibe</label>
 
-          
+
                     <div class="col-sm-10">
                         <select class="form-control" name="Clave_R" id="Clave_R">
                             @foreach (var r in Model)
@@ -42,7 +66,7 @@
 
 
                 </div>
-                 
+
 
                 <div class="mb-3 row">
 
@@ -75,8 +99,8 @@
                     <label for="TipoMovimiento" class="col-sm-2 col-form-label">Movimiento</label>
                     <div class="col-sm-10">
                         <select id="TipoMovimiento" name="TipoMovimiento" class="form-control">
-                            <option value="ASIGNACION">ASIGNACIÓN</option>
-                            <option value="DEVOLUCION">DEVOLUCIÓN</option>
+                            <option value="ASIGNACIÓN">ASIGNACIÓN</option>
+                            <option value="DEVOLUCIÓN">DEVOLUCIÓN</option>
                         </select>
                     </div>
                 </div>
@@ -206,7 +230,7 @@
     <script>
 
         $(function () {
-            $("#Nombre").chosen();
+            $("#Clave_R").chosen();
         });
     </script>
 
