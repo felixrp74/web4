@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Prueba1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Prueba1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bien">
           <Key>
             <PropertyRef Name="Clave_B" />
@@ -101,11 +101,28 @@
             <End Role="Ficha" EntitySet="Ficha" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Prueba1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Prueba1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bien" EntityType="Prueba1Model.Bien" />
+          <EntitySet Name="Detalle" EntityType="Prueba1Model.Detalle" />
+          <EntitySet Name="Ficha" EntityType="Prueba1Model.Ficha" />
+          <EntitySet Name="Responsable" EntityType="Prueba1Model.Responsable" />
+          <AssociationSet Name="fk_Detalle_Bien1" Association="Prueba1Model.fk_Detalle_Bien1">
+            <End Role="Bien" EntitySet="Bien" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Detalle_Ficha1" Association="Prueba1Model.fk_Detalle_Ficha1">
+            <End Role="Ficha" EntitySet="Ficha" />
+            <End Role="Detalle" EntitySet="Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Ficha_Responsable1" Association="Prueba1Model.fk_Ficha_Responsable1">
+            <End Role="Responsable" EntitySet="Responsable" />
+            <End Role="Ficha" EntitySet="Ficha" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Bien">
           <Key>
             <PropertyRef Name="Clave_B" />
@@ -119,7 +136,7 @@
           <Property Name="UsuarioPC" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="NombrePC" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Devuelto" Type="Boolean" />
-          <NavigationProperty Name="Detalle" Relationship="Self.fk_Detalle_Bien1" FromRole="Bien" ToRole="Detalle" />
+          <NavigationProperty Name="Detalle" Relationship="Prueba1Model.fk_Detalle_Bien1" FromRole="Bien" ToRole="Detalle" />
         </EntityType>
         <EntityType Name="Detalle">
           <Key>
@@ -128,8 +145,8 @@
           <Property Name="Clave_D" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ficha_Clave_F" Type="Int32" Nullable="false" />
           <Property Name="Bien_Clave_B" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bien" Relationship="Self.fk_Detalle_Bien1" FromRole="Detalle" ToRole="Bien" />
-          <NavigationProperty Name="Ficha" Relationship="Self.fk_Detalle_Ficha1" FromRole="Detalle" ToRole="Ficha" />
+          <NavigationProperty Name="Bien" Relationship="Prueba1Model.fk_Detalle_Bien1" FromRole="Detalle" ToRole="Bien" />
+          <NavigationProperty Name="Ficha" Relationship="Prueba1Model.fk_Detalle_Ficha1" FromRole="Detalle" ToRole="Ficha" />
         </EntityType>
         <EntityType Name="Ficha">
           <Key>
@@ -142,8 +159,8 @@
           <Property Name="TipoMovimiento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="ResponsableDelMovimiento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Responsable_Clave_R" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Detalle" Relationship="Self.fk_Detalle_Ficha1" FromRole="Ficha" ToRole="Detalle" />
-          <NavigationProperty Name="Responsable" Relationship="Self.fk_Ficha_Responsable1" FromRole="Ficha" ToRole="Responsable" />
+          <NavigationProperty Name="Detalle" Relationship="Prueba1Model.fk_Detalle_Ficha1" FromRole="Ficha" ToRole="Detalle" />
+          <NavigationProperty Name="Responsable" Relationship="Prueba1Model.fk_Ficha_Responsable1" FromRole="Ficha" ToRole="Responsable" />
         </EntityType>
         <EntityType Name="Responsable">
           <Key>
@@ -152,11 +169,11 @@
           <Property Name="Clave_R" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Cargo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ficha" Relationship="Self.fk_Ficha_Responsable1" FromRole="Responsable" ToRole="Ficha" />
+          <NavigationProperty Name="Ficha" Relationship="Prueba1Model.fk_Ficha_Responsable1" FromRole="Responsable" ToRole="Ficha" />
         </EntityType>
         <Association Name="fk_Detalle_Bien1">
-          <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
-          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <End Type="Prueba1Model.Bien" Role="Bien" Multiplicity="1" />
+          <End Type="Prueba1Model.Detalle" Role="Detalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bien">
               <PropertyRef Name="Clave_B" />
@@ -167,8 +184,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Detalle_Ficha1">
-          <End Role="Ficha" Type="Self.Ficha" Multiplicity="1" />
-          <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+          <End Type="Prueba1Model.Ficha" Role="Ficha" Multiplicity="1" />
+          <End Type="Prueba1Model.Detalle" Role="Detalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ficha">
               <PropertyRef Name="Clave_F" />
@@ -179,8 +196,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Ficha_Responsable1">
-          <End Role="Responsable" Type="Self.Responsable" Multiplicity="1" />
-          <End Role="Ficha" Type="Self.Ficha" Multiplicity="*" />
+          <End Type="Prueba1Model.Responsable" Role="Responsable" Multiplicity="1" />
+          <End Type="Prueba1Model.Ficha" Role="Ficha" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Responsable">
               <PropertyRef Name="Clave_R" />
@@ -190,24 +207,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Prueba1Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Bien" EntityType="Self.Bien" />
-          <EntitySet Name="Detalle" EntityType="Self.Detalle" />
-          <EntitySet Name="Ficha" EntityType="Self.Ficha" />
-          <EntitySet Name="Responsable" EntityType="Self.Responsable" />
-          <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
-            <End Role="Bien" EntitySet="Bien" />
-            <End Role="Detalle" EntitySet="Detalle" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Detalle_Ficha1" Association="Self.fk_Detalle_Ficha1">
-            <End Role="Ficha" EntitySet="Ficha" />
-            <End Role="Detalle" EntitySet="Detalle" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Ficha_Responsable1" Association="Self.fk_Ficha_Responsable1">
-            <End Role="Responsable" EntitySet="Responsable" />
-            <End Role="Ficha" EntitySet="Ficha" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -217,46 +216,46 @@
           <EntitySetMapping Name="Bien">
             <EntityTypeMapping TypeName="Prueba1Model.Bien">
               <MappingFragment StoreEntitySet="Bien">
-                <ScalarProperty Name="Clave_B" ColumnName="Clave_B" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
-                <ScalarProperty Name="Serie" ColumnName="Serie" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="UsuarioPC" ColumnName="UsuarioPC" />
-                <ScalarProperty Name="NombrePC" ColumnName="NombrePC" />
                 <ScalarProperty Name="Devuelto" ColumnName="Devuelto" />
+                <ScalarProperty Name="NombrePC" ColumnName="NombrePC" />
+                <ScalarProperty Name="UsuarioPC" ColumnName="UsuarioPC" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Clave_B" ColumnName="Clave_B" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Detalle">
             <EntityTypeMapping TypeName="Prueba1Model.Detalle">
               <MappingFragment StoreEntitySet="Detalle">
-                <ScalarProperty Name="Clave_D" ColumnName="Clave_D" />
-                <ScalarProperty Name="Ficha_Clave_F" ColumnName="Ficha_Clave_F" />
                 <ScalarProperty Name="Bien_Clave_B" ColumnName="Bien_Clave_B" />
+                <ScalarProperty Name="Ficha_Clave_F" ColumnName="Ficha_Clave_F" />
+                <ScalarProperty Name="Clave_D" ColumnName="Clave_D" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ficha">
             <EntityTypeMapping TypeName="Prueba1Model.Ficha">
               <MappingFragment StoreEntitySet="Ficha">
-                <ScalarProperty Name="Clave_F" ColumnName="Clave_F" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Origen" ColumnName="Origen" />
-                <ScalarProperty Name="Destino" ColumnName="Destino" />
-                <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
-                <ScalarProperty Name="ResponsableDelMovimiento" ColumnName="ResponsableDelMovimiento" />
                 <ScalarProperty Name="Responsable_Clave_R" ColumnName="Responsable_Clave_R" />
+                <ScalarProperty Name="ResponsableDelMovimiento" ColumnName="ResponsableDelMovimiento" />
+                <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Clave_F" ColumnName="Clave_F" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Responsable">
             <EntityTypeMapping TypeName="Prueba1Model.Responsable">
               <MappingFragment StoreEntitySet="Responsable">
-                <ScalarProperty Name="Clave_R" ColumnName="Clave_R" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Clave_R" ColumnName="Clave_R" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

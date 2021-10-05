@@ -7,6 +7,7 @@ namespace Web4.Models.ViewModels
 {
     public class MovimientoViewModel
     {
+        public int Clave_R { get; set; }
         public string Nombre { set; get; }
         public string Cargo { set; get; }
 

@@ -28,14 +28,10 @@
                 <legend>Identificacion</legend>
                 <div class="mb-3 row">
                     <label for="Nombre" class="col-sm-2 col-form-label">Recibe</label>
-                    <!--
 
+          
                     <div class="col-sm-10">
-                        <input type="text" name="Nombre" id="Nombre" class="form-control" onkeyup="this.value = this.value.toUpperCase();" />
-                    </div>
-                    -->
-                    <div class="col-sm-10">
-                        <select class="form-control name="Nombre" id="Nombre">
+                        <select class="form-control" name="Clave_R" id="Clave_R">
                             @foreach (var r in Model)
                             {
                                 <option value="@r.Clave_R">@r.Nombre</option>
@@ -43,7 +39,11 @@
                         </select>
                     </div>
 
+
+
                 </div>
+                 
+
                 <div class="mb-3 row">
 
                     <label for="Cargo" class="col-sm-2 col-form-label">Cargo</label>

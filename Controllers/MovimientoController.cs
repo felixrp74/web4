@@ -68,17 +68,34 @@ namespace Web4.Controllers
         [HttpPost]
         public ActionResult Anadir(MovimientoViewModel model)
         {
+             
             try
             {
-                using (Prueba1Entities db = new Prueba1Entities())
+                //Responsable oResponsable = new Responsable();
+                List<ViewModelResponsable> lista = new List<ViewModelResponsable>();
+
+                using ( Prueba1Entities db = new Prueba1Entities() )
                 {
-                    Responsable oResponsable = new Responsable();
-                    oResponsable.Nombre = model.Nombre;
-                    oResponsable.Cargo = model.Cargo;
+                    /*
+                    */
+                    lista = (from d in db.Responsable
+                                   where d.Clave_R == model.Clave_R
+                                   select new ViewModelResponsable
+                                   {
+                                       Clave_R = d.Clave_R,
+                                       Nombre = d.Nombre,
+                                       Cargo = d.Cargo
 
-                    db.Responsable.Add(oResponsable);
-                    db.SaveChanges();
+                                   }).ToList();
 
+                
+                    //Responsable oResponsable = new Responsable();
+                    //oResponsable.Cargo = lista.Cargo;
+
+                    //db.Responsable.Add(oResponsable);
+                    //db.SaveChanges();
+
+                    model.Nombre = lista[0].Nombre;
 
                     Ficha oFicha = new Ficha();
                     oFicha.Fecha = DateTime.Now;
@@ -86,7 +103,7 @@ namespace Web4.Controllers
                     oFicha.Destino = model.Destino;
                     oFicha.TipoMovimiento = model.TipoMovimiento;
                     oFicha.ResponsableDelMovimiento = model.ResponsableDelMovimiento;
-                    oFicha.Responsable_Clave_R = oResponsable.Clave_R;
+                    oFicha.Responsable_Clave_R = model.Clave_R;
 
                     db.Ficha.Add(oFicha);
                     db.SaveChanges();
@@ -136,10 +153,9 @@ namespace Web4.Controllers
                 return View(ex);
             }
 
-
         }
 
-            
+        
         public ActionResult Ficha()
         {
             MovimientoViewModel model = TempData["MovimientoViewModel"] as MovimientoViewModel;
@@ -149,10 +165,9 @@ namespace Web4.Controllers
                 return View();
         }
 
+        [HttpPost]
         public ActionResult Ficha(int Clave_R)
         {
-
-
             return View();
         }
 

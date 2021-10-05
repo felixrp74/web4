@@ -4,46 +4,46 @@
     <EntitySetMapping Name="Bien">
       <EntityTypeMapping TypeName="Prueba1Model.Bien">
         <MappingFragment StoreEntitySet="Bien">
-          <ScalarProperty Name="Clave_B" ColumnName="Clave_B" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Marca" ColumnName="Marca" />
-          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
-          <ScalarProperty Name="Serie" ColumnName="Serie" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="UsuarioPC" ColumnName="UsuarioPC" />
-          <ScalarProperty Name="NombrePC" ColumnName="NombrePC" />
           <ScalarProperty Name="Devuelto" ColumnName="Devuelto" />
+          <ScalarProperty Name="NombrePC" ColumnName="NombrePC" />
+          <ScalarProperty Name="UsuarioPC" ColumnName="UsuarioPC" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Clave_B" ColumnName="Clave_B" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Detalle">
       <EntityTypeMapping TypeName="Prueba1Model.Detalle">
         <MappingFragment StoreEntitySet="Detalle">
-          <ScalarProperty Name="Clave_D" ColumnName="Clave_D" />
-          <ScalarProperty Name="Ficha_Clave_F" ColumnName="Ficha_Clave_F" />
           <ScalarProperty Name="Bien_Clave_B" ColumnName="Bien_Clave_B" />
+          <ScalarProperty Name="Ficha_Clave_F" ColumnName="Ficha_Clave_F" />
+          <ScalarProperty Name="Clave_D" ColumnName="Clave_D" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Ficha">
       <EntityTypeMapping TypeName="Prueba1Model.Ficha">
         <MappingFragment StoreEntitySet="Ficha">
-          <ScalarProperty Name="Clave_F" ColumnName="Clave_F" />
-          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-          <ScalarProperty Name="Origen" ColumnName="Origen" />
-          <ScalarProperty Name="Destino" ColumnName="Destino" />
-          <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
-          <ScalarProperty Name="ResponsableDelMovimiento" ColumnName="ResponsableDelMovimiento" />
           <ScalarProperty Name="Responsable_Clave_R" ColumnName="Responsable_Clave_R" />
+          <ScalarProperty Name="ResponsableDelMovimiento" ColumnName="ResponsableDelMovimiento" />
+          <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+          <ScalarProperty Name="Destino" ColumnName="Destino" />
+          <ScalarProperty Name="Origen" ColumnName="Origen" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Clave_F" ColumnName="Clave_F" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Responsable">
       <EntityTypeMapping TypeName="Prueba1Model.Responsable">
         <MappingFragment StoreEntitySet="Responsable">
-          <ScalarProperty Name="Clave_R" ColumnName="Clave_R" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Clave_R" ColumnName="Clave_R" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
