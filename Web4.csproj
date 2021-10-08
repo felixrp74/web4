@@ -164,11 +164,9 @@
     <Compile Include="Models\Responsable.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewModels\MovimientoViewModel.cs" />
     <Compile Include="Models\ViewModels\TablaMovimientoViewModels.cs" />
+    <Compile Include="Models\ViewModels\TableFichaViewModel.cs" />
     <Compile Include="Models\ViewModels\TableResponsableViewModel.cs" />
     <Compile Include="Models\ViewModels\ViewModelResponsable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,6 +242,7 @@
     <Content Include="Views\Movimiento\Ficha.cshtml" />
     <Content Include="Views\Responsable\Index.cshtml" />
     <Content Include="Views\Responsable\Movimientos.cshtml" />
+    <Content Include="Views\Responsable\Ficha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

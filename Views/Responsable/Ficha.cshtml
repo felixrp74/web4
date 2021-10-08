@@ -1,0 +1,74 @@
+﻿@model Web4.Models.ViewModels.MovimientoViewModel
+
+@{
+    ViewBag.Title = "Ficha";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+<h2>@ViewBag.Title</h2>
+
+
+<p>@Model.Nombre</p>
+<p>@Model.Cargo</p>
+<p>@Model.Fecha</p>
+<p>@Model.Origen</p>
+<p>@Model.Destino</p>
+<p>@Model.Nombre</p>
+<p>@Model.TipoMovimiento</p>
+<p>@Model.ResponsableDelMovimiento</p>
+
+
+
+<br />
+<br />
+<h4>FICHA DE @Model.TipoMovimiento</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Descripcion</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Serie</th>
+            <td>Estado</td>
+            <td>UsuarioPC</td>
+            <td>NombrePC</td>
+            <td>Devuelto</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            int i = 1;
+            foreach (var oItem in Model.Equipos)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@oItem.Descripcion</td>
+                    <td>@oItem.Marca</td>
+                    <td>@oItem.Modelo</td>
+                    <td>@oItem.Serie</td>
+                    <td>@oItem.Estado</td>
+                    <td>@oItem.UsuarioPC</td>
+                    <td>@oItem.NombrePC</td>
+                    <td>@oItem.Devuelto</td>
+                    <td>
+                        <!--
+
+                        <a class="btn btn-info" href="~/Responsable/Ficha/oItem.Clave_F">Ficha</a>
+
+                        -->
+
+                    </td>
+                </tr>
+                i = i + 1;
+            }
+        }
+
+
+    </tbody>
+
+</table>

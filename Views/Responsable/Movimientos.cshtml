@@ -1,4 +1,5 @@
-﻿
+﻿@model Web4.Models.ViewModels.TablaMovimientoViewModels
+
 @{
     ViewBag.Title = "Movimientos";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -52,12 +53,12 @@
                 <td>@oItem.ResponsableDelMovimiento</td>
                 <td>
                     <!--
-
-                    <a class="btn btn-info"
-                       href="~/Responsable/Ficha?categoryids=@oItem.Clave_F&categoryids=@Model.Clave_R">Ficha</a>
+                        
+                    <a class="btn btn-info" href="~/Responsable/Ficha/oItem.Clave_F">Ficha</a>
                     -->
-                    <a class="btn btn-info" href="~/Responsable/Ficha/@Model.Clave_R">Ficha</a>
 
+                    <a class="btn btn-info" href="~/Responsable/Ficha?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Ficha</a>
+                    
                 </td>
             </tr>
         }
