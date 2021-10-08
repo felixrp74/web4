@@ -42,6 +42,16 @@
     <Property Name="Nombre" Type="varchar" MaxLength="45" />
     <Property Name="Cargo" Type="varchar" MaxLength="45" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <Association Name="fk_Detalle_Bien1">
     <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
     <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
@@ -83,6 +93,7 @@
     <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
       <End Role="Bien" EntitySet="Bien" />
       <End Role="Detalle" EntitySet="Detalle" />

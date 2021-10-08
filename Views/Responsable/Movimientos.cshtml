@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Movimientos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h2>@ViewBag.Title</h2>
+
+<h4>Responsable</h4>
+<form>
+    <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Nombre</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="@Model.Nombre" value="@Model.Nombre">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Apellido</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="@Model.Cargo" value="@Model.Cargo">
+        </div>
+    </div>
+</form>
+
+
+<br />
+<br />
+<h4>Fichas</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Fecha</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>TipoMovimiento</th>
+            <th>ResponsableDelMovimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var oItem in Model.ListaFichas)
+        {
+            <tr>
+                <td>@oItem.Clave_F</td>
+                <td>@oItem.Fecha</td>
+                <td>@oItem.Origen</td>
+                <td>@oItem.Destino</td>
+                <td>@oItem.TipoMovimiento</td>
+                <td>@oItem.ResponsableDelMovimiento</td>
+                <td>
+                    <!--
+
+                    <a class="btn btn-info"
+                       href="~/Responsable/Ficha?categoryids=@oItem.Clave_F&categoryids=@Model.Clave_R">Ficha</a>
+                    -->
+                    <a class="btn btn-info" href="~/Responsable/Ficha/@Model.Clave_R">Ficha</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

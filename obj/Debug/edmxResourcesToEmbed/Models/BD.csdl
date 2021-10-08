@@ -5,6 +5,7 @@
     <EntitySet Name="Detalle" EntityType="Prueba1Model.Detalle" />
     <EntitySet Name="Ficha" EntityType="Prueba1Model.Ficha" />
     <EntitySet Name="Responsable" EntityType="Prueba1Model.Responsable" />
+    <EntitySet Name="sysdiagrams" EntityType="Prueba1Model.sysdiagrams" />
     <AssociationSet Name="fk_Detalle_Bien1" Association="Prueba1Model.fk_Detalle_Bien1">
       <End Role="Bien" EntitySet="Bien" />
       <End Role="Detalle" EntitySet="Detalle" />
@@ -65,6 +66,16 @@
     <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
     <Property Name="Cargo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Ficha" Relationship="Prueba1Model.fk_Ficha_Responsable1" FromRole="Responsable" ToRole="Ficha" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="fk_Detalle_Bien1">
     <End Type="Prueba1Model.Bien" Role="Bien" Multiplicity="1" />

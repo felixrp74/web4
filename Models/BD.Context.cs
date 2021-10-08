@@ -29,5 +29,6 @@ namespace Web4.Models
         public virtual DbSet<Detalle> Detalle { get; set; }
         public virtual DbSet<Ficha> Ficha { get; set; }
         public virtual DbSet<Responsable> Responsable { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

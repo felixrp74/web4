@@ -34,42 +34,51 @@ namespace Web4.Controllers
             return View(model);
         }
 
-        public ActionResult Movimientos(int Clave_R)
+
+        public ActionResult Movimientos(int id)
         {
-            List<TablaMovimientoViewModels> lista = new List<TablaMovimientoViewModels>();
-            /*
-            var jobs =
-               from h in _context.PostThrs
-               join e in _context.PostEigs on h.ThrZero equals e.EigZero
-               where h.ThrDate > today && h.ThrText == "SERVICE DATE"
-                  && e.EigAgen == "OPEN"
-               select new AgentClientIndexVM
-               {
-                   Zero = h.ThrZero,
-                   ThrDate = h.ThrDate,
-                   ThrTime = h.ThrTime,
-                   ThrText = h.ThrText,
-                   EigAgen = e.EigAgen,
-                   EigRole = e.EigRole,
-                   EigLoad = e.EigLoad,
-                   EigNote = e.EigNote
-               };
-            */
+            List<Fichas> lista = new List<Fichas>();
+            List<TableResponsableViewModel> modelResponsable = new List<TableResponsableViewModel>();
+            TablaMovimientoViewModels modelMovimientos = new TablaMovimientoViewModels();
 
-            using ( Prueba1Entities db = new Prueba1Entities() )
+
+            //conexion base datos
+            using (Prueba1Entities db = new Prueba1Entities())
             {
-                lista = (
-                    from r in db.Responsable
-                    join f in db.Ficha on r.Clave_R equals f.Responsable_Clave_R
-                    select new TablaMovimientoViewModels
-                    {
+                modelResponsable = (from d in db.Responsable
+                                    select new TableResponsableViewModel
+                                    {
+                                        Clave_R = d.Clave_R,
+                                        Nombre = d.Nombre,
+                                        Cargo = d.Cargo
+                                    }).ToList();
 
-                    }).ToList();
+                modelMovimientos.Clave_R = modelResponsable[id].Clave_R;
+                modelMovimientos.Nombre = modelResponsable[id].Nombre;
+                modelMovimientos.Cargo = modelResponsable[id].Cargo;
+
+                modelMovimientos.ListaFichas = (from f in db.Ficha
+                                                where f.Responsable_Clave_R == id
+                                                select new Fichas
+                                                {
+                                                    Clave_F = f.Clave_F,
+                                                    Fecha = (DateTime)f.Fecha,
+                                                    Origen = f.Origen,
+                                                    Destino = f.Destino,
+                                                    TipoMovimiento = f.TipoMovimiento,
+                                                    ResponsableDelMovimiento = f.ResponsableDelMovimiento,
+
+                                                }).ToList();
+
             }
 
-            return View();
+            return View(modelMovimientos);
+
+             
+
         }
-         
+
+
 
     }
 }
