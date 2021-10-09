@@ -210,7 +210,7 @@ namespace Web4.Controllers
                        where d.Nombre.Contains(searchValue)
                        || d.Cargo.Contains(searchValue)
                        select new TableResponsableViewModel
-                       {
+                       { 
                            Clave_R = d.Clave_R,
                            Nombre = d.Nombre,
                            Cargo = d.Cargo

@@ -1,0 +1,132 @@
+﻿@model Web4.Models.ViewModels.MovimientoViewModel
+
+
+@{
+    ViewBag.Title = "Imprimir";
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/Content/FichaEstilo.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    <!--
+
+    -->
+</head>
+<body>
+
+    <div style="border-top: 1px solid #000;">
+
+        <table class="table">
+
+            <tr>
+                <td colspan="5" style="text-align: center;">
+                    <img class="" src="https://www.electropuno.com.pe/web3/images/template/logo-electropuno.png"
+                         width="224"
+                         height="40" />
+                </td>
+                <td colspan="3" style="text-align: center;">
+                    <b> FICHA DE @Model.TipoMovimiento </b>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="5">Identificacion del responsable de bienes operativos</th>
+                <td colspan="3"><b>Fecha: </b>@Model.Fecha</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>ENTREGA</b> </td>
+                <td colspan="5">FRANZ LOAYZA JOHAN SALAS</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>CARGO</b> </td>
+                <td colspan="5">JEFE DE DIVISION DE TECNOLOGIAS DE INFORMACION</td>
+            </tr>
+
+            <tr>
+                <td colspan="3"><b>RECIBE</b> </td>
+                <td colspan="5">@Model.Nombre</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>CARGO</b> </td>
+                <td colspan="5">@Model.Cargo</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>DESTINO</b> </td>
+                <td colspan="5">@Model.Destino</td>
+            </tr>
+            <tr>
+                <td colspan="8"><b>Detalle de los bienes</b></td>
+            </tr>
+
+            <tr>
+                <th>#</th>
+                <th>Descripcion</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+                <th>Nombre PC</th>
+            </tr>
+
+            @{
+                var i = 1;
+
+                foreach (var oElemento in Model.Equipos)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@oElemento.Descripcion</td>
+                        <td>@oElemento.Marca</td>
+                        <td>@oElemento.Modelo</td>
+                        <td>@oElemento.Serie</td>
+                        <td>@oElemento.Estado</td>
+                        <td>@oElemento.UsuarioPC</td>
+                        <td>@oElemento.NombrePC</td>
+                    </tr>
+                    i += 1;
+                }
+            }
+            <!--
+
+            <tr>
+                <td colspan="8"><b>OBSERVACIONES: </b> Se ha bvisot quejfdf mndfmdmnfb ehryua papbgda oauie.</td>
+            </tr>
+            -->
+        </table>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+    </div>
+
+    <div class="">
+        <table class="table">
+
+            <tr>
+                <td style="width: 50%; border-top: 1px solid #000;">
+                    <p class="text-center"><b>FRANZ JOHAN LOAYZA SALAS</b></p>
+                    <p class="text-center"><b>JEFE DE DIVISION DE TECNOLOGIAS DE INFORMACION</b></p>
+                </td>
+                <td style="width: 50%; border-top: 1px solid #000;;">
+                    <p class="text-center"><b>@Model.Nombre</b></p>
+                    <p class="text-center"><b>@Model.Cargo</b></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+</body>
+</html>

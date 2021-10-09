@@ -14,13 +14,14 @@
     <div class="form-group row">
         <label for="staticEmail" class="col-sm-2 col-form-label">Nombre</label>
         <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext" id="@Model.Nombre" value="@Model.Nombre">
+            
+            @Html.DisplayName(Model.Nombre)
         </div>
     </div>
     <div class="form-group row">
         <label for="staticEmail" class="col-sm-2 col-form-label">Apellido</label>
         <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext" id="@Model.Cargo" value="@Model.Cargo">
+            @Html.DisplayName(Model.Cargo)
         </div>
     </div>
 </form>
@@ -42,25 +43,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var oItem in Model.ListaFichas)
-        {
-            <tr>
-                <td>@oItem.Clave_F</td>
-                <td>@oItem.Fecha</td>
-                <td>@oItem.Origen</td>
-                <td>@oItem.Destino</td>
-                <td>@oItem.TipoMovimiento</td>
-                <td>@oItem.ResponsableDelMovimiento</td>
-                <td>
-                    <!--
-                        
-                    <a class="btn btn-info" href="~/Responsable/Ficha/oItem.Clave_F">Ficha</a>
-                    -->
+        @{ 
+            int i = 1;
+            foreach (var oItem in Model.ListaFichas)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@oItem.Fecha</td>
+                    <td>@oItem.Origen</td>
+                    <td>@oItem.Destino</td>
+                    <td>@oItem.TipoMovimiento</td>
+                    <td>@oItem.ResponsableDelMovimiento</td>
+                    <td>
+                        <!--
 
-                    <a class="btn btn-info" href="~/Responsable/Ficha?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Ficha</a>
-                    
-                </td>
-            </tr>
+        <a class="btn btn-info" href="~/Responsable/Ficha/oItem.Clave_F">Ficha</a>
+
+        -->
+                        <a class="btn btn-primary" href="~/Responsable/Ficha?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Ficha</a>
+                        <a class="btn btn-success" href="~/Responsable/Imprimir?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Imprimir</a>
+
+                    </td>
+                </tr>
+
+                i += 1;
+
+            }
         }
 
     </tbody>

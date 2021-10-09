@@ -13,17 +13,23 @@
             <th>Clave_R</th>
             <th>Nombre</th>
             <th>Cargo</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
          
     </tbody>
 </table>
-
+{
+"fnRender": function ( oObj ) {
+return '<a href="url?var='+oObj.aData[0]+'">SomeLink</a>';
+}
 
 @section scripts{   
 
     <script>
+        const RELATIVE_PATH = window.location.pathname;
+
         $(document).ready(function () {
             $("#table_id").DataTable({
                 "processing": true,
@@ -40,8 +46,17 @@
                 "columns": [
                     { "data": "Clave_R", "name": "Clave_R", "autowidth": true },
                     { "data": "Nombre", "name": "Nombre", "autowidth": true },
-                    { "data": "Cargo", "name": "Cargo ", "autowidth": true }
-                ]
+                    { "data": "Cargo", "name": "Cargo ", "autowidth": true },
+                    {
+                        "data": "Clave_R", "name": "Clave_R", "autowidth": true,
+                        "render": function (data, type, row, meta) {
+                            
+                            data = '<a  href="/Responsable/Movimientos/' + data + '" class="btn btn-info"> Movimiento </a>';
+
+                            return data;
+                        }
+                    } 
+                ] 
             });
         })
     </script>
