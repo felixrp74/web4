@@ -16,7 +16,7 @@ namespace Web4
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Responsable", action = "index", id = UrlParameter.Optional }
+                defaults: new { controller = "Responsable", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

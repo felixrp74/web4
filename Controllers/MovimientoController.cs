@@ -19,27 +19,149 @@ namespace Web4.Controllers
         public string searchValue = "";
         public int pageSize, skip, recordsTotal;
 
-        //obtener datos
-            /*
-        public ActionResult Index()
+
+        [HttpPost]
+        public ActionResult Editar(MovimientoViewModel modelMov)
         {
-            MovimientoViewModel lista = new MovimientoViewModel;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    List<ViewModelResponsable> lista = new List<ViewModelResponsable>();
+
+                    using (Prueba1Entities db = new Prueba1Entities())
+                    {
+                        var oResponsable = db.Responsable.Find(modelMov.Clave_R);
+                        oResponsable.Cargo = modelMov.Nombre;
+                        db.Entry(oResponsable).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+
+                        var oFicha = db.Ficha.Find(modelMov.Clave_F);                        
+                        oFicha.Fecha = DateTime.Now;
+                        oFicha.Origen = modelMov.Origen;
+                        oFicha.Destino = modelMov.Destino;
+                        oFicha.TipoMovimiento = modelMov.TipoMovimiento;
+                        oFicha.ResponsableDelMovimiento = modelMov.ResponsableDelMovimiento;
+                        oFicha.Responsable_Clave_R = modelMov.Clave_R; //borrar linea para no perder la relacion entre Responsable y Ficha.
+                        db.Entry(oFicha).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+
+                        var oDetalle = db.Detalle.Find(modelMov.Clave_F);
+
+                        foreach (var mE in modelMov.Equipos)
+                        {
+                            /*
+                            var oBien = db.Bien.Find(modelMov.);
+                            oBien.Descripcion = mE.Descripcion;
+                            oBien.Marca = mE.Marca;
+                            oBien.Modelo = mE.Modelo;
+                            oBien.Serie = mE.Serie;
+                            oBien.Estado = mE.Estado;
+                            oBien.UsuarioPC = mE.UsuarioPC;
+                            oBien.NombrePC = mE.NombrePC;
+                            oBien.Devuelto = mE.Devuelto;
+
+                            //db.Bien.Add(oBien);
+                            db.Entry(oBien).State = System.Data.Entity.EntityState.Modified;
+                            db.SaveChanges();
+
+                            Detalle oDetalle = new Detalle();
+                            oDetalle.Ficha_Clave_F = oFicha.Clave_F;
+                            oDetalle.Bien_Clave_B = oBien.Clave_B;
+
+                            db.Detalle.Add(oDetalle);
+                            */
+                        }
+
+                        db.SaveChanges();
+
+                        ViewBag.Message = "Registro insertado";
+
+
+                        TempData["MovimientoViewModel"] = modelMov;
+                        return Redirect("~/Movimiento/Ficha");
+                        //return RedirectToAction("Imprimir", "Home2", data);
+                        //return RedirectToAction("Ficha", "Home", model);
+                        //return RedirectToAction("~/Controllers/Home/Ficha", model);
+                        //return View();
+
+
+                    }
+                     
+                }
+                return View(modelMov);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult Editar(int id_R, int id_F )
+        {
+            MovimientoViewModel modelMovimiento = new MovimientoViewModel();
+            List<TableResponsableViewModel> modelResponsable = new List<TableResponsableViewModel>();
+            List<TableFichaViewModel> modelFicha = new List<TableFichaViewModel>();
 
             using (Prueba1Entities db = new Prueba1Entities())
             {
-                lista = (from d in db.Persona
-                         select new ListTablaViewModel
-                         {
-                             Id = d.Id,
-                             Nombre = d.Nombre,
-                             Apellido = d.Apellido,
-                             FechaNacimiento = (DateTime)d.FechaNacimiento
-                         }).ToList();
-            }
+                modelResponsable = (from d in db.Responsable
+                                    where d.Clave_R == id_R
+                                    select new TableResponsableViewModel
+                                    {
+                                        Clave_R = d.Clave_R,
+                                        Nombre = d.Nombre,
+                                        Cargo = d.Cargo
+                                    }).ToList();
 
-            return View(lista);
+                modelMovimiento.Clave_R = modelResponsable[0].Clave_R;
+                modelMovimiento.Nombre = modelResponsable[0].Nombre;
+                modelMovimiento.Cargo = modelResponsable[0].Cargo;
+
+                modelFicha = (from f in db.Ficha
+                              where f.Clave_F == id_F // las fichas son unicas y pertenecen a alguien
+                              select new TableFichaViewModel
+                              {
+                                  Clave_F = f.Clave_F,
+                                  Fecha = (DateTime)f.Fecha,
+                                  Origen = f.Origen,
+                                  Destino = f.Destino,
+                                  TipoMovimiento = f.TipoMovimiento,
+                                  ResponsableDelMovimiento = f.ResponsableDelMovimiento
+
+                              }).ToList();
+
+                modelMovimiento.Fecha = modelFicha[0].Fecha;
+                modelMovimiento.Origen = modelFicha[0].Origen;
+                modelMovimiento.Destino = modelFicha[0].Destino;
+                modelMovimiento.TipoMovimiento = modelFicha[0].TipoMovimiento;
+                modelMovimiento.ResponsableDelMovimiento = modelFicha[0].ResponsableDelMovimiento;
+
+                modelMovimiento.Equipos = (from b in db.Bien
+                                           from d in db.Detalle
+                                           where d.Ficha_Clave_F == id_F
+                                               && d.Bien_Clave_B == b.Clave_B
+                                           select new Bienes
+                                           {
+                                               Descripcion = b.Descripcion,
+                                               Marca = b.Marca,
+                                               Modelo = b.Modelo,
+                                               Serie = b.Serie,
+                                               Estado = b.Estado,
+                                               UsuarioPC = b.UsuarioPC,
+                                               NombrePC = b.NombrePC,
+                                               Devuelto = (bool)b.Devuelto
+                                           }
+                              ).ToList();
+                 
+            }
+            return View(modelMovimiento);
         }
-            */
+
+
+        
 
         // GET: Movimiento
         public ActionResult Anadir()
@@ -71,13 +193,11 @@ namespace Web4.Controllers
              
             try
             {
-                //Responsable oResponsable = new Responsable();
                 List<ViewModelResponsable> lista = new List<ViewModelResponsable>();
 
                 using ( Prueba1Entities db = new Prueba1Entities() )
                 {
-                    /*
-                    */
+
                     lista = (from d in db.Responsable
                                    where d.Clave_R == model.Clave_R
                                    select new ViewModelResponsable
@@ -107,7 +227,10 @@ namespace Web4.Controllers
 
                     db.Ficha.Add(oFicha);
                     db.SaveChanges();
+                     
+                    model.Clave_F = oFicha.Clave_F;
 
+                    int i = 0;
 
                     foreach (var mE in model.Equipos)
                     {
@@ -125,6 +248,10 @@ namespace Web4.Controllers
 
                         db.SaveChanges();
 
+                        //aqui 
+                        model.Equipos[i].Clave_B = oBien.Clave_B;
+                        i = i + 1;
+
                         Detalle oDetalle = new Detalle();
                         oDetalle.Ficha_Clave_F = oFicha.Clave_F;
                         oDetalle.Bien_Clave_B = oBien.Clave_B;
@@ -136,6 +263,7 @@ namespace Web4.Controllers
                     db.SaveChanges();
 
                     ViewBag.Message = "Registro insertado";
+
 
                     TempData["MovimientoViewModel"] = model;
                     return Redirect("~/Movimiento/Ficha");

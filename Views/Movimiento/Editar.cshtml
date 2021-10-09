@@ -1,0 +1,359 @@
+﻿@model Web4.Models.ViewModels.MovimientoViewModel
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h2 style="text-align: center;">@ViewBag.Title</h2>
+
+<div>
+
+    <p class="text-success">
+        @ViewBag.Message
+
+    </p>
+
+</div>
+
+@using (Html.BeginForm("Anadir", "Movimiento", FormMethod.Post))
+{
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <fieldset>
+                <legend>Identificacion</legend>
+                <div class="mb-3 row">
+                    <label for="Nombre" class="col-sm-2 col-form-label">Recibe</label>
+
+
+                    <div class="col-sm-10">
+                        <p value="@Model.Clave_R">@Model.Nombre</p>
+
+                    </div>
+                </div>
+
+
+                <div class="mb-3 row">
+                    <label for="Cargo" class="col-sm-2 col-form-label">Cargo</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Cargo" name="Cargo" type="text" value="" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="Fecha" class="col-sm-2 col-form-label">Fecha</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" data-val="true" data-val-date="El campo Fecha debe ser una fecha."
+                               data-val-required="El campo Fecha es obligatorio." id="Fecha" name="Fecha" type="datetime" value="@DateTime.Now" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Origen" class="col-sm-2 col-form-label">Origen</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Origen" name="Origen" type="text" value="" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Destino" class="col-sm-2 col-form-label">Destino</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Destino" name="Destino" type="text" value="" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="TipoMovimiento" class="col-sm-2 col-form-label">Movimiento</label>
+                    <div class="col-sm-10">
+                        <select id="TipoMovimiento" name="TipoMovimiento" class="form-control">
+                            <option value="ASIGNACIÓN">ASIGNACIÓN</option>
+                            <option value="DEVOLUCIÓN">DEVOLUCIÓN</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ResponsableDelMovimiento" class="col-sm-5 col-form-label">ResponsableDelMovimiento</label>
+                    <div class="col-sm-7">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text" value="" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-md-6">
+
+            <fieldset>
+                <legend>Bien</legend>
+
+                <div class="mb-3 row">
+                    <label for="Descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Descripcion" name="Descripcion" type="text" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Marca" class="col-sm-2 col-form-label">Marca</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Marca" name="Marca" type="text" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Modelo" class="col-sm-2 col-form-label">Modelo</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Modelo" name="Modelo" type="text" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Serie" class="col-sm-2 col-form-label">Serie</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Serie" name="Serie" type="text" value="">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
+                    <div class="col-sm-10">
+                        <select id="Estado" class="form-control">
+                            <option value="OPERATIVO">OPERATIVO</option>
+                            <option value="INOPERATIVO">INOPERATIVO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="UsuarioPC" class="col-sm-2 col-form-label">UsuarioPC</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="UsuarioPC" name="UsuarioPC" type="text" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="NombrePC" class="col-sm-2 col-form-label">NombrePC</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="NombrePC" name="NombrePC" type="text" value="">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="Devuelto" class="col-sm-2 col-form-label">Devuelto</label>
+                    <div class="col-sm-10">
+                        <select id="Devuelto" name="Devuelto" class="form-control">
+                            <option value="false">NO</option>
+                            <option value="true">SI</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="button" value="Anadir" onclick="AnadirMovimiento(); return false;" class="btn btn-info btn-block" />
+                </div>
+
+            </fieldset>
+
+
+        </div>
+
+
+    </div>
+
+
+    <br />
+    <div class="container">
+        <div class="row">
+
+
+            <h4>
+                Detalle
+            </h4>
+
+            <div id="divMovimientos">
+                <table class="table">
+                    <tbody id="tablaMovimiento">
+
+                        <tr>
+                            <th>Descripcion</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Serie</th>
+                            <th>Estado</th>
+                            <th>UsuarioPC</th>
+                            <th>NombrePC</th>
+                            <th>Devuelto</th>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" name="name" value="Registrar" class="btn btn-primary" />
+            </div>
+
+        </div>
+    </div>
+
+}
+
+@section scripts{
+    <script>
+
+        $(function () {
+            $("#Clave_R").chosen();
+        });
+    </script>
+
+
+}
+
+<script>
+
+
+
+    var num = 0;
+
+    function keyEvent(event) {
+
+        var key = event.keyCode || even.which;
+
+        console.log(key)
+        if (key == 43) {
+            console.log("key dentro funcion " + key);
+            AnadirMovimiento();
+        }
+
+    }
+
+    function AnadirMovimiento() {
+        console.log("hola");
+
+        let Descripcion = document.getElementById("Descripcion").value;
+        let Marca = document.getElementById("Marca").value;
+        let Modelo = document.getElementById("Modelo").value;
+        let Serie = document.getElementById("Serie").value;
+        let Estado = document.getElementById("Estado").value;
+        let UsuarioPC = document.getElementById("UsuarioPC").value;
+        let NombrePC = document.getElementById("NombrePC").value;
+        let Devuelto = document.getElementById("Devuelto").value;
+
+        if (Descripcion.length > 0 && Marca.length > 0) {
+
+            //agregar a la tabla movimientos
+            // identificar la tabla
+            // crear tr
+            // crear td
+            // innterHTML de td
+            // agregar tr a tabla
+
+            let TablaMovimientos = document.getElementById("tablaMovimiento");
+            let TR = document.createElement("tr");
+
+            let TDDescripcion = document.createElement("td");
+            let TDMarca = document.createElement("td");
+            let TDModelo = document.createElement("td");
+            let TDSerie = document.createElement("td");
+            let TDEstado = document.createElement("td");
+            let TDUsuarioPC = document.createElement("td");
+            let TDNombrePC = document.createElement("td");
+            let TDDevuelto = document.createElement("td");
+
+            TDDescripcion.innerHTML = Descripcion;
+            TDMarca.innerHTML = Marca;
+            TDModelo.innerHTML = Modelo;
+            TDSerie.innerHTML = Serie;
+            TDEstado.innerHTML = Estado;
+            TDUsuarioPC.innerHTML = UsuarioPC;
+            TDNombrePC.innerHTML = NombrePC;
+            TDDevuelto.innerHTML = Devuelto;
+
+            TR.appendChild(TDDescripcion);
+            TR.appendChild(TDMarca);
+            TR.appendChild(TDModelo);
+            TR.appendChild(TDSerie);
+            TR.appendChild(TDEstado);
+            TR.appendChild(TDUsuarioPC);
+            TR.appendChild(TDNombrePC);
+            TR.appendChild(TDDevuelto);
+
+            TablaMovimientos.appendChild(TR);
+
+
+            //agregar hiddens
+            let DivMovimientos = document.getElementById("divMovimientos");
+            let HiddenIndex = document.createElement("input");
+            let HiddenDescripcion = document.createElement("input");
+            let HiddenMarca = document.createElement("input");
+            let HiddenModelo = document.createElement("input");
+            let HiddenSerie = document.createElement("input");
+            let HiddenEstado = document.createElement("input");
+            let HiddenUsuarioPC = document.createElement("input");
+            let HiddenNombrePC = document.createElement("input");
+            let HiddenDevuelto = document.createElement("input");
+
+            HiddenIndex.type = "hidden";
+            HiddenIndex.name = "Equipos.Index";
+            HiddenIndex.value = num;
+
+            HiddenDescripcion.type = "hidden";
+            HiddenDescripcion.name = "Equipos[" + num + "].Descripcion";
+            HiddenDescripcion.value = Descripcion;
+
+            HiddenMarca.type = "hidden";
+            HiddenMarca.name = "Equipos[" + num + "].Marca";
+            HiddenMarca.value = Marca;
+
+            HiddenModelo.type = "hidden";
+            HiddenModelo.name = "Equipos[" + num + "].Modelo";
+            HiddenModelo.value = Modelo;
+
+            HiddenSerie.type = "hidden";
+            HiddenSerie.name = "Equipos[" + num + "].Serie";
+            HiddenSerie.value = Serie;
+
+            HiddenEstado.type = "hidden";
+            HiddenEstado.name = "Equipos[" + num + "].Estado";
+            HiddenEstado.value = Estado;
+
+            HiddenUsuarioPC.type = "hidden";
+            HiddenUsuarioPC.name = "Equipos[" + num + "].UsuarioPC";
+            HiddenUsuarioPC.value = UsuarioPC;
+
+            HiddenNombrePC.type = "hidden";
+            HiddenNombrePC.name = "Equipos[" + num + "].NombrePc";
+            HiddenNombrePC.value = NombrePC;
+
+            HiddenDevuelto.type = "hidden";
+            HiddenDevuelto.name = "Equipos[" + num + "].Devuelto";
+            HiddenDevuelto.value = Devuelto;
+
+            DivMovimientos.appendChild(HiddenIndex);
+            DivMovimientos.appendChild(HiddenDescripcion);
+            DivMovimientos.appendChild(HiddenMarca);
+            DivMovimientos.appendChild(HiddenModelo);
+            DivMovimientos.appendChild(HiddenSerie);
+            DivMovimientos.appendChild(HiddenEstado);
+            DivMovimientos.appendChild(HiddenUsuarioPC);
+            DivMovimientos.appendChild(HiddenNombrePC);
+            DivMovimientos.appendChild(HiddenDevuelto);
+
+            document.getElementById("Descripcion").value = "";
+            document.getElementById("Marca").value = "";
+            //document.getElementById("Modelo").value = "";
+            //document.getElementById("Serie").value = "";
+            //document.getElementById("Estado").value = "";
+            //document.getElementById("UsuarioPC").value = "";
+            //document.getElementById("NombrePC").value = "";
+            //document.getElementById("Devuelto").value = "";
+
+            num++;
+        }
+
+    }
+
+
+</script>
+
+
+
+
+
+
+

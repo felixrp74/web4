@@ -19,16 +19,13 @@
     <tbody>
          
     </tbody>
-</table>
-{
-"fnRender": function ( oObj ) {
-return '<a href="url?var='+oObj.aData[0]+'">SomeLink</a>';
-}
+</table> 
+
 
 @section scripts{   
 
     <script>
-        const RELATIVE_PATH = window.location.pathname;
+        //const RELATIVE_PATH = window.location.pathname;
 
         $(document).ready(function () {
             $("#table_id").DataTable({

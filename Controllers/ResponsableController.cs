@@ -113,7 +113,7 @@ namespace Web4.Controllers
                     PageMargins = new Rotativa.Options.Margins(40, 10, 10, 10)
                 };
             }
-            return View();
+            //return View();
         }
 
 
@@ -190,17 +190,22 @@ namespace Web4.Controllers
             //conexion base datos
             using (Prueba1Entities db = new Prueba1Entities())
             {
-                modelResponsable = (from d in db.Responsable
+                /* 
+                 modelResponsable = (from d in db.Responsable
+                                    where d.Clave_R == id
                                     select new TableResponsableViewModel
                                     {
                                         Clave_R = d.Clave_R,
                                         Nombre = d.Nombre,
                                         Cargo = d.Cargo
                                     }).ToList();
-                id = id - 1;
-                modelMovimientos.Clave_R = modelResponsable[id].Clave_R;
-                modelMovimientos.Nombre = modelResponsable[id].Nombre;
-                modelMovimientos.Cargo = modelResponsable[id].Cargo;
+                */
+                var mResponsable = db.Responsable.Find(id);
+
+                //id = id - 1;
+                modelMovimientos.Clave_R = mResponsable.Clave_R;
+                modelMovimientos.Nombre = mResponsable.Nombre;
+                modelMovimientos.Cargo = mResponsable.Cargo;
 
                 modelMovimientos.ListaFichas = (from f in db.Ficha
                                                 where f.Responsable_Clave_R == id

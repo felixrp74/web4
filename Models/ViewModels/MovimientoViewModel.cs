@@ -11,6 +11,7 @@ namespace Web4.Models.ViewModels
         public string Nombre { set; get; }
         public string Cargo { set; get; }
 
+        public int Clave_F { get; set; }
         public DateTime Fecha { set; get; }
         public string Origen { set; get; }
         public string Destino { set; get; }
@@ -22,7 +23,8 @@ namespace Web4.Models.ViewModels
     }
 
     public class Bienes
-    { 
+    {
+        public int Clave_B { get; set; }
         public string Descripcion { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
