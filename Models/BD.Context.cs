@@ -25,9 +25,9 @@ namespace Web4.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Bien> Bien { get; set; }
         public virtual DbSet<Detalle> Detalle { get; set; }
         public virtual DbSet<Ficha> Ficha { get; set; }
         public virtual DbSet<Responsable> Responsable { get; set; }
+        public virtual DbSet<Bien> Bien { get; set; }
     }
 }

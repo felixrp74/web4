@@ -1,0 +1,141 @@
+﻿@model Web4.Models.ViewModels.MovimientoCelularViewModel
+
+@{
+    ViewBag.Title = "Imprimir";
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <link href="~/Content/FichaEstilo.css" rel="stylesheet" />
+
+    <!--
+        Styles.Render("~/Content/css")
+
+    -->
+</head>
+<body>
+
+    <table class="mitad">
+        <tr>
+            <td colspan="6" style="text-align: center;">
+                <img class="" src="https://www.electropuno.com.pe/web3/images/template/logo-electropuno.png"
+                     width="224"
+                     height="40" />
+            </td>
+        </tr>
+        <tr>
+            <th colspan="4">FICHA DE ASIGNACIÓN DE LÍNEA Y EQUIPO MÓVIL</th>
+            <th>ACTA N</th>
+            <td>@Model.Clave_F</td>
+        </tr>
+        <tr>
+            <th>Fecha</th>
+            <td colspan="2">@Model.Fecha</td>
+            <th>Estado del equipo</th>
+            <td colspan="2">@Model.EquiposCelulares[0].Entregado / @Model.EquiposCelulares[0].Estado</td>
+        </tr>
+        <tr>
+            <th>Cargo</th>
+            <td colspan="5">@Model.Cargo</td>
+        </tr>
+        <tr>
+            <th>Responsable</th>
+            <td colspan="3">@Model.Nombre</td>
+            <th>Cod. planilla</th>
+            <td>00177</td>
+        </tr>
+        <tr>
+            <th>Equipo</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>IMEI</th>
+            <th colspan="2">Accesorios</th>
+        </tr>
+        <tr>
+            <td rowspan="3">@Model.EquiposCelulares[0].Descripcion</td>
+            <td rowspan="3">@Model.EquiposCelulares[0].Marca</td>
+            <td rowspan="3">@Model.EquiposCelulares[0].Modelo</td>
+            <td rowspan="3">@Model.EquiposCelulares[0].IMEI</td>
+            <th>Cargador</th>
+            <td>@Model.EquiposCelulares[0].Cargador</td>
+        </tr>
+        <tr>
+            <th>Cable datos</th>
+            <td>@Model.EquiposCelulares[0].CableDatos</td>
+        </tr>
+        <tr>
+            <th>Audífono</th>
+            <td>@Model.EquiposCelulares[0].Audifono</td>
+        </tr>
+        <tr>
+            <th>Observaciones</th>
+            <td colspan="3">
+                @Model.Observacion
+            </td>
+            <th>Línea</th>
+            <td>@Model.EquiposCelulares[0].Linea</td>
+        </tr>
+    </table>
+
+    <div>
+        <p>otro parrafo</p>
+
+    </div>
+    <div>
+        <h4 style="text-align: center;">DEVOLUCIÓN DE EQUIPO ASIGNADO</h4>
+        <p style="text-align: center;">
+            PERIODO 2021    SI(  &nbsp&nbsp )    NO( &nbsp&nbsp )
+        </p>
+    </div>
+    <div>
+        <table class="mitad">
+            <tr>
+                <td style="text-align: justify;">
+
+                    <p>
+                        Yo, <b>@Model.Nombre</b>, identificado con dni <b>3275673254</b>
+
+                        Declaro blalkdfjlkasdjfkljsad lkasdfl kjsdalkf sadlkf
+                    </p>
+
+                    <p><b>MARCA: </b></p>
+                    <p><b>MODELO: </b></p>
+                    <p><b>IMEI: </b></p>
+                    <p><b>OPERADOR: </b></p>
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 50%;">
+                    <p style="text-align: center;"><b>Electro Puno S.A.A.</b></p>
+                </td>
+                <td style="width: 50%;">
+                    <p style="text-align: center;"><b>TRABAJADOR: @Model.Nombre</b></p>
+                    <p style="text-align: center;"><b>DNI: 298736453</b></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

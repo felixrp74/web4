@@ -1,5 +1,4 @@
-﻿using Rotativa;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -152,7 +151,7 @@ namespace Web4.Controllers
                                                Estado = b.Estado,
                                                UsuarioPC = b.UsuarioPC,
                                                NombrePC = b.NombrePC,
-                                               Devuelto = (bool)b.Devuelto
+                                               Entregado = b.Entregado
                                            }
                               ).ToList();
                  
@@ -242,7 +241,7 @@ namespace Web4.Controllers
                         oBien.Estado = mE.Estado;
                         oBien.UsuarioPC = mE.UsuarioPC;
                         oBien.NombrePC = mE.NombrePC;
-                        oBien.Devuelto = mE.Devuelto;
+                        oBien.Entregado = mE.Entregado;
 
                         db.Bien.Add(oBien);
 
@@ -292,22 +291,7 @@ namespace Web4.Controllers
             else
                 return View();
         }
-
-        [HttpPost]
-        public ActionResult Ficha(int Clave_R)
-        {
-            return View();
-        }
-
-        public ActionResult Imprimir()
-        {
-            return new ActionAsPdf("Ficha")
-            {
-                FileName = Server.MapPath("~/Content/Relato.pdf"),
-                PageOrientation = Rotativa.Options.Orientation.Landscape,
-                PageSize = Rotativa.Options.Size.A4
-            };
-        }
+         
 
         public ActionResult Vista()
         {

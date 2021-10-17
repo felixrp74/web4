@@ -82,7 +82,8 @@
                     <label for="Destino" class="col-sm-2 col-form-label">Destino</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Destino" name="Destino" type="text" value="" placeholder="SERVICIO ELECTRICO SANDIA" />
+                               id="Destino" name="Destino" type="text" placeholder="SERVICIO ELECTRICO SANDIA" 
+                               value="SANDIA"/>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -98,14 +99,15 @@
                     <label for="ResponsableDelMovimiento" class="col-sm-5 col-form-label">ResponsableDelMovimiento</label>
                     <div class="col-sm-7">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text" value="" placeholder="marcaya" />
+                               id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text"
+                               value="marcaya" placeholder="marcaya" />
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="Observacion" class="col-sm-5 col-form-label">Observacion</label>
                     <div class="col-sm-7">
                         <textarea onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                                  id="Observacion" name="Observacion" rows="3"></textarea>
+                                  id="Observacion" name="Observacion" rows="3">value="gneio observado"</textarea>
                     </div>
                 </div>
             </fieldset>
@@ -118,31 +120,35 @@
 
 
                 <div class="mb-3 row">
-                    <label for="Descripcion" class="col-sm-2 col-form-label">Equipo</label>
+                    <label for="Descripcion" class="col-sm-2 col-form-label">Descripcion</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Descripcion" name="Descripcion" type="text" value="TELÉFONO MÓVIL" placeholder="CPU">
+                               id="Descripcion" name="Descripcion" type="text" value="TELÉFONO MÓVIL" 
+                               placeholder="CPU">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="Marca" class="col-sm-2 col-form-label">Marca</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Marca" name="Marca" type="text" value="XIAOMI" placeholder="LENOVO">
+                               id="Marca" name="Marca" type="text" placeholder="LENOVO"
+                               value="REDMI 9">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="Modelo" class="col-sm-2 col-form-label">Modelo</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Modelo" name="Modelo" type="text" value="" placeholder="E202">
+                               id="Modelo" name="Modelo" type="text"  placeholder="E202"
+                               value="iweyr73">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="IMEI" class="col-sm-2 col-form-label">IMEI</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="IMEI" name="IMEI" type="text" value="" placeholder="3267643829675423976">
+                               id="IMEI" name="IMEI" type="text" placeholder="3267643829675423976"
+                               value="3267643829675423976">
                     </div>
                 </div>
 
@@ -150,7 +156,8 @@
                     <label for="Linea" class="col-sm-2 col-form-label">Linea</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Linea" name="Linea" type="text" value="" placeholder="976234871">
+                               id="Linea" name="Linea" type="text" placeholder="976234871"
+                               value="972653536">
                     </div>
                 </div>
 
@@ -158,8 +165,8 @@
                     <label for="Cargador" class="col-sm-2 col-form-label">Cargador</label>
                     <div class="col-sm-10">
                         <select id="Cargador" name="Cargador" class="form-control">
-                            <option value="true">SI</option>
-                            <option value="false">NO</option>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
                         </select>
                     </div>
                 </div>
@@ -168,18 +175,28 @@
                     <label for="CableDatos" class="col-sm-2 col-form-label">CableDatos</label>
                     <div class="col-sm-10">
                         <select id="CableDatos" name="CableDatos" class="form-control">
-                            <option value="true">SI</option>
-                            <option value="false">NO</option>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="Audifono" class="col-sm-2 col-form-label">Devuelto</label>
+                    <label for="Audifono" class="col-sm-2 col-form-label">Audifono</label>
                     <div class="col-sm-10">
                         <select id="Audifono" name="Audifono" class="form-control">
-                            <option value="false">NO</option>
-                            <option value="true">SI</option>
+                            <option value="NO">NO</option>
+                            <option value="SI">SI</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
+                    <div class="col-sm-10">
+                        <select id="Estado" name="Estado" class="form-control">
+                            <option value="OPERATIVO">OPERATIVO</option>
+                            <option value="INOPERATIVO">INOPERATIVO</option>
                         </select>
                     </div>
                 </div>
@@ -188,14 +205,15 @@
                     <label for="Entregado" class="col-sm-2 col-form-label">Entregado</label>
                     <div class="col-sm-10">
                         <select id="Entregado" name="Entregado" class="form-control">
-                            <option value="true">SI</option>
-                            <option value="false">NO</option>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
                         </select>
                     </div>
                 </div>
 
                 <div>
-                    <input type="button" value="Anadir" onclick="AnadirMovimiento(); return false;" class="btn btn-info btn-block" />
+                    <input type="button" value="Anadir"
+                           onclick="AnadirMovimiento(); return false;" class="btn btn-info btn-block" />
                 </div>
 
             </fieldset>
@@ -216,19 +234,20 @@
                 Detalle
             </h4>
 
-            <div id="divMovimientos">
+            <div id="divMovimientosCelular">
                 <table class="table">
-                    <tbody id="tablaMovimiento">
+                    <tbody id="tablaMovimientoCelular">
 
                         <tr>
-                            <th>Equipo</th>
+                            <th>Descripcion</th>
                             <th>Marca</th>
                             <th>Modelo</th>
                             <th>IMEI</th>
                             <th>Linea</th>
                             <th>Cargador</th>
                             <th>CableDatos</th>
-                            <th>Devuelto</th>
+                            <th>Audifono</th>
+                            <th>Estado</th>
                             <th>Entregado</th>
                         </tr>
 
@@ -281,11 +300,13 @@
         let Descripcion = document.getElementById("Descripcion").value;
         let Marca = document.getElementById("Marca").value;
         let Modelo = document.getElementById("Modelo").value;
-        let Serie = document.getElementById("Serie").value;
+        let IMEI = document.getElementById("IMEI").value;
+        let Linea = document.getElementById("Linea").value;
+        let Cargador = document.getElementById("Cargador").value;
+        let CableDatos = document.getElementById("CableDatos").value;
+        let Audifono = document.getElementById("Audifono").value;
         let Estado = document.getElementById("Estado").value;
-        let UsuarioPC = document.getElementById("UsuarioPC").value;
-        let NombrePC = document.getElementById("NombrePC").value;
-        let Devuelto = document.getElementById("Devuelto").value;
+        let Entregado = document.getElementById("Entregado").value;
 
         if (Descripcion.length > 0 && Marca.length > 0) {
 
@@ -293,106 +314,124 @@
             // identificar la tabla
             // crear tr
             // crear td
-            // innterHTML de td
+            // innerHTML de td
             // agregar tr a tabla
 
-            let TablaMovimientos = document.getElementById("tablaMovimiento");
+            let TablaMovimientos = document.getElementById("tablaMovimientoCelular");
             let TR = document.createElement("tr");
 
             let TDDescripcion = document.createElement("td");
             let TDMarca = document.createElement("td");
             let TDModelo = document.createElement("td");
-            let TDSerie = document.createElement("td");
+            let TDIMEI = document.createElement("td");
+            let TDLinea = document.createElement("td");
+            let TDCargador = document.createElement("td");
+            let TDCableDatos = document.createElement("td");
+            let TDAudifono = document.createElement("td");
             let TDEstado = document.createElement("td");
-            let TDUsuarioPC = document.createElement("td");
-            let TDNombrePC = document.createElement("td");
-            let TDDevuelto = document.createElement("td");
+            let TDEntregado = document.createElement("td");
 
             TDDescripcion.innerHTML = Descripcion;
             TDMarca.innerHTML = Marca;
             TDModelo.innerHTML = Modelo;
-            TDSerie.innerHTML = Serie;
+            TDIMEI.innerHTML = IMEI;
+            TDLinea.innerHTML = Linea;
+            TDCargador.innerHTML = Cargador;
+            TDCableDatos.innerHTML = CableDatos;
+            TDAudifono.innerHTML = Audifono;
             TDEstado.innerHTML = Estado;
-            TDUsuarioPC.innerHTML = UsuarioPC;
-            TDNombrePC.innerHTML = NombrePC;
-            TDDevuelto.innerHTML = Devuelto;
+            TDEntregado.innerHTML = Entregado;
 
             TR.appendChild(TDDescripcion);
             TR.appendChild(TDMarca);
             TR.appendChild(TDModelo);
-            TR.appendChild(TDSerie);
+            TR.appendChild(TDIMEI);
+            TR.appendChild(TDLinea);
+            TR.appendChild(TDCargador);
+            TR.appendChild(TDCableDatos);
+            TR.appendChild(TDAudifono);
             TR.appendChild(TDEstado);
-            TR.appendChild(TDUsuarioPC);
-            TR.appendChild(TDNombrePC);
-            TR.appendChild(TDDevuelto);
+            TR.appendChild(TDEntregado);
 
             TablaMovimientos.appendChild(TR);
 
 
             //agregar hiddens
-            let DivMovimientos = document.getElementById("divMovimientos");
+            let DivMovimientos = document.getElementById("divMovimientosCelular");
             let HiddenIndex = document.createElement("input");
             let HiddenDescripcion = document.createElement("input");
             let HiddenMarca = document.createElement("input");
             let HiddenModelo = document.createElement("input");
-            let HiddenSerie = document.createElement("input");
+            let HiddenIMEI = document.createElement("input");
+            let HiddenLinea = document.createElement("input");
+            let HiddenCargador = document.createElement("input");
+            let HiddenCableDatos = document.createElement("input");
+            let HiddenAudifono = document.createElement("input");
             let HiddenEstado = document.createElement("input");
-            let HiddenUsuarioPC = document.createElement("input");
-            let HiddenNombrePC = document.createElement("input");
-            let HiddenDevuelto = document.createElement("input");
+            let HiddenEntregado = document.createElement("input");
 
             HiddenIndex.type = "hidden";
-            HiddenIndex.name = "Equipos.Index";
+            HiddenIndex.name = "EquiposCelulares.Index";
             HiddenIndex.value = num;
 
             HiddenDescripcion.type = "hidden";
-            HiddenDescripcion.name = "Equipos[" + num + "].Descripcion";
+            HiddenDescripcion.name = "EquiposCelulares[" + num + "].Descripcion";
             HiddenDescripcion.value = Descripcion;
 
             HiddenMarca.type = "hidden";
-            HiddenMarca.name = "Equipos[" + num + "].Marca";
+            HiddenMarca.name = "EquiposCelulares[" + num + "].Marca";
             HiddenMarca.value = Marca;
 
             HiddenModelo.type = "hidden";
-            HiddenModelo.name = "Equipos[" + num + "].Modelo";
+            HiddenModelo.name = "EquiposCelulares[" + num + "].Modelo";
             HiddenModelo.value = Modelo;
 
-            HiddenSerie.type = "hidden";
-            HiddenSerie.name = "Equipos[" + num + "].Serie";
-            HiddenSerie.value = Serie;
+            HiddenIMEI.type = "hidden";
+            HiddenIMEI.name = "EquiposCelulares[" + num + "].IMEI";
+            HiddenIMEI.value = IMEI;
+
+            HiddenLinea.type = "hidden";
+            HiddenLinea.name = "EquiposCelulares[" + num + "].Linea";
+            HiddenLinea.value = Linea;
+
+            HiddenCargador.type = "hidden";
+            HiddenCargador.name = "EquiposCelulares[" + num + "].Cargador";
+            HiddenCargador.value = Cargador;
+
+            HiddenCableDatos.type = "hidden";
+            HiddenCableDatos.name = "EquiposCelulares[" + num + "].CableDatos";
+            HiddenCableDatos.value = CableDatos;
+
+            HiddenAudifono.type = "hidden";
+            HiddenAudifono.name = "EquiposCelulares[" + num + "].Audifono";
+            HiddenAudifono.value = Audifono;
 
             HiddenEstado.type = "hidden";
-            HiddenEstado.name = "Equipos[" + num + "].Estado";
+            HiddenEstado.name = "EquiposCelulares[" + num + "].Estado";
             HiddenEstado.value = Estado;
 
-            HiddenUsuarioPC.type = "hidden";
-            HiddenUsuarioPC.name = "Equipos[" + num + "].UsuarioPC";
-            HiddenUsuarioPC.value = UsuarioPC;
-
-            HiddenNombrePC.type = "hidden";
-            HiddenNombrePC.name = "Equipos[" + num + "].NombrePc";
-            HiddenNombrePC.value = NombrePC;
-
-            HiddenDevuelto.type = "hidden";
-            HiddenDevuelto.name = "Equipos[" + num + "].Devuelto";
-            HiddenDevuelto.value = Devuelto;
+            HiddenEntregado.type = "hidden";
+            HiddenEntregado.name = "EquiposCelulares[" + num + "].Entregado";
+            HiddenEntregado.value = Entregado;
 
             DivMovimientos.appendChild(HiddenIndex);
             DivMovimientos.appendChild(HiddenDescripcion);
             DivMovimientos.appendChild(HiddenMarca);
             DivMovimientos.appendChild(HiddenModelo);
-            DivMovimientos.appendChild(HiddenSerie);
+            DivMovimientos.appendChild(HiddenIMEI);
+            DivMovimientos.appendChild(HiddenLinea);
+            DivMovimientos.appendChild(HiddenCargador);
+            DivMovimientos.appendChild(HiddenCableDatos);
+            DivMovimientos.appendChild(HiddenAudifono);
             DivMovimientos.appendChild(HiddenEstado);
-            DivMovimientos.appendChild(HiddenUsuarioPC);
-            DivMovimientos.appendChild(HiddenNombrePC);
-            DivMovimientos.appendChild(HiddenDevuelto);
+            DivMovimientos.appendChild(HiddenEntregado);
 
             document.getElementById("Descripcion").value = "";
             document.getElementById("Marca").value = "";
             //document.getElementById("Modelo").value = "";
             //document.getElementById("Serie").value = "";
-            //document.getElementById("Estado").value = "";
-            //document.getElementById("UsuarioPC").value = "";
+            //document.getElementById("Linea").value = "";
+            //document.getElementById("CableDatos").value = "";
             //document.getElementById("NombrePC").value = "";
             //document.getElementById("Devuelto").value = "";
 

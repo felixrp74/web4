@@ -1,21 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Prueba1ModelStoreContainer" CdmEntityContainer="Prueba1Entities">
-    <EntitySetMapping Name="Bien">
-      <EntityTypeMapping TypeName="Prueba1Model.Bien">
-        <MappingFragment StoreEntitySet="Bien">
-          <ScalarProperty Name="Devuelto" ColumnName="Devuelto" />
-          <ScalarProperty Name="NombrePC" ColumnName="NombrePC" />
-          <ScalarProperty Name="UsuarioPC" ColumnName="UsuarioPC" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Serie" ColumnName="Serie" />
-          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
-          <ScalarProperty Name="Marca" ColumnName="Marca" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Clave_B" ColumnName="Clave_B" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Detalle">
       <EntityTypeMapping TypeName="Prueba1Model.Detalle">
         <MappingFragment StoreEntitySet="Detalle">
@@ -29,6 +14,7 @@
       <EntityTypeMapping TypeName="Prueba1Model.Ficha">
         <MappingFragment StoreEntitySet="Ficha">
           <ScalarProperty Name="Responsable_Clave_R" ColumnName="Responsable_Clave_R" />
+          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
           <ScalarProperty Name="ResponsableDelMovimiento" ColumnName="ResponsableDelMovimiento" />
           <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
           <ScalarProperty Name="Destino" ColumnName="Destino" />
@@ -44,6 +30,26 @@
           <ScalarProperty Name="Cargo" ColumnName="Cargo" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Clave_R" ColumnName="Clave_R" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bien">
+      <EntityTypeMapping TypeName="Prueba1Model.Bien">
+        <MappingFragment StoreEntitySet="Bien">
+          <ScalarProperty Name="Entregado" ColumnName="Entregado" />
+          <ScalarProperty Name="Audifono" ColumnName="Audifono" />
+          <ScalarProperty Name="CableDatos" ColumnName="CableDatos" />
+          <ScalarProperty Name="Cargador" ColumnName="Cargador" />
+          <ScalarProperty Name="Linea" ColumnName="Linea" />
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+          <ScalarProperty Name="NombrePC" ColumnName="NombrePC" />
+          <ScalarProperty Name="UsuarioPC" ColumnName="UsuarioPC" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Clave_B" ColumnName="Clave_B" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

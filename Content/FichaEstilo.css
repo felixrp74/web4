@@ -1,18 +1,28 @@
-﻿*{
-    margin:0;
-    padding:0;
-}
-
-body {
-    
+﻿* {
+    font-family: 'Open Sans', sans-serif;
 }
 
 table {
-    border: 1px solid black
-}
- 
-
-td, th {
-    border: thin solid black
+    border-collapse: collapse;
+    border: 1px solid black;
 }
 
+th {
+    border: 1px solid black;
+    width: 2em;
+}
+
+td {
+    width: 2em;
+    border: 1px solid black;
+    text-align: center;
+}
+
+th {
+    border: 1px solid black;
+    width: 2em;
+}
+
+.mitad {
+    width: 100%;
+}

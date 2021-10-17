@@ -18,7 +18,7 @@ namespace Web4.Models
         public int Ficha_Clave_F { get; set; }
         public int Bien_Clave_B { get; set; }
     
-        public virtual Bien Bien { get; set; }
         public virtual Ficha Ficha { get; set; }
+        public virtual Bien Bien { get; set; }
     }
 }

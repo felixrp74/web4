@@ -26,6 +26,7 @@ namespace Web4.Models
         public string Destino { get; set; }
         public string TipoMovimiento { get; set; }
         public string ResponsableDelMovimiento { get; set; }
+        public string Observacion { get; set; }
         public int Responsable_Clave_R { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

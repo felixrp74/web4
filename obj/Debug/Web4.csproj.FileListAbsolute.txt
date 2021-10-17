@@ -81,7 +81,6 @@ C:\Users\felix\source\repos\Web4\bin\es\System.Web.WebPages.Deployment.resources
 C:\Users\felix\source\repos\Web4\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\felix\source\repos\Web4\obj\Debug\Web4.csproj.AssemblyReference.cache
 C:\Users\felix\source\repos\Web4\obj\Debug\Web4.csproj.CoreCompileInputs.cache
-C:\Users\felix\source\repos\Web4\obj\Debug\Web4.csproj.CopyComplete
 C:\Users\felix\source\repos\Web4\obj\Debug\Web4.dll
 C:\Users\felix\source\repos\Web4\obj\Debug\Web4.pdb
 C:\Users\felix\source\repos\Web4\bin\EntityFramework.dll

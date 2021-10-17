@@ -28,7 +28,12 @@ namespace Web4.Models
         public string Estado { get; set; }
         public string UsuarioPC { get; set; }
         public string NombrePC { get; set; }
-        public Nullable<bool> Devuelto { get; set; }
+        public string IMEI { get; set; }
+        public string Linea { get; set; }
+        public string Cargador { get; set; }
+        public string CableDatos { get; set; }
+        public string Audifono { get; set; }
+        public string Entregado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle> Detalle { get; set; }
