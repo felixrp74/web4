@@ -12,9 +12,10 @@ namespace Web4.Controllers
 {
     public class MovimientoCelularController : Controller
     {
-        // GET: MovimientoCelular
+        // GET: MovimientoCelular         
         public ActionResult AnadirCelular()
         {
+
             List<ViewModelResponsable> lista = new List<ViewModelResponsable>();
 
             using ( Prueba1Entities db = new Prueba1Entities())
@@ -24,54 +25,46 @@ namespace Web4.Controllers
                          {
                              Clave_R = d.Clave_R,
                              Nombre = d.Nombre,
-                             Cargo = d.Cargo,
+                             CargoView = d.Cargo,
                          }).ToList();
 
             }
 
             return View(lista); 
         }
+        
 
         [HttpPost]
         public ActionResult AnadirCelular(MovimientoCelularViewModel model)
         {
             try
             {
+                if (model.EquiposCelulares == null)
+                    return Redirect("~/MovimientoCelular/AnadirCelular");
                 /*List<ViewModelResponsable> lista = new List<ViewModelResponsable>();*/
 
-                Responsable oResponsable= new Responsable();
+                Responsable oResponsable = new Responsable(); 
 
                 using (Prueba1Entities db = new Prueba1Entities())
                 {
-                    oResponsable = db.Responsable.Find(model.Clave_R);
-
-                    /*lista = (from d in db.Responsable
-                             where d.Clave_R == model.Clave_R
-                             select new ViewModelResponsable
-                             {
-                                 Clave_R = d.Clave_R,
-                                 Nombre = d.Nombre,
-                                 Cargo = d.Cargo
-
-                             }).ToList();*/
-
-
-                    //Responsable oResponsable = new Responsable();
-                    //oResponsable.Cargo = lista.Cargo;
-
-                    //db.Responsable.Add(oResponsable);
-                    //db.SaveChanges();
-
-                    /*model.Nombre = lista[0].Nombre;*/
+                    oResponsable = db.Responsable.Find(model.Clave_R);                     
+                    /* 
+                    model.Cargo = oResponsable.Cargo;
+                    */
                     model.Nombre = oResponsable.Nombre;
-
+                    model.DNI = oResponsable.DNI;
+                    model.CodPlanilla = oResponsable.CodPlanilla;
+                    
                     Ficha oFicha = new Ficha();
                     oFicha.Fecha = DateTime.Now;
                     oFicha.Origen = model.Origen;
                     oFicha.Destino = model.Destino;
                     oFicha.TipoMovimiento = model.TipoMovimiento;
                     oFicha.ResponsableDelMovimiento = model.ResponsableDelMovimiento;
+                    oFicha.Observacion = model.Observacion;
                     oFicha.Responsable_Clave_R = model.Clave_R;
+                    oFicha.TipoFicha = model.TipoFicha;
+                    oFicha.CargoDeLaEpoca = model.Cargo;
 
                     db.Ficha.Add(oFicha);
                     db.SaveChanges();
@@ -79,7 +72,7 @@ namespace Web4.Controllers
                     model.Clave_F = oFicha.Clave_F;
 
                     int i = 0;
-                    
+
                     foreach (var mE in model.EquiposCelulares)
                     {
                         Bien oBien = new Bien();
@@ -98,7 +91,7 @@ namespace Web4.Controllers
 
                         db.SaveChanges();
 
-                        //aqui 
+                        //esta linea debe estar despues de save changes para poder enviar id del bien. 
                         model.EquiposCelulares[i].Clave_B = oBien.Clave_B;
                         i = i + 1;
 

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Prueba1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bien">
+    <Key>
+      <PropertyRef Name="Clave_B" />
+    </Key>
+    <Property Name="Clave_B" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Marca" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Modelo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Serie" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioPC" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="NombrePC" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="IMEI" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Linea" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Cargador" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="CableDatos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Audifono" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Entregado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Detalle" Relationship="Self.fk_Detalle_Bien1" FromRole="Bien" ToRole="Detalle" />
+  </EntityType>
+  <EntityType Name="Detalle">
+    <Key>
+      <PropertyRef Name="Clave_D" />
+    </Key>
+    <Property Name="Clave_D" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ficha_Clave_F" Type="Int32" Nullable="false" />
+    <Property Name="Bien_Clave_B" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bien" Relationship="Self.fk_Detalle_Bien1" FromRole="Detalle" ToRole="Bien" />
+    <NavigationProperty Name="Ficha" Relationship="Self.fk_Detalle_Ficha1" FromRole="Detalle" ToRole="Ficha" />
+  </EntityType>
+  <EntityType Name="Ficha">
+    <Key>
+      <PropertyRef Name="Clave_F" />
+    </Key>
+    <Property Name="Clave_F" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Origen" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Destino" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="TipoMovimiento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="ResponsableDelMovimiento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Observacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Responsable_Clave_R" Type="Int32" Nullable="false" />
+    <Property Name="TipoFicha" Type="Int32" />
+    <Property Name="CargoDeLaEpoca" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Detalle" Relationship="Self.fk_Detalle_Ficha1" FromRole="Ficha" ToRole="Detalle" />
+    <NavigationProperty Name="Responsable" Relationship="Self.fk_Ficha_Responsable1" FromRole="Ficha" ToRole="Responsable" />
+  </EntityType>
+  <EntityType Name="Responsable">
+    <Key>
+      <PropertyRef Name="Clave_R" />
+    </Key>
+    <Property Name="Clave_R" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Cargo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DNI" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CodPlanilla" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ficha" Relationship="Self.fk_Ficha_Responsable1" FromRole="Responsable" ToRole="Ficha" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="fk_Detalle_Bien1">
+    <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bien">
+        <PropertyRef Name="Clave_B" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="Bien_Clave_B" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Detalle_Ficha1">
+    <End Role="Ficha" Type="Self.Ficha" Multiplicity="1" />
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ficha">
+        <PropertyRef Name="Clave_F" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="Ficha_Clave_F" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Ficha_Responsable1">
+    <End Role="Responsable" Type="Self.Responsable" Multiplicity="1" />
+    <End Role="Ficha" Type="Self.Ficha" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Responsable">
+        <PropertyRef Name="Clave_R" />
+      </Principal>
+      <Dependent Role="Ficha">
+        <PropertyRef Name="Responsable_Clave_R" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Prueba1Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bien" EntityType="Self.Bien" />
+    <EntitySet Name="Detalle" EntityType="Self.Detalle" />
+    <EntitySet Name="Ficha" EntityType="Self.Ficha" />
+    <EntitySet Name="Responsable" EntityType="Self.Responsable" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
+      <End Role="Bien" EntitySet="Bien" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Detalle_Ficha1" Association="Self.fk_Detalle_Ficha1">
+      <End Role="Ficha" EntitySet="Ficha" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Ficha_Responsable1" Association="Self.fk_Ficha_Responsable1">
+      <End Role="Responsable" EntitySet="Responsable" />
+      <End Role="Ficha" EntitySet="Ficha" />
+    </AssociationSet>
+    <FunctionImport Name="buscarSerie" ReturnType="Collection(Prueba1Model.buscarSerie_Result)">
+      <Parameter Name="consulta" Mode="In" Type="String" />
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="buscarSerie_Result">
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Marca" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Modelo" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Serie" Nullable="true" MaxLength="255" />
+  </ComplexType>
+</Schema>

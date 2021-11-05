@@ -11,6 +11,9 @@ namespace Web4.Models.ViewModels
         public int Clave_R { get; set; }
         public string Nombre { set; get; }
         public string Cargo { set; get; }
+        public string DNI { get; set; }
+        public string CodPlanilla { get; set; }
+        public string CargoDeLaEpoca { get; set; }
 
         public int Clave_F { get; set; }
         public DateTime Fecha { set; get; }
@@ -19,6 +22,7 @@ namespace Web4.Models.ViewModels
         public string TipoMovimiento { set; get; }
         public string ResponsableDelMovimiento { set; get; }
         public string Observacion { get; set; }
+        public int TipoFicha { get; set; }
 
         public List<Celular> EquiposCelulares { set; get; }
     }

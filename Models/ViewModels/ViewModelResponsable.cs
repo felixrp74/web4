@@ -9,6 +9,6 @@ namespace Web4.Models.ViewModels
     {
         public int Clave_R { get; set; }
         public string Nombre { get; set; }
-        public string Cargo { get; set; }
+        public string CargoView { get; set; }
     }
 }

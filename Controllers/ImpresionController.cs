@@ -23,11 +23,13 @@ namespace Web4.Controllers
         {
             MovimientoCelularViewModel modelMovimiento = new MovimientoCelularViewModel();
             List<TableResponsableViewModel> modelResponsable = new List<TableResponsableViewModel>();
+            Responsable oResponsable = new Responsable();
             List<TableFichaViewModel> modelFicha = new List<TableFichaViewModel>();
 
             using (Prueba1Entities db = new Prueba1Entities())
             {
-                modelResponsable = (from d in db.Responsable
+                oResponsable = db.Responsable.Find(id_R);
+                /*modelResponsable = (from d in db.Responsable
                                     where d.Clave_R == id_R
                                     select new TableResponsableViewModel
                                     {
@@ -39,6 +41,13 @@ namespace Web4.Controllers
                 modelMovimiento.Clave_R = modelResponsable[0].Clave_R;
                 modelMovimiento.Nombre = modelResponsable[0].Nombre;
                 modelMovimiento.Cargo = modelResponsable[0].Cargo;
+                modelMovimiento.DNI = modelReson
+                */
+                modelMovimiento.Clave_R = oResponsable.Clave_R;
+                modelMovimiento.Nombre = oResponsable.Nombre;
+                modelMovimiento.DNI = oResponsable.DNI;
+                modelMovimiento.CodPlanilla = oResponsable.CodPlanilla;
+
 
                 modelFicha = (from f in db.Ficha
                               where f.Clave_F == id_F // las fichas son unicas y pertenecen a alguien
@@ -49,15 +58,22 @@ namespace Web4.Controllers
                                   Origen = f.Origen,
                                   Destino = f.Destino,
                                   TipoMovimiento = f.TipoMovimiento,
-                                  ResponsableDelMovimiento = f.ResponsableDelMovimiento
+                                  ResponsableDelMovimiento = f.ResponsableDelMovimiento,
+                                  Observacion = f.Observacion,
+                                  CargoDeLaEpoca = f.CargoDeLaEpoca
 
                               }).ToList();
+
                 modelMovimiento.Clave_F = id_F;
                 modelMovimiento.Fecha = modelFicha[0].Fecha;
                 modelMovimiento.Origen = modelFicha[0].Origen;
                 modelMovimiento.Destino = modelFicha[0].Destino;
                 modelMovimiento.TipoMovimiento = modelFicha[0].TipoMovimiento;
                 modelMovimiento.ResponsableDelMovimiento = modelFicha[0].ResponsableDelMovimiento;
+                modelMovimiento.Observacion = modelFicha[0].Observacion;
+
+                /*caso cargos antiguos*/
+                modelMovimiento.Cargo = modelFicha[0].CargoDeLaEpoca; 
 
                 modelMovimiento.EquiposCelulares = (from b in db.Bien
                                            from d in db.Detalle
@@ -90,6 +106,7 @@ namespace Web4.Controllers
                     */
                     PageSize = Rotativa.Options.Size.A4,
                     //FileName = "CustomersLista.pdf", // SI QUEREMOS QUE EL ARCHIVO SE DESCARGUE DIRECTAMENTE
+
                     PageMargins = new Rotativa.Options.Margins(40, 10, 10, 10)
                 };
             }
@@ -163,3 +180,4 @@ namespace Web4.Controllers
 
     }
 }
+ 

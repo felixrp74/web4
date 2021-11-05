@@ -28,6 +28,8 @@ namespace Web4.Models
         public string ResponsableDelMovimiento { get; set; }
         public string Observacion { get; set; }
         public int Responsable_Clave_R { get; set; }
+        public Nullable<int> TipoFicha { get; set; }
+        public string CargoDeLaEpoca { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle> Detalle { get; set; }

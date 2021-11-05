@@ -174,10 +174,11 @@ C:\Users\pracgsi01\source\repos\web4\bin\es\System.Web.WebPages.Deployment.resou
 C:\Users\pracgsi01\source\repos\web4\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.csproj.AssemblyReference.cache
 C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.csproj.CoreCompileInputs.cache
-C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.csproj.CopyComplete
 C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.dll
 C:\Users\pracgsi01\source\repos\web4\obj\Debug\Web4.pdb
 C:\Users\felix\source\repos\web4\bin\Rotativa.dll
 C:\Users\pracgsi01\source\repos\web4\bin\Rotativa.dll
 C:\Users\felix\source\repos\Web4\bin\Rotativa\wkhtmltoimage.exe
 C:\Users\felix\source\repos\Web4\bin\Rotativa\wkhtmltopdf.exe
+C:\Users\pracgsi01\Source\Repos\web4\bin\Rotativa\wkhtmltoimage.exe
+C:\Users\pracgsi01\Source\Repos\web4\bin\Rotativa\wkhtmltopdf.exe

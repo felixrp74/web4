@@ -16,6 +16,20 @@ namespace Web4.Controllers
             return View(); 
         }
 
+        public JsonResult BuscarPorNombre(string serie, int cantidad)
+        {
+            try
+            {
+                Prueba1Entities db = new Prueba1Entities();
+                var lista = db.buscarSerie(serie, cantidad);
+                return Json(lista, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

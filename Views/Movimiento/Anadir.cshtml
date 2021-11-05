@@ -1,6 +1,6 @@
-﻿
+﻿@model List<Web4.Models.ViewModels.ViewModelResponsable>
 @{
-    ViewBag.Title = "AnadirCelular";
+    ViewBag.Title = "Movimiento de Bien";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,7 +17,7 @@
 
 </div>
 
-@using (Html.BeginForm("AnadirCelular", "MovimientoCelular", FormMethod.Post))
+@using (Html.BeginForm("Anadir", "Movimiento", FormMethod.Post))
 {
     <div class="row">
 
@@ -26,7 +26,6 @@
                 <legend>Identificacion</legend>
                 <div class="mb-3 row">
                     <label for="Nombre" class="col-sm-2 col-form-label">Recibe</label>
-
 
                     <div class="col-sm-10">
                         <select class="form-control" name="Clave_R" id="Clave_R">
@@ -37,28 +36,21 @@
                         </select>
                     </div>
 
-
-
                 </div>
 
 
                 <div class="mb-3 row">
 
                     <label for="Cargo" class="col-sm-2 col-form-label">Cargo</label>
-                    <!--
-
                     <div class="col-sm-10">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Cargo" name="Cargo" type="text" value="" />
-                    </div>
-                    -->
+                        <input list="carguitos" onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Cargo" name="Cargo" type="text" />
 
-                    <div class="col-sm-10">
-                        <select class="form-control" name="Cargo" id="Cargo">
+                        <datalist name="carguitos" id="carguitos">
                             @foreach (var r in Model)
                             {
-                                <option value="@r.Cargo">@r.Cargo</option>
+                                <option value="@r.CargoView">@r.CargoView</option>
                             }
-                        </select>
+                        </datalist>
                     </div>
 
                 </div>
@@ -71,6 +63,7 @@
                                id="Fecha" name="Fecha" type="datetime" value="@DateTime.Now" />
                     </div>
                 </div>
+
                 <div class="mb-3 row">
                     <label for="Origen" class="col-sm-2 col-form-label">Origen</label>
                     <div class="col-sm-10">
@@ -78,13 +71,15 @@
                                id="Origen" name="Origen" type="text" value="MARIANO H. CORNEJO 160 - PUNO" />
                     </div>
                 </div>
+
                 <div class="mb-3 row">
                     <label for="Destino" class="col-sm-2 col-form-label">Destino</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Destino" name="Destino" type="text" value="" placeholder="SERVICIO ELECTRICO SANDIA" />
+                               id="Destino" name="Destino" type="text" value="CHIJISIA" placeholder="SERVICIO ELECTRICO SANDIA" />
                     </div>
                 </div>
+
                 <div class="mb-3 row">
                     <label for="TipoMovimiento" class="col-sm-2 col-form-label">Movimiento</label>
                     <div class="col-sm-10">
@@ -94,20 +89,23 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="mb-3 row">
                     <label for="ResponsableDelMovimiento" class="col-sm-5 col-form-label">ResponsableDelMovimiento</label>
                     <div class="col-sm-7">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text" value="" placeholder="marcaya" />
+                               id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text" value="marcaya" placeholder="marcaya" />
                     </div>
                 </div>
+
                 <div class="mb-3 row">
                     <label for="Observacion" class="col-sm-5 col-form-label">Observacion</label>
                     <div class="col-sm-7">
                         <textarea onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                                  id="Observacion" name="Observacion" rows="3"></textarea>
+                                  id="Observacion" name="Observacion" rows="3">Sin observaciones.</textarea>
                     </div>
                 </div>
+
             </fieldset>
         </div>
 
@@ -116,71 +114,72 @@
             <fieldset>
                 <legend>Bien</legend>
 
+                <div id="root">
 
                 <div class="mb-3 row">
+                    <label for="Serie" class="col-sm-2 col-form-label">Serie</label>
+                    <div class="col-sm-10">
+                        <input onkeyup="" class="form-control"
+                               v-model="txtBusqueda"
+                               v-on:keyup="getBusqueda()"
+                               id="Serie" name="Serie" type="text" value="">
+                    </div>
+                </div>
+
+                <div v-if="listaResultados.length" class="mb-3 row">
                     <label for="Descripcion" class="col-sm-2 col-form-label">Equipo</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Descripcion" name="Descripcion" type="text" value="TELÉFONO MÓVIL" placeholder="CPU">
+                               v-model="Descripcion"
+                               id="Descripcion" name="Descripcion" type="text"
+                               />
                     </div>
                 </div>
+
+
                 <div class="mb-3 row">
                     <label for="Marca" class="col-sm-2 col-form-label">Marca</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Marca" name="Marca" type="text" value="XIAOMI" placeholder="LENOVO">
+                               v-model="Marca"
+                               id="Marca" name="Marca" type="text" value="HP" placeholder="LENOVO">
                     </div>
                 </div>
+
                 <div class="mb-3 row">
                     <label for="Modelo" class="col-sm-2 col-form-label">Modelo</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Modelo" name="Modelo" type="text" value="" placeholder="E202">
+                               v-model="Modelo"
+                               id="Modelo" name="Modelo" type="text" value="JHSDF84978" placeholder="E202">
                     </div>
                 </div>
+
+                </div>
+
                 <div class="mb-3 row">
-                    <label for="IMEI" class="col-sm-2 col-form-label">IMEI</label>
+                    <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
+                    <div class="col-sm-10">
+                        <select id="Estado" name="Estado" class="form-control">
+                            <option value="OPERATIVO">OPERATIVO</option>
+                            <option value="INOPERATIVO">INOPERATIVO</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="UsuarioPC" class="col-sm-2 col-form-label">UsuarioPC</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="IMEI" name="IMEI" type="text" value="" placeholder="3267643829675423976">
+                               id="UsuarioPC" name="UsuarioPC" type="text" value="eromero">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label for="Linea" class="col-sm-2 col-form-label">Linea</label>
+                    <label for="NombrePC" class="col-sm-2 col-form-label">NombrePC</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Linea" name="Linea" type="text" value="" placeholder="976234871">
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="Cargador" class="col-sm-2 col-form-label">Cargador</label>
-                    <div class="col-sm-10">
-                        <select id="Cargador" name="Cargador" class="form-control">
-                            <option value="true">SI</option>
-                            <option value="false">NO</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="CableDatos" class="col-sm-2 col-form-label">CableDatos</label>
-                    <div class="col-sm-10">
-                        <select id="CableDatos" name="CableDatos" class="form-control">
-                            <option value="true">SI</option>
-                            <option value="false">NO</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="Audifono" class="col-sm-2 col-form-label">Devuelto</label>
-                    <div class="col-sm-10">
-                        <select id="Audifono" name="Audifono" class="form-control">
-                            <option value="false">NO</option>
-                            <option value="true">SI</option>
-                        </select>
+                               id="NombrePC" name="NombrePC" type="text" value="PC201766">
                     </div>
                 </div>
 
@@ -188,8 +187,8 @@
                     <label for="Entregado" class="col-sm-2 col-form-label">Entregado</label>
                     <div class="col-sm-10">
                         <select id="Entregado" name="Entregado" class="form-control">
-                            <option value="true">SI</option>
-                            <option value="false">NO</option>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
                         </select>
                     </div>
                 </div>
@@ -221,14 +220,13 @@
                     <tbody id="tablaMovimiento">
 
                         <tr>
-                            <th>Equipo</th>
+                            <th>Descripcion</th>
                             <th>Marca</th>
                             <th>Modelo</th>
-                            <th>IMEI</th>
-                            <th>Linea</th>
-                            <th>Cargador</th>
-                            <th>CableDatos</th>
-                            <th>Devuelto</th>
+                            <th>Serie</th>
+                            <th>Estado</th>
+                            <th>UsuarioPC</th>
+                            <th>NombrePC</th>
                             <th>Entregado</th>
                         </tr>
 
@@ -246,11 +244,83 @@
 }
 
 @section scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
+
+        var delayTimer;
+        var app = new Vue({
+            el: "#root",
+            data: {
+                txtBusqueda: "",
+                listaResultados: [],
+                Descripcion: "",
+                Marca: "",
+                Modelo:"",
+
+            },
+            methods: {
+                getBusqueda() {
+
+                    clearTimeout(delayTimer);
+
+                    delayTimer = setTimeout(function () {
+                        if (app.txtBusqueda !== "") {
+
+                            let cadena = app.txtBusqueda.trim();
+                            let cantidad = 10;
+
+                            axios.get("https://localhost:44318/Movimiento/BuscarPorNombre?serie=" + cadena + "&cantidad=" + cantidad)
+                                .then(function (response) {
+
+                                    app.listaResultados = response.data;
+                                    app.Descripcion = app.listaResultados[0].Descripcion;
+                                    app.Marca = app.listaResultados[0].Marca;
+                                    app.Modelo = app.listaResultados[0].Modelo;
+
+                                    console.log("tamanao> " + response);
+                                    /*
+                                    if (app.listaResultados.length == 0) {
+
+                                        app.Descripcion = "";
+                                        app.Marca = "";
+                                        app.Modelo = "";
+                                    }
+                                    */
+                                    
+
+                                }).catch(function (error) {
+                                    app.Descripcion = "";
+                                    app.Marca = "";
+                                    app.Modelo = "";
+                                    console.log(error);
+                                })
+                        }
+                    }, 500);
+
+                },
+                mounted() {
+                    window.addEventListener('keyup', function (event) {
+                        if (event.keyCode === 13) {
+                            app.callEvent();
+                        }
+                    });
+                }
+
+            }
+
+        });
+
+
+
+
+
 
         $(function () {
             $("#Clave_R").chosen();
-            $("#Cargo").chosen();
+            //$("#Cargo").chosen();
         });
     </script>
 
@@ -276,7 +346,7 @@
     }
 
     function AnadirMovimiento() {
-        console.log("hola");
+        //console.log("hola");
 
         let Descripcion = document.getElementById("Descripcion").value;
         let Marca = document.getElementById("Marca").value;
@@ -285,7 +355,16 @@
         let Estado = document.getElementById("Estado").value;
         let UsuarioPC = document.getElementById("UsuarioPC").value;
         let NombrePC = document.getElementById("NombrePC").value;
-        let Devuelto = document.getElementById("Devuelto").value;
+        let Entregado = document.getElementById("Entregado").value;
+
+        console.log(Descripcion);
+        console.log(Marca);
+        console.log(Modelo);
+        console.log(Serie);
+        console.log(Estado);
+        console.log(UsuarioPC);
+        console.log(NombrePC);
+        console.log(Entregado);
 
         if (Descripcion.length > 0 && Marca.length > 0) {
 
@@ -306,7 +385,7 @@
             let TDEstado = document.createElement("td");
             let TDUsuarioPC = document.createElement("td");
             let TDNombrePC = document.createElement("td");
-            let TDDevuelto = document.createElement("td");
+            let TDEntregado = document.createElement("td");
 
             TDDescripcion.innerHTML = Descripcion;
             TDMarca.innerHTML = Marca;
@@ -315,7 +394,7 @@
             TDEstado.innerHTML = Estado;
             TDUsuarioPC.innerHTML = UsuarioPC;
             TDNombrePC.innerHTML = NombrePC;
-            TDDevuelto.innerHTML = Devuelto;
+            TDEntregado.innerHTML = Entregado;
 
             TR.appendChild(TDDescripcion);
             TR.appendChild(TDMarca);
@@ -324,7 +403,7 @@
             TR.appendChild(TDEstado);
             TR.appendChild(TDUsuarioPC);
             TR.appendChild(TDNombrePC);
-            TR.appendChild(TDDevuelto);
+            TR.appendChild(TDEntregado);
 
             TablaMovimientos.appendChild(TR);
 
@@ -339,7 +418,7 @@
             let HiddenEstado = document.createElement("input");
             let HiddenUsuarioPC = document.createElement("input");
             let HiddenNombrePC = document.createElement("input");
-            let HiddenDevuelto = document.createElement("input");
+            let HiddenEntregado = document.createElement("input");
 
             HiddenIndex.type = "hidden";
             HiddenIndex.name = "Equipos.Index";
@@ -373,9 +452,9 @@
             HiddenNombrePC.name = "Equipos[" + num + "].NombrePc";
             HiddenNombrePC.value = NombrePC;
 
-            HiddenDevuelto.type = "hidden";
-            HiddenDevuelto.name = "Equipos[" + num + "].Devuelto";
-            HiddenDevuelto.value = Devuelto;
+            HiddenEntregado.type = "hidden";
+            HiddenEntregado.name = "Equipos[" + num + "].Entregado";
+            HiddenEntregado.value = Entregado;
 
             DivMovimientos.appendChild(HiddenIndex);
             DivMovimientos.appendChild(HiddenDescripcion);
@@ -385,7 +464,7 @@
             DivMovimientos.appendChild(HiddenEstado);
             DivMovimientos.appendChild(HiddenUsuarioPC);
             DivMovimientos.appendChild(HiddenNombrePC);
-            DivMovimientos.appendChild(HiddenDevuelto);
+            DivMovimientos.appendChild(HiddenEntregado);
 
             document.getElementById("Descripcion").value = "";
             document.getElementById("Marca").value = "";
@@ -394,7 +473,7 @@
             //document.getElementById("Estado").value = "";
             //document.getElementById("UsuarioPC").value = "";
             //document.getElementById("NombrePC").value = "";
-            //document.getElementById("Devuelto").value = "";
+            //document.getElementById("Entregado").value = "";
 
             num++;
         }

@@ -160,7 +160,19 @@ namespace Web4.Controllers
         }
 
 
-        
+        public JsonResult BuscarPorNombre(string serie, int cantidad)
+        {
+            try
+            {
+                Prueba1Entities db = new Prueba1Entities();
+                var lista = db.buscarSerie(serie, cantidad);
+                return Json(lista, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         // GET: Movimiento
         public ActionResult Anadir()
@@ -174,7 +186,7 @@ namespace Web4.Controllers
                                      {
                                          Clave_R = d.Clave_R,
                                          Nombre = d.Nombre,
-                                         Cargo = d.Cargo,
+                                         CargoView = d.Cargo,
                                      }).ToList();
                  
             }
@@ -203,16 +215,10 @@ namespace Web4.Controllers
                                    {
                                        Clave_R = d.Clave_R,
                                        Nombre = d.Nombre,
-                                       Cargo = d.Cargo
+                                       CargoView = d.Cargo
 
                                    }).ToList();
 
-                
-                    //Responsable oResponsable = new Responsable();
-                    //oResponsable.Cargo = lista.Cargo;
-
-                    //db.Responsable.Add(oResponsable);
-                    //db.SaveChanges();
 
                     model.Nombre = lista[0].Nombre;
 
@@ -222,6 +228,7 @@ namespace Web4.Controllers
                     oFicha.Destino = model.Destino;
                     oFicha.TipoMovimiento = model.TipoMovimiento;
                     oFicha.ResponsableDelMovimiento = model.ResponsableDelMovimiento;
+                    oFicha.CargoDeLaEpoca = model.Cargo;
                     oFicha.Responsable_Clave_R = model.Clave_R;
 
                     db.Ficha.Add(oFicha);

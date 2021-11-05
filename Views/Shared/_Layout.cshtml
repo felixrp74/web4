@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body onkeypress="keyEvent(event)">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,13 +20,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Celulares Electro Puno", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Movimiento", "Anadir", "Movimiento")</li>
+                    <li>@Html.ActionLink("Movimiento Bien", "Anadir", "Movimiento")</li>
+                    <li>@Html.ActionLink("Movimiento Celular", "AnadirCelular", "MovimientoCelular")</li>
                     <li>@Html.ActionLink("Buscar", "Vista", "Movimiento")</li>
+
                 </ul>
             </div>
         </div>
@@ -34,7 +36,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Electro Puno S.A.A.</p>
         </footer>
     </div>
 

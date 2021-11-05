@@ -23,6 +23,8 @@ namespace Web4.Models
         public int Clave_R { get; set; }
         public string Nombre { get; set; }
         public string Cargo { get; set; }
+        public string DNI { get; set; }
+        public string CodPlanilla { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ficha> Ficha { get; set; }

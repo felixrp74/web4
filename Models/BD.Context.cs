@@ -12,6 +12,8 @@ namespace Web4.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Prueba1Entities : DbContext
     {
@@ -25,9 +27,23 @@ namespace Web4.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Bien> Bien { get; set; }
         public virtual DbSet<Detalle> Detalle { get; set; }
         public virtual DbSet<Ficha> Ficha { get; set; }
         public virtual DbSet<Responsable> Responsable { get; set; }
-        public virtual DbSet<Bien> Bien { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+    
+        public virtual ObjectResult<buscarSerie_Result> buscarSerie(string consulta, Nullable<int> cantidad)
+        {
+            var consultaParameter = consulta != null ?
+                new ObjectParameter("consulta", consulta) :
+                new ObjectParameter("consulta", typeof(string));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("cantidad", cantidad) :
+                new ObjectParameter("cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<buscarSerie_Result>("buscarSerie", consultaParameter, cantidadParameter);
+        }
     }
 }

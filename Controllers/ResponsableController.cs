@@ -190,16 +190,7 @@ namespace Web4.Controllers
             //conexion base datos
             using (Prueba1Entities db = new Prueba1Entities())
             {
-                /* 
-                 modelResponsable = (from d in db.Responsable
-                                    where d.Clave_R == id
-                                    select new TableResponsableViewModel
-                                    {
-                                        Clave_R = d.Clave_R,
-                                        Nombre = d.Nombre,
-                                        Cargo = d.Cargo
-                                    }).ToList();
-                */
+
                 var mResponsable = db.Responsable.Find(id);
 
                 //id = id - 1;
@@ -212,11 +203,12 @@ namespace Web4.Controllers
                                                 select new Fichas
                                                 {
                                                     Clave_F = f.Clave_F,
-                                                    Fecha = (DateTime)f.Fecha,
+                                                    Fecha = (DateTime) f.Fecha,
                                                     Origen = f.Origen,
                                                     Destino = f.Destino,
                                                     TipoMovimiento = f.TipoMovimiento,
-                                                    ResponsableDelMovimiento = f.ResponsableDelMovimiento,
+                                                    ResponsableDelMovimiento = f.ResponsableDelMovimiento
+                                                    //TipoFicha = (int) f.TipoFicha
 
                                                 }).ToList();
 

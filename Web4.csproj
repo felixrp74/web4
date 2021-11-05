@@ -157,6 +157,9 @@
     <Compile Include="Models\Bien.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\buscarSerie_Result.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Detalle.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
@@ -164,6 +167,9 @@
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Responsable.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\MovimientoCelularViewModel.cs" />
@@ -207,6 +213,9 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Content\bootstrap-chosen.scss" />
+    <Content Include="Content\bootstrap-chosen.less" />
     <EntityDeploy Include="Models\BD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BD.Designer.cs</LastGenOutput>
@@ -214,9 +223,6 @@
     <Content Include="Models\BD.edmx.diagram">
       <DependentUpon>BD.edmx</DependentUpon>
     </Content>
-    <Content Include="App_Browsers\qt.browser" />
-    <Content Include="Content\bootstrap-chosen.scss" />
-    <Content Include="Content\bootstrap-chosen.less" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />

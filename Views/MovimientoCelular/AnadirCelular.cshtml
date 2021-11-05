@@ -1,6 +1,7 @@
-﻿
+﻿@model List<Web4.Models.ViewModels.ViewModelResponsable>
+
 @{
-    ViewBag.Title = "AnadirCelular";
+    ViewBag.Title = "Movimiento Celular";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -41,76 +42,65 @@
 
                 </div>
 
-
                 <div class="mb-3 row">
-
                     <label for="Cargo" class="col-sm-2 col-form-label">Cargo</label>
-                    <!--
 
                     <div class="col-sm-10">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Cargo" name="Cargo" type="text" value="" />
-                    </div>
-                    -->
+                        <input list="carguitos" onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Cargo" name="Cargo" type="text" />
 
-                    <div class="col-sm-10">
-                        <select class="form-control" name="Cargo" id="Cargo">
+                        <datalist name="carguitos" id="carguitos">
                             @foreach (var r in Model)
                             {
-                                <option value="@r.Cargo">@r.Cargo</option>
+                                <option value="@r.CargoView">@r.CargoView</option>
                             }
-                        </select>
+                        </datalist>
                     </div>
 
                 </div>
 
-                <div class="mb-3 row">
-                    <label for="Fecha" class="col-sm-2 col-form-label">Fecha</label>
-                    <div class="col-sm-10">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" data-val="true" data-val-date="El campo Fecha debe ser una fecha."
-                               data-val-required="El campo Fecha es obligatorio."
-                               id="Fecha" name="Fecha" type="datetime" value="@DateTime.Now" />
+
+
+                    <div class="mb-3 row">
+                        <label for="Fecha" class="col-sm-2 col-form-label">Fecha</label>
+                        <div class="col-sm-10">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" data-val="true" data-val-date="El campo Fecha debe ser una fecha."
+                                   data-val-required="El campo Fecha es obligatorio."
+                                   id="Fecha" name="Fecha" type="datetime" value="@DateTime.Now" />
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="Origen" class="col-sm-2 col-form-label">Origen</label>
-                    <div class="col-sm-10">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Origen" name="Origen" type="text" value="MARIANO H. CORNEJO 160 - PUNO" />
+                    <div class="mb-3 row">
+                        <label for="TipoFicha" class="col-sm-2 col-form-label">TipoFicha</label>
+                        <div class="col-sm-10">
+                            <select id="TipoFicha" name="TipoFicha" class="form-control">
+                                <option value=1>CELULAR</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="Destino" class="col-sm-2 col-form-label">Destino</label>
-                    <div class="col-sm-10">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Destino" name="Destino" type="text" placeholder="SERVICIO ELECTRICO SANDIA" 
-                               value="SANDIA"/>
+                    <div class="mb-3 row">
+                        <label for="TipoMovimiento" class="col-sm-2 col-form-label">Movimiento</label>
+                        <div class="col-sm-10">
+                            <select id="TipoMovimiento" name="TipoMovimiento" class="form-control">
+                                <option value="ASIGNACIÓN">ASIGNACIÓN</option>
+                                <option value="DEVOLUCIÓN">DEVOLUCIÓN</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="TipoMovimiento" class="col-sm-2 col-form-label">Movimiento</label>
-                    <div class="col-sm-10">
-                        <select id="TipoMovimiento" name="TipoMovimiento" class="form-control">
-                            <option value="ASIGNACIÓN">ASIGNACIÓN</option>
-                            <option value="DEVOLUCIÓN">DEVOLUCIÓN</option>
-                        </select>
+                    <div class="mb-3 row">
+                        <label for="ResponsableDelMovimiento" class="col-sm-5 col-form-label">ResponsableDelMovimiento</label>
+                        <div class="col-sm-7">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                   id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text"
+                                   value="marcaya" placeholder="marcaya" />
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="ResponsableDelMovimiento" class="col-sm-5 col-form-label">ResponsableDelMovimiento</label>
-                    <div class="col-sm-7">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="ResponsableDelMovimiento" name="ResponsableDelMovimiento" type="text"
-                               value="marcaya" placeholder="marcaya" />
+                    <div class="mb-3 row">
+                        <label for="Observacion" class="col-sm-5 col-form-label">Observacion</label>
+                        <div class="col-sm-7">
+                            <textarea onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                      id="Observacion" name="Observacion" rows="3">value="gneio observado"</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="Observacion" class="col-sm-5 col-form-label">Observacion</label>
-                    <div class="col-sm-7">
-                        <textarea onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                                  id="Observacion" name="Observacion" rows="3">value="gneio observado"</textarea>
-                    </div>
-                </div>
-            </fieldset>
+</fieldset>
         </div>
 
         <div class="col-md-6">
@@ -123,7 +113,7 @@
                     <label for="Descripcion" class="col-sm-2 col-form-label">Descripcion</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Descripcion" name="Descripcion" type="text" value="TELÉFONO MÓVIL" 
+                               id="Descripcion" name="Descripcion" type="text" value="TELÉFONO MÓVIL"
                                placeholder="CPU">
                     </div>
                 </div>
@@ -139,7 +129,7 @@
                     <label for="Modelo" class="col-sm-2 col-form-label">Modelo</label>
                     <div class="col-sm-10">
                         <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               id="Modelo" name="Modelo" type="text"  placeholder="E202"
+                               id="Modelo" name="Modelo" type="text" placeholder="E202"
                                value="iweyr73">
                     </div>
                 </div>
@@ -269,7 +259,7 @@
 
         $(function () {
             $("#Clave_R").chosen();
-            $("#Cargo").chosen();
+            //$("#Cargo").chosen();
         });
     </script>
 
