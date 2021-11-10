@@ -169,9 +169,6 @@
     <Compile Include="Models\Responsable.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewModels\MovimientoCelularViewModel.cs" />
     <Compile Include="Models\ViewModels\MovimientoViewModel.cs" />
     <Compile Include="Models\ViewModels\TablaMovimientoViewModels.cs" />

@@ -63,7 +63,7 @@ namespace Web4.Controllers
                     oFicha.ResponsableDelMovimiento = model.ResponsableDelMovimiento;
                     oFicha.Observacion = model.Observacion;
                     oFicha.Responsable_Clave_R = model.Clave_R;
-                    oFicha.TipoFicha = model.TipoFicha;
+                    oFicha.TipoFicha = 2;
                     oFicha.CargoDeLaEpoca = model.Cargo;
 
                     db.Ficha.Add(oFicha);

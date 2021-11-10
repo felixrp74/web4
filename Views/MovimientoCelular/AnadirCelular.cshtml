@@ -31,9 +31,16 @@
 
                     <div class="col-sm-10">
                         <select class="form-control" name="Clave_R" id="Clave_R">
-                            @foreach (var r in Model)
-                            {
-                                <option value="@r.Clave_R">@r.Nombre</option>
+                            @{
+                                int clave_r = 0;
+                                string nombre = "";
+
+                                foreach (var r in Model)
+                                {
+                                    clave_r = r.Clave_R;
+                                    nombre = r.Nombre;
+                                    <option value="@clave_r">@nombre</option>
+                                }
                             }
                         </select>
                     </div>
@@ -49,9 +56,16 @@
                         <input list="carguitos" onkeyup="this.value = this.value.toUpperCase();" class="form-control" id="Cargo" name="Cargo" type="text" />
 
                         <datalist name="carguitos" id="carguitos">
-                            @foreach (var r in Model)
-                            {
-                                <option value="@r.CargoView">@r.CargoView</option>
+                            @{
+                                string carguillo = "";
+
+                                foreach (var r in Model)
+                                {
+                                    carguillo = r.CargoView.Trim(' ');
+                                    
+                                    <option value="@carguillo">@carguillo</option>
+                                }
+
                             }
                         </datalist>
                     </div>
@@ -97,7 +111,7 @@
                         <label for="Observacion" class="col-sm-5 col-form-label">Observacion</label>
                         <div class="col-sm-7">
                             <textarea onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                                      id="Observacion" name="Observacion" rows="3">value="gneio observado"</textarea>
+                                      id="Observacion" name="Observacion" rows="3">Celular</textarea>
                         </div>
                     </div>
 </fieldset>

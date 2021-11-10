@@ -204,11 +204,12 @@ namespace Web4.Controllers
              
             try
             {
-                List<ViewModelResponsable> lista = new List<ViewModelResponsable>();
+                //List<ViewModelResponsable> lista = new List<ViewModelResponsable>();
 
                 using ( Prueba1Entities db = new Prueba1Entities() )
                 {
 
+                    /*
                     lista = (from d in db.Responsable
                                    where d.Clave_R == model.Clave_R
                                    select new ViewModelResponsable
@@ -221,6 +222,10 @@ namespace Web4.Controllers
 
 
                     model.Nombre = lista[0].Nombre;
+                    */
+                    Responsable oResponsable = db.Responsable.Find(model.Clave_R);
+                    model.Clave_R = oResponsable.Clave_R;
+                    model.Nombre = oResponsable.Nombre;
 
                     Ficha oFicha = new Ficha();
                     oFicha.Fecha = DateTime.Now;
@@ -230,11 +235,13 @@ namespace Web4.Controllers
                     oFicha.ResponsableDelMovimiento = model.ResponsableDelMovimiento;
                     oFicha.CargoDeLaEpoca = model.Cargo;
                     oFicha.Responsable_Clave_R = model.Clave_R;
+                    oFicha.TipoFicha = 1;
 
                     db.Ficha.Add(oFicha);
                     db.SaveChanges();
                      
                     model.Clave_F = oFicha.Clave_F;
+                    model.TipoFicha = 1;
 
                     int i = 0;
 
@@ -250,7 +257,9 @@ namespace Web4.Controllers
                         oBien.NombrePC = mE.NombrePC;
                         oBien.Entregado = mE.Entregado;
 
+
                         db.Bien.Add(oBien);
+
 
                         db.SaveChanges();
 
@@ -270,7 +279,7 @@ namespace Web4.Controllers
 
                     ViewBag.Message = "Registro insertado";
 
-
+                    
                     TempData["MovimientoViewModel"] = model;
                     return Redirect("~/Movimiento/Ficha");
                     //return RedirectToAction("Imprimir", "Home2", data);

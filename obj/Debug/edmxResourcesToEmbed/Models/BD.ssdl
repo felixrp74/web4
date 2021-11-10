@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Prueba1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'Prueba1.dbo.97' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="97">
-          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
-          <Property Name="Marca" Type="varchar" MaxLength="50" />
-          <Property Name="Modelo" Type="varchar" MaxLength="50" />
-          <Property Name="serie" Type="varchar" MaxLength="50" />
-        </EntityType>-->
   <EntityType Name="Bien">
     <Key>
       <PropertyRef Name="Clave_B" />
@@ -58,14 +50,6 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
     <Property Name="TipoFicha" Type="int" />
     <Property Name="CargoDeLaEpoca" Type="varchar" MaxLength="70" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'Prueba1.dbo.Hoja1$' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Hoja1$">
-          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
-          <Property Name="Cargo" Type="nvarchar" MaxLength="255" />
-          <Property Name="DNI" Type="nvarchar" MaxLength="255" />
-          <Property Name="CodPlanilla" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
   <EntityType Name="Responsable">
     <Key>
       <PropertyRef Name="Clave_R" />
@@ -75,16 +59,6 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Hoja1$' no tiene definida una cl
     <Property Name="Cargo" Type="varchar" MaxLength="255" />
     <Property Name="DNI" Type="varchar" MaxLength="255" />
     <Property Name="CodPlanilla" Type="varchar" MaxLength="255" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="fk_Detalle_Bien1">
     <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
@@ -131,7 +105,6 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Hoja1$' no tiene definida una cl
     <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
       <End Role="Bien" EntitySet="Bien" />
       <End Role="Detalle" EntitySet="Detalle" />

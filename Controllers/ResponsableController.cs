@@ -207,10 +207,10 @@ namespace Web4.Controllers
                                                     Origen = f.Origen,
                                                     Destino = f.Destino,
                                                     TipoMovimiento = f.TipoMovimiento,
-                                                    ResponsableDelMovimiento = f.ResponsableDelMovimiento
-                                                    //TipoFicha = (int) f.TipoFicha
+                                                    ResponsableDelMovimiento = f.ResponsableDelMovimiento,
+                                                    TipoFicha = (int)f.TipoFicha
 
-                                                }).ToList();
+            }).ToList();
 
             }
 

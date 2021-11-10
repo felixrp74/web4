@@ -17,6 +17,7 @@ namespace Web4.Models.ViewModels
         public string Destino { set; get; }
         public string TipoMovimiento { set; get; }
         public string ResponsableDelMovimiento { set; get; }
+        public int TipoFicha { get; set; }
 
         public List<Bienes> Equipos { set; get; }
         

@@ -60,16 +60,19 @@
     <a class="btn btn-info" href="~/Responsable/Ficha/oItem.Clave_F">Ficha</a>
 
     -->
-                        @if ( oItem.TipoFicha == 1)
+                        @if (oItem.TipoFicha == 1)
+                        {
+                            @*<a class="btn btn-primary" href="~/Responsable/Ficha?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Ficha</a>*@
+                            <a class="btn btn-success" href="~/Responsable/Imprimir?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Imprimir</a>
+                        }
+                        else if (oItem.TipoFicha == 2)
                         {
                             //<a class="btn btn-danger" href="~/Responsable/Ficha?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Ficha</a>
                             <a class="btn btn-info" href="~/Impresion/Imprimir?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Celular</a>
-
                         }
                         else
                         {
-                            <a class="btn btn-primary" href="~/Responsable/Ficha?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Ficha</a>
-                            <a class="btn btn-success" href="~/Responsable/Imprimir?id_R=@Model.Clave_R&id_F=@oItem.Clave_F">Imprimir</a>
+                            <h3>No se encontraron registros.</h3>
                         }
 
                     </td>
