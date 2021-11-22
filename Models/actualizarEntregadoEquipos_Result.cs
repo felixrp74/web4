@@ -11,7 +11,7 @@ namespace Web4.Models
 {
     using System;
     
-    public partial class buscarSerie_Result
+    public partial class actualizarEntregadoEquipos_Result
     {
         public string Descripcion { get; set; }
         public string Marca { get; set; }

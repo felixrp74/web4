@@ -61,7 +61,6 @@ namespace Web4.Controllers
 
                 modelMovimiento.Clave_R = modelResponsable[0].Clave_R;
                 modelMovimiento.Nombre = modelResponsable[0].Nombre;
-                modelMovimiento.Cargo = modelResponsable[0].Cargo;
 
                 modelFicha = (from f in db.Ficha
                               where f.Clave_F == id_F // las fichas son unicas y pertenecen a alguien
@@ -72,10 +71,12 @@ namespace Web4.Controllers
                                   Origen = f.Origen,
                                   Destino = f.Destino,
                                   TipoMovimiento = f.TipoMovimiento,
-                                  ResponsableDelMovimiento = f.ResponsableDelMovimiento
+                                  ResponsableDelMovimiento = f.ResponsableDelMovimiento,
+                                  CargoDeLaEpoca = f.CargoDeLaEpoca
 
                               }).ToList();
 
+                modelMovimiento.Cargo = modelFicha[0].CargoDeLaEpoca;
                 modelMovimiento.Fecha = modelFicha[0].Fecha;
                 modelMovimiento.Origen = modelFicha[0].Origen;
                 modelMovimiento.Destino = modelFicha[0].Destino;

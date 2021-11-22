@@ -10,13 +10,14 @@
 namespace Web4.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class buscarSerie_Result
+    public partial class sysdiagrams
     {
-        public string Descripcion { get; set; }
-        public string Marca { get; set; }
-        public string Modelo { get; set; }
-        public string Serie { get; set; }
-        public string Entregado { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

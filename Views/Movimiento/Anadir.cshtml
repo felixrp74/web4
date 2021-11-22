@@ -12,7 +12,6 @@
 
     <p class="text-success">
         @ViewBag.Message
-
     </p>
 
 </div>
@@ -129,45 +128,49 @@
 
                 <div id="root">
 
-                <div class="mb-3 row">
-                    <label for="Serie" class="col-sm-2 col-form-label">Serie</label>
-                    <div class="col-sm-10">
-                        <input onkeyup="" class="form-control"
-                               v-model="txtBusqueda"
-                               v-on:keyup="getBusqueda()"
-                               id="Serie" name="Serie" type="text" value="" placeholder="BEXJL0A5Y218PN">
+                   
+                    <div class="mb-3 row">
+                        <label for="Serie" class="col-sm-2 col-form-label">
+                            Serie
+                            <p style="color: red;" v-model="DispositivoNoDisponible">{{DispositivoNoDisponible}}</p>
+                        </label>
+                        <div class="col-sm-10">
+                            <input onkeyup="" class="form-control"
+                                   v-model="txtBusqueda"
+                                   v-on:keyup="getBusqueda()"
+                                   id="Serie" name="Serie" type="text" value="" placeholder="BEXJL0A5Y218PN">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="Descripcion" class="col-sm-2 col-form-label">Equipo</label>
+                        <div class="col-sm-10">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                   v-model="Descripcion"
+                                   id="Descripcion" name="Descripcion" type="text" placeholder="CPU">
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3 row">
+                        <label for="Marca" class="col-sm-2 col-form-label">Marca</label>
+                        <div class="col-sm-10">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                   v-model="Marca"
+                                   id="Marca" name="Marca" type="text" value="HP" placeholder="LENOVO">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="Modelo" class="col-sm-2 col-form-label">Modelo</label>
+                        <div class="col-sm-10">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                   v-model="Modelo"
+                                   id="Modelo" name="Modelo" type="text" value="JHSDF84978" placeholder="E202">
+                        </div>
                     </div>
                 </div>
 
-                <div class="mb-3 row">
-                    <label for="Descripcion" class="col-sm-2 col-form-label">Equipo</label>
-                    <div class="col-sm-10">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               v-model="Descripcion"
-                               id="Descripcion" name="Descripcion" type="text" placeholder="CPU">
-                    </div>
-                </div>
-
-
-                <div class="mb-3 row">
-                    <label for="Marca" class="col-sm-2 col-form-label">Marca</label>
-                    <div class="col-sm-10">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               v-model="Marca"
-                               id="Marca" name="Marca" type="text" value="HP" placeholder="LENOVO">
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label for="Modelo" class="col-sm-2 col-form-label">Modelo</label>
-                    <div class="col-sm-10">
-                        <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                               v-model="Modelo"
-                               id="Modelo" name="Modelo" type="text" value="JHSDF84978" placeholder="E202">
-                    </div>
-                </div>
-
-                </div>
 
                 <div class="mb-3 row">
                     <label for="Estado" class="col-sm-2 col-form-label">Estado</label>
@@ -270,7 +273,9 @@
                 listaResultados: [],
                 Descripcion: "",
                 Marca: "",
-                Modelo:"",
+                Modelo: "",
+                DispositivoNoDisponible: "",
+                ultimosResponsable: "",
 
             },
             methods: {
@@ -287,28 +292,58 @@
                             axios.get("https://localhost:44318/Movimiento/BuscarPorNombre?serie=" + cadena + "&cantidad=" + cantidad)
                                 .then(function (response) {
 
+
+
                                     app.listaResultados = response.data;
+                                    console.log(" HOLA BEIBI " + app.listaResultados[0].Descripcion);
                                     app.Descripcion = app.listaResultados[0].Descripcion;
                                     app.Marca = app.listaResultados[0].Marca;
                                     app.Modelo = app.listaResultados[0].Modelo;
+                                    app.Entregado = app.listaResultados[0].Entregado;
 
-                                    console.log("tamanao> " + response);
-                                    /*
-                                    if (app.listaResultados.length == 0) {
+                                    console.log("entregado> " + app.Entregado);
 
-                                        app.Descripcion = "";
-                                        app.Marca = "";
-                                        app.Modelo = "";
+
+                                    if (app.Entregado == "SI") {
+                                        console.log("El dispositivo ya asignó a un trabajador de Electro.")
+                                        app.DispositivoNoDisponible = "El dispositivo no esta disponible, lo tiene actualmente: ";
+                                        
+                                        axios.get("https://localhost:44318/Movimiento/BuscarUltimoResponsable?serie=" + cadena)
+                                            .then(function (response) {
+                                                app.DispositivoNoDisponible = app.DispositivoNoDisponible + response.data[0].Nombre;
+                                                console.log("ULTIMO RESPONSABLES>  " + response.data[0].Nombre); 
+                                            }).catch(function (error) {
+
+                                                console.log(error);
+                                            });
+
+                                    } else if (app.Entregado == "NO") {
+                                        console.log("El dispositivo esta disponible.")
+                                        app.DispositivoNoDisponible = null;
+                                        //axios.get("https://localhost:44318/Movimiento/ActualizarEntregadoEnEquipos?serie=" + cadena + "&entregado=" + app.Entregado)
+                                        //    .then(function (response) {
+                                        //        console.response()
+                                        //    }).catch(function (error) {
+
+                                        //        console.log(error);
+                                        //    })
+                                    } else {
+                                        app.DispositivoNoDisponible = null;
+                                        console.log("No funciona")
                                     }
-                                    */
-                                    
+
+
 
                                 }).catch(function (error) {
                                     app.Descripcion = "";
                                     app.Marca = "";
                                     app.Modelo = "";
+                                    app.Entregado = "";
                                     console.log(error);
                                 })
+                        } else {
+                            app.DispositivoNoDisponible = null;
+
                         }
                     }, 500);
 

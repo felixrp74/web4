@@ -18,6 +18,11 @@ namespace Web4.Controllers
         public string searchValue = "";
         public int pageSize, skip, recordsTotal;
 
+        public ActionResult UltimoResponsable()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult Editar(MovimientoViewModel modelMov)
@@ -174,6 +179,35 @@ namespace Web4.Controllers
             }
         }
 
+        public ActionResult ActualizarEntregadoEnEquipos(string serie, string entregado)
+        {
+            try
+            {
+                Prueba1Entities db = new Prueba1Entities();
+                var lista = db.actualizarEntregadoEquipos(serie, entregado);
+                return Json(lista, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult BuscarUltimoResponsable (string serie)
+        {
+            try
+            {
+                Prueba1Entities db = new Prueba1Entities();
+                var lista = db.buscarUltimoResponsable(serie);
+                return Json(lista, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
         // GET: Movimiento
         public ActionResult Anadir()
         {
@@ -223,6 +257,10 @@ namespace Web4.Controllers
 
                     model.Nombre = lista[0].Nombre;
                     */
+
+                    //MODIFICAR LA TABLA Equipos
+                    
+
                     Responsable oResponsable = db.Responsable.Find(model.Clave_R);
                     model.Clave_R = oResponsable.Clave_R;
                     model.Nombre = oResponsable.Nombre;
@@ -312,6 +350,44 @@ namespace Web4.Controllers
         public ActionResult Vista()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult JsonUltimoResponsable()
+        {
+            List<UltimoResponsableViewModel> lst = new List<UltimoResponsableViewModel>();
+
+            //logistica datatables
+            var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            var start = Request.Form.GetValues("start").FirstOrDefault();
+            var length = Request.Form.GetValues("length").FirstOrDefault();
+            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+            var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+            pageSize = length != null ? Convert.ToInt32(length) : 0;
+            skip = start != null ? Convert.ToInt32(start) : 0;
+            recordsTotal = 0;
+
+
+            //conexion base datos
+            using (Prueba1Entities db = new Prueba1Entities())
+            {
+                var lista = db.buscarUltimoResponsable(searchValue);
+
+                foreach (var item in lista)
+                {
+                    lst.Add( new UltimoResponsableViewModel(item.Nombre,item.Descripcion,item.Serie,item.IMEI, item.UsuarioPC));
+                }
+
+
+                recordsTotal = lst.Count();
+                lst = lst.Skip(skip).Take(pageSize).ToList();
+
+            }
+
+            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = lst });
+
         }
 
         [HttpPost]

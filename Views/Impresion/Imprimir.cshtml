@@ -20,208 +20,208 @@
     -->
 </head>
 <body>
-
-    <table class="mitad">
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                <img class="" src="https://www.electropuno.com.pe/web3/images/template/logo-electropuno.png"
-                     width="224"
-                     height="40" />
-            </td>
-        </tr>
-        <tr>
-            <th colspan="4">FICHA DE ASIGNACIÓN DE LÍNEA Y EQUIPO MÓVIL</th>
-            <th>ACTA N°</th>
-            <td>@Model.Clave_F</td>
-        </tr>
-        <tr>
-            <th>Fecha</th>
-            <td colspan="2">@Model.Fecha</td>
-            <th>Entregado/Estado del equipo</th>
-            <td colspan="2">@Model.EquiposCelulares[0].Entregado / @Model.EquiposCelulares[0].Estado</td>
-        </tr>
-        <tr>
-            <th>Cargo</th>
-            <td colspan="5">@Model.Cargo</td>
-        </tr>
-        <tr>
-            <th>Responsable</th>
-            <td colspan="3">@Model.Nombre</td>
-            <th>Cod. planilla</th>
-            <td>00177</td>
-        </tr>
-        <tr>
-            <th>Equipo</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>IMEI</th>
-            <th colspan="2">Accesorios</th>
-        </tr>
-        <tr>
-            <td rowspan="3">@Model.EquiposCelulares[0].Descripcion</td>
-            <td rowspan="3">@Model.EquiposCelulares[0].Marca</td>
-            <td rowspan="3">@Model.EquiposCelulares[0].Modelo</td>
-            <td rowspan="3">@Model.EquiposCelulares[0].IMEI</td>
-            <th>Cargador</th>
-            <td>@Model.EquiposCelulares[0].Cargador</td>
-        </tr>
-        <tr>
-            <th>Cable datos</th>
-            <td>@Model.EquiposCelulares[0].CableDatos</td>
-        </tr>
-        <tr>
-            <th>Audífono</th>
-            <td>@Model.EquiposCelulares[0].Audifono</td>
-        </tr>
-        <tr>
-            <th>Observaciones</th>
-            <td colspan="3">
-                @Model.Observacion
-            </td>
-            <th>Línea</th>
-            <td>@Model.EquiposCelulares[0].Linea</td>
-        </tr>
-    </table>
-
-    <div>
-        <p style="text-align: justify;">
-            Condiciones de asignación de línea y equipo móvil:
-        </p>
-
-        <p style="text-align: justify;">
-            Por medio del presente documento, ELECTRO PUNO S.A.A. asigna a EL TRABAJADOR la línea y el equipo móvil detallado
-            en el Presente documento, con la aceptación expresa de las siguientes condiciones por parte de EL TRABAJADOR:
-        </p>
-
-
-        <ol type="1">
-            <li>
-                <p style="text-align: justify;">
-                    EL TRABAJADOR debe devolver a ELECTRO PUNO S.A.A., en este acto, el equipo móvil asignado previamente por ELECTRO PUNO S.A.A. con motivo del contrato suscrito
-                    con el operador de telefonía en el año 2017. La devolución del equipo móvil debe hacerse en la División de Tecnologías de la Información y Comunicaciones.
-                </p>
-            </li>
-            <li>
-                <p style="text-align: justify;">
-                    En caso EL TRABAJADOR no devuelva en este acto el equipo móvil previamente asignado por ELECTRO PUNO S.A.A., EL TRABAJADOR autoriza expresamente a
-                    ELECTRO PUNO S.A.A. para que descuente el valor actualizado del equipo móvil previamente asignado, de los haberes por planilla de EL TRABAJADOR.
-                </p>
-            </li>
-            <li>
-                <p style="text-align: justify;">
-                    La línea y equipo entregado en este acto a EL TRABAJADOR, detallados en el presente documento, son propiedad de ELECTRO PUNO S.A.A.,
-                    que se reserva los derechos de fiscalizar el correcto uso de los mismos y accionar en caso verifique el uso indebido de estos.
-                </p>
-            </li>
-
-            <li>
-                <p style="text-align: justify;">
-                    El equipo entregado, detallado en el presente documento, es nuevo e incluye todos los accesorios detallados
-                    en el empaque. Deberá ser devuelto en similares condiciones de uso a ELECTRO PUNO S.A.A.
-                </p>
-            </li>
-
-            <li>
-                <p style="text-align: justify;">
-                    EL TRABAJADOR autoriza a ELECTRO PUNO S.A.A. para que, en caso de robo, hurto, deterioro o pérdida del chip que se entrega a EL TRABAJADOR,
-                    ELECTRO PUNO S.A.A. descuente el valor actualizado del chip, de los haberes por planilla de EL TRABAJADOR.
-                </p>
-            </li>
-
-            <li>
-                <p style="text-align: justify;">
-                    En caso de robo, hurto, deterioro o pérdida del equipo móvil entregado en este acto a EL TRABAJADOR, se seguirá el siguiente procedimiento:
-                </p>
-                <ul>
-                    <li>
-                        <p style="text-align:justify;">
-                            EL TRABAJADOR podrá reemplazar el equipo móvil siniestrado por otro equipo móvil nuevo de similares o mejores características,
-                            pero nunca de una gama inferior a la del equipo móvil entregado. Para dicho efecto, EL TRABAJADOR deberá entregar el equipo
-                            móvil reemplazante a la División de Tecnologías de la información y Comunicaciones, en un plazo no mayor de cinco (05) días
-                            hábiles siguientes de siniestrado el equipo entregado. La División de Tecnologías de la información y Comunicaciones tendrá
-                            un (01) día hábil a fin de verificar las características del equipo móvil reemplazante; en caso no se pronuncie sobre el mismo, se tendrá por aceptado el reemplazo,
-                            debiendo la División de Tecnologías de la información y Comunicaciones entregar el equipo móvil reemplazante a EL TRABAJADOR en el día bajo cargo y responsabilidad.
-                        </p>
-                    </li>
-                    <li>
-                        <p style="text-align:justify;">
-                            En caso EL TRABAJADOR no ejerza la opción detallada en el párrafo precedente, dentro del plazo especificado en el mismo,
-                            EL TRABAJADOR autoriza expresamente a ELECTRO PUNO S.A.A. para que descuente el valor actualizado del equipo móvil entregado,
-                            así como cualquier penalidad que corresponda según el contrato suscrito entre el operador de telefonía y ELECTRO PUNO S.A.A.,
-                            de los haberes de planilla de EL TRABAJADOR.
-                        </p>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <p style="text-align: justify;">
-                    El equipo móvil y sus características, son asignados de acuerdo a las funciones que desempeña EL TRABAJADOR. En caso EL
-                    TRABAJADOR ya no cumpla, por cualquier razón, las funciones que motivaron la asignación del equipo móvil detallado en el
-                    Presente documento, deberá entregar el equipo móvil a la División de Tecnologías de la Información y Comunicaciones.
-                </p>
-            </li>
-
-            <li>
-                <p style="text-align: justify;">
-                    EL TRABAJADOR deberá entregar el equipo móvil asignado a la División de Tecnologías de la Información y Comunicaciones al
-                    término del contrato con el operador de telefonía, lo cual será comunicado oportunamente a EL TRABAJADOR.
-                </p>
-            </li>
-        </ol>
-
-    </div>
-    <div>
-        <h4 style="text-align: center;">DEVOLUCIÓN DE EQUIPO ASIGNADO</h4>
-        <p style="text-align: center;">
-            <b>PERIODO 2021</b> &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp   SI(  &nbsp&nbsp )  &nbsp&nbsp   NO( &nbsp&nbsp )
-        </p>
-    </div>
-    <div>
+    <div style="margin-left: 10%">
         <table class="mitad">
             <tr>
-                <td style="text-align: justify;">
-
-                    <p>
-                        Yo, <b>@Model.Nombre</b>, identificado con DNI: <b>@Model.DNI</b>
-                    </p>
-                    <P>
-                        Declaro bajo juramento haber extraviado el equipo asignado por la empresa, y autorizo expresament a ELECTRO PUNO S.A.A., 
-                        para que descuente el valor actualizado del equipo móvil asignado de mis haberes por planilla.
-                    </P>
-
-                    <p><b>MARCA: </b></p>
-                    <p><b>MODELO: </b></p>
-                    <p><b>IMEI: </b></p>
-                    <p><b>OPERADOR: </b></p>
+                <td colspan="6" style="text-align: center;">
+                    <img class="" src="https://www.electropuno.com.pe/web3/images/template/logo-electropuno.png"
+                         width="224"
+                         height="40" />
                 </td>
-
             </tr>
-        </table>
-
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div>
-        <table style="width: 100%;">
             <tr>
-                <td style="width: 50%;">
-                    <p style="text-align: center;"><b>ELECTRO PUNO S.A.A.</b></p>
+                <th colspan="4">FICHA DE ASIGNACIÓN DE LÍNEA Y EQUIPO MÓVIL</th>
+                <th>ACTA N°</th>
+                <td>@Model.Clave_F</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td colspan="2">@Model.Fecha</td>
+                <th>Entregado/Estado del equipo</th>
+                <td colspan="2">@Model.EquiposCelulares[0].Entregado / @Model.EquiposCelulares[0].Estado</td>
+            </tr>
+            <tr>
+                <th>Cargo</th>
+                <td colspan="5">@Model.Cargo</td>
+            </tr>
+            <tr>
+                <th>Responsable</th>
+                <td colspan="3">@Model.Nombre</td>
+                <th>Cod. planilla</th>
+                <td>00177</td>
+            </tr>
+            <tr>
+                <th>Equipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>IMEI</th>
+                <th colspan="2">Accesorios</th>
+            </tr>
+            <tr>
+                <td rowspan="3">@Model.EquiposCelulares[0].Descripcion</td>
+                <td rowspan="3">@Model.EquiposCelulares[0].Marca</td>
+                <td rowspan="3">@Model.EquiposCelulares[0].Modelo</td>
+                <td rowspan="3">@Model.EquiposCelulares[0].IMEI</td>
+                <th>Cargador</th>
+                <td>@Model.EquiposCelulares[0].Cargador</td>
+            </tr>
+            <tr>
+                <th>Cable datos</th>
+                <td>@Model.EquiposCelulares[0].CableDatos</td>
+            </tr>
+            <tr>
+                <th>Audífono</th>
+                <td>@Model.EquiposCelulares[0].Audifono</td>
+            </tr>
+            <tr>
+                <th>Observaciones</th>
+                <td colspan="3">
+                    @Model.Observacion
                 </td>
-                <td style="width: 50%;">
-                    <p style="text-align: center;"><b>TRABAJADOR: @Model.Nombre</b></p>
-                    <p style="text-align: center;"><b>DNI: @Model.DNI</b></p>
-                </td>
+                <th>Línea</th>
+                <td>@Model.EquiposCelulares[0].Linea</td>
             </tr>
         </table>
-    </div>
 
+        <div>
+            <p style="text-align: justify;">
+                Condiciones de asignación de línea y equipo móvil:
+            </p>
+
+            <p style="text-align: justify;">
+                Por medio del presente documento, ELECTRO PUNO S.A.A. asigna a EL TRABAJADOR la línea y el equipo móvil detallado
+                en el Presente documento, con la aceptación expresa de las siguientes condiciones por parte de EL TRABAJADOR:
+            </p>
+
+
+            <ol type="1">
+                <li>
+                    <p style="text-align: justify;">
+                        EL TRABAJADOR debe devolver a ELECTRO PUNO S.A.A., en este acto, el equipo móvil asignado previamente por ELECTRO PUNO S.A.A. con motivo del contrato suscrito
+                        con el operador de telefonía en el año 2017. La devolución del equipo móvil debe hacerse en la División de Tecnologías de la Información y Comunicaciones.
+                    </p>
+                </li>
+                <li>
+                    <p style="text-align: justify;">
+                        En caso EL TRABAJADOR no devuelva en este acto el equipo móvil previamente asignado por ELECTRO PUNO S.A.A., EL TRABAJADOR autoriza expresamente a
+                        ELECTRO PUNO S.A.A. para que descuente el valor actualizado del equipo móvil previamente asignado, de los haberes por planilla de EL TRABAJADOR.
+                    </p>
+                </li>
+                <li>
+                    <p style="text-align: justify;">
+                        La línea y equipo entregado en este acto a EL TRABAJADOR, detallados en el presente documento, son propiedad de ELECTRO PUNO S.A.A.,
+                        que se reserva los derechos de fiscalizar el correcto uso de los mismos y accionar en caso verifique el uso indebido de estos.
+                    </p>
+                </li>
+
+                <li>
+                    <p style="text-align: justify;">
+                        El equipo entregado, detallado en el presente documento, es nuevo e incluye todos los accesorios detallados
+                        en el empaque. Deberá ser devuelto en similares condiciones de uso a ELECTRO PUNO S.A.A.
+                    </p>
+                </li>
+
+                <li>
+                    <p style="text-align: justify;">
+                        EL TRABAJADOR autoriza a ELECTRO PUNO S.A.A. para que, en caso de robo, hurto, deterioro o pérdida del chip que se entrega a EL TRABAJADOR,
+                        ELECTRO PUNO S.A.A. descuente el valor actualizado del chip, de los haberes por planilla de EL TRABAJADOR.
+                    </p>
+                </li>
+
+                <li>
+                    <p style="text-align: justify;">
+                        En caso de robo, hurto, deterioro o pérdida del equipo móvil entregado en este acto a EL TRABAJADOR, se seguirá el siguiente procedimiento:
+                    </p>
+                    <ul>
+                        <li>
+                            <p style="text-align:justify;">
+                                EL TRABAJADOR podrá reemplazar el equipo móvil siniestrado por otro equipo móvil nuevo de similares o mejores características,
+                                pero nunca de una gama inferior a la del equipo móvil entregado. Para dicho efecto, EL TRABAJADOR deberá entregar el equipo
+                                móvil reemplazante a la División de Tecnologías de la información y Comunicaciones, en un plazo no mayor de cinco (05) días
+                                hábiles siguientes de siniestrado el equipo entregado. La División de Tecnologías de la información y Comunicaciones tendrá
+                                un (01) día hábil a fin de verificar las características del equipo móvil reemplazante; en caso no se pronuncie sobre el mismo, se tendrá por aceptado el reemplazo,
+                                debiendo la División de Tecnologías de la información y Comunicaciones entregar el equipo móvil reemplazante a EL TRABAJADOR en el día bajo cargo y responsabilidad.
+                            </p>
+                        </li>
+                        <li>
+                            <p style="text-align:justify;">
+                                En caso EL TRABAJADOR no ejerza la opción detallada en el párrafo precedente, dentro del plazo especificado en el mismo,
+                                EL TRABAJADOR autoriza expresamente a ELECTRO PUNO S.A.A. para que descuente el valor actualizado del equipo móvil entregado,
+                                así como cualquier penalidad que corresponda según el contrato suscrito entre el operador de telefonía y ELECTRO PUNO S.A.A.,
+                                de los haberes de planilla de EL TRABAJADOR.
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <p style="text-align: justify;">
+                        El equipo móvil y sus características, son asignados de acuerdo a las funciones que desempeña EL TRABAJADOR. En caso EL
+                        TRABAJADOR ya no cumpla, por cualquier razón, las funciones que motivaron la asignación del equipo móvil detallado en el
+                        Presente documento, deberá entregar el equipo móvil a la División de Tecnologías de la Información y Comunicaciones.
+                    </p>
+                </li>
+
+                <li>
+                    <p style="text-align: justify;">
+                        EL TRABAJADOR deberá entregar el equipo móvil asignado a la División de Tecnologías de la Información y Comunicaciones al
+                        término del contrato con el operador de telefonía, lo cual será comunicado oportunamente a EL TRABAJADOR.
+                    </p>
+                </li>
+            </ol>
+
+        </div>
+        <div>
+            <h4 style="text-align: center;">DEVOLUCIÓN DE EQUIPO ASIGNADO</h4>
+            <p style="text-align: center;">
+                <b>PERIODO 2021</b> &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp   SI(  &nbsp&nbsp )  &nbsp&nbsp   NO( &nbsp&nbsp )
+            </p>
+        </div>
+        <div>
+            <table class="mitad">
+                <tr>
+                    <td style="text-align: justify;">
+
+                        <p>
+                            Yo, <b>@Model.Nombre</b>, identificado con DNI: <b>@Model.DNI</b>
+                        </p>
+                        <P>
+                            Declaro bajo juramento haber extraviado el equipo asignado por la empresa, y autorizo expresament a ELECTRO PUNO S.A.A.,
+                            para que descuente el valor actualizado del equipo móvil asignado de mis haberes por planilla.
+                        </P>
+
+                        <p><b>MARCA: </b></p>
+                        <p><b>MODELO: </b></p>
+                        <p><b>IMEI: </b></p>
+                        <p><b>OPERADOR: </b></p>
+                    </td>
+
+                </tr>
+            </table>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div>
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 50%;">
+                        <p style="text-align: center;"><b>ELECTRO PUNO S.A.A.</b></p>
+                    </td>
+                    <td style="width: 50%;">
+                        <p style="text-align: center;"><b>TRABAJADOR: @Model.Nombre</b></p>
+                        <p style="text-align: center;"><b>DNI: @Model.DNI</b></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

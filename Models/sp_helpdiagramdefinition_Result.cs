@@ -11,12 +11,9 @@ namespace Web4.Models
 {
     using System;
     
-    public partial class buscarSerie_Result
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public string Descripcion { get; set; }
-        public string Marca { get; set; }
-        public string Modelo { get; set; }
-        public string Serie { get; set; }
-        public string Entregado { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

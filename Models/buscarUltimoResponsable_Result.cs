@@ -11,12 +11,12 @@ namespace Web4.Models
 {
     using System;
     
-    public partial class buscarSerie_Result
+    public partial class buscarUltimoResponsable_Result
     {
+        public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public string Marca { get; set; }
-        public string Modelo { get; set; }
         public string Serie { get; set; }
-        public string Entregado { get; set; }
+        public string IMEI { get; set; }
+        public string UsuarioPC { get; set; }
     }
 }

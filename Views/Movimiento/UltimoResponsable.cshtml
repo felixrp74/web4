@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "UltimoResponsable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Serie</th>
+            <th>IMEI</th>
+            <th>UsuarioPC</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+@section scripts{
+
+    <script>
+        //const RELATIVE_PATH = window.location.pathname;
+
+        $(document).ready(function () {
+            $("#table_id").DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "@Url.Content("~/Movimiento/JsonUltimoResponsable")",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "pageLength": 10,
+                "filter": true,
+                "responsivePriority": 1,
+                "data": null,
+                "columns": [
+                    { "data": "Nombre", "name": "Nombre", "autowidth": true },
+                    { "data": "Descripcion", "name": "Descripcion", "autowidth": true },
+                    { "data": "Serie", "name": "Serie", "autowidth": true },
+                    { "data": "IMEI", "name": "IMEI", "autowidth": true },
+                    { "data": "UsuarioPC", "name": "UsuarioPC", "autowidth": true },
+                    {
+                        "data": "Clave_R", "name": "Clave_R", "autowidth": true,
+                        "render": function (data, type, row, meta) {
+
+                            data = '<a  href="/Responsable/Movimientos/' + data + '" class="btn btn-info"> Movimiento </a>';
+
+                            return data;
+                        }
+                    }
+                ]
+            });
+        })
+    </script>
+
+}

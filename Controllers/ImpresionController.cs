@@ -16,7 +16,7 @@ namespace Web4.Controllers
         public ActionResult Imprimir()
         {
             return View();
-        }
+        } 
 
         [HttpGet]
         public ActionResult Imprimir(int id_R, int id_F)

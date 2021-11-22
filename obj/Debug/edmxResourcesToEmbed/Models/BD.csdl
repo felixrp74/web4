@@ -58,6 +58,16 @@
     <Property Name="CodPlanilla" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Ficha" Relationship="Self.fk_Ficha_Responsable1" FromRole="Responsable" ToRole="Ficha" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <Association Name="fk_Detalle_Bien1">
     <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
     <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
@@ -99,6 +109,7 @@
     <EntitySet Name="Detalle" EntityType="Self.Detalle" />
     <EntitySet Name="Ficha" EntityType="Self.Ficha" />
     <EntitySet Name="Responsable" EntityType="Self.Responsable" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
       <End Role="Bien" EntitySet="Bien" />
       <End Role="Detalle" EntitySet="Detalle" />
@@ -111,15 +122,81 @@
       <End Role="Responsable" EntitySet="Responsable" />
       <End Role="Ficha" EntitySet="Ficha" />
     </AssociationSet>
+    <FunctionImport Name="actualizarEntregadoEquipos" ReturnType="Collection(Prueba1Model.actualizarEntregadoEquipos_Result)">
+      <Parameter Name="serie" Mode="In" Type="String" />
+      <Parameter Name="entregado" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="buscarSerie" ReturnType="Collection(Prueba1Model.buscarSerie_Result)">
       <Parameter Name="consulta" Mode="In" Type="String" />
       <Parameter Name="cantidad" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="buscarUltimoResponsable" ReturnType="Collection(Prueba1Model.buscarUltimoResponsable_Result)">
+      <Parameter Name="serie" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="devolverCelular">
+      <Parameter Name="imei" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Prueba1Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Prueba1Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
+  <ComplexType Name="actualizarEntregadoEquipos_Result">
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Marca" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Modelo" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Serie" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Entregado" Nullable="true" MaxLength="2" />
+  </ComplexType>
   <ComplexType Name="buscarSerie_Result">
     <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="Marca" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="Modelo" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="Serie" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Entregado" Nullable="true" MaxLength="2" />
+  </ComplexType>
+  <ComplexType Name="buscarUltimoResponsable_Result">
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="Serie" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="IMEI" Nullable="true" MaxLength="45" />
+    <Property Type="String" Name="UsuarioPC" Nullable="true" MaxLength="45" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
 </Schema>

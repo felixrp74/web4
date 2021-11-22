@@ -39,6 +39,7 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
           <Property Name="Marca" Type="nvarchar" MaxLength="255" />
           <Property Name="Modelo" Type="nvarchar" MaxLength="255" />
           <Property Name="Serie" Type="nvarchar" MaxLength="255" />
+          <Property Name="Entregado" Type="varchar" MaxLength="2" />
         </EntityType>-->
         <EntityType Name="Ficha">
           <Key>
@@ -64,6 +65,16 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
           <Property Name="Cargo" Type="varchar" MaxLength="255" />
           <Property Name="DNI" Type="varchar" MaxLength="255" />
           <Property Name="CodPlanilla" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="fk_Detalle_Bien1">
           <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
@@ -101,15 +112,60 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="actualizarEntregadoEquipos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serie" Type="nvarchar" Mode="In" />
+          <Parameter Name="entregado" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="buscarSerie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="consulta" Type="nvarchar" Mode="In" />
           <Parameter Name="cantidad" Type="int" Mode="In" />
         </Function>
+        <Function Name="buscarUltimoResponsable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serie" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="devolverCelular" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="imei" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fnEliminarAcentos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="consulta" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Prueba1ModelStoreContainer">
           <EntitySet Name="Bien" EntityType="Self.Bien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detalle" EntityType="Self.Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ficha" EntityType="Self.Ficha" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
             <End Role="Bien" EntitySet="Bien" />
             <End Role="Detalle" EntitySet="Detalle" />
@@ -186,6 +242,16 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
           <Property Name="CodPlanilla" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Ficha" Relationship="Self.fk_Ficha_Responsable1" FromRole="Responsable" ToRole="Ficha" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <Association Name="fk_Detalle_Bien1">
           <End Role="Bien" Type="Self.Bien" Multiplicity="1" />
           <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
@@ -227,6 +293,7 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
           <EntitySet Name="Detalle" EntityType="Self.Detalle" />
           <EntitySet Name="Ficha" EntityType="Self.Ficha" />
           <EntitySet Name="Responsable" EntityType="Self.Responsable" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="fk_Detalle_Bien1" Association="Self.fk_Detalle_Bien1">
             <End Role="Bien" EntitySet="Bien" />
             <End Role="Detalle" EntitySet="Detalle" />
@@ -239,16 +306,82 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
             <End Role="Responsable" EntitySet="Responsable" />
             <End Role="Ficha" EntitySet="Ficha" />
           </AssociationSet>
+          <FunctionImport Name="actualizarEntregadoEquipos" ReturnType="Collection(Prueba1Model.actualizarEntregadoEquipos_Result)">
+            <Parameter Name="serie" Mode="In" Type="String" />
+            <Parameter Name="entregado" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="buscarSerie" ReturnType="Collection(Prueba1Model.buscarSerie_Result)">
             <Parameter Name="consulta" Mode="In" Type="String" />
             <Parameter Name="cantidad" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="buscarUltimoResponsable" ReturnType="Collection(Prueba1Model.buscarUltimoResponsable_Result)">
+            <Parameter Name="serie" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="devolverCelular">
+            <Parameter Name="imei" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Prueba1Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Prueba1Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="actualizarEntregadoEquipos_Result">
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Modelo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Serie" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Entregado" Nullable="true" MaxLength="2" />
+        </ComplexType>
         <ComplexType Name="buscarSerie_Result">
           <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Marca" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Modelo" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Serie" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Entregado" Nullable="true" MaxLength="2" />
+        </ComplexType>
+        <ComplexType Name="buscarUltimoResponsable_Result">
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="Serie" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="IMEI" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="UsuarioPC" Nullable="true" MaxLength="45" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -312,6 +445,28 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Prueba1Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="actualizarEntregadoEquipos" FunctionName="Prueba1Model.Store.actualizarEntregadoEquipos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Prueba1Model.actualizarEntregadoEquipos_Result">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="Entregado" ColumnName="Entregado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="buscarSerie" FunctionName="Prueba1Model.Store.buscarSerie">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Prueba1Model.buscarSerie_Result">
@@ -319,9 +474,46 @@ advertencia 6013: La tabla o vista 'Prueba1.dbo.Equipos' no tiene definida una c
                 <ScalarProperty Name="Marca" ColumnName="Marca" />
                 <ScalarProperty Name="Modelo" ColumnName="Modelo" />
                 <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="Entregado" ColumnName="Entregado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="buscarUltimoResponsable" FunctionName="Prueba1Model.Store.buscarUltimoResponsable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Prueba1Model.buscarUltimoResponsable_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+                <ScalarProperty Name="UsuarioPC" ColumnName="UsuarioPC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="devolverCelular" FunctionName="Prueba1Model.Store.devolverCelular" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Prueba1Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Prueba1Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Prueba1Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Prueba1Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Prueba1Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Prueba1Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Prueba1Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Prueba1Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Prueba1Model.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
